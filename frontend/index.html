@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ar">
+<!-- Arabic language -->
+<!-- Direction: RTL -->
+<html dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feen - Missing Persons Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
+        rel="stylesheet">
+        <link rel="stylesheet" href="./css/index.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1 onclick="window.location.href='/'">فيين</h1>
+            <nav id="navbar">
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="description">
+                <h2>ساهم في البحث عن الأشخاص المفقودين</h2>
+                <p>فيين منصة مغربية تُسخّر تقنيات التعرف على الوجه لمساعدة العائلات في العثور على أحبّائها المفقودين
+                    ولمّ شملهم من جديد.</p>
+            </section>
+
+            <section class="cards-container">
+                <article class="card">
+                    <div class="card-content">
+                        <div>
+                            <h2>بلاغ عن شخص مفقود</h2>
+                            <p>قدّم تفاصيل وصورة للشخص المفقود لتفعيل جهود البحث المجتمعي.</p>
+                        </div>
+                        <a href="./report-missing.html" class="card-link">إرسال بلاغ عن مفقود</a>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-content">
+                        <div>
+                            <h2>بلاغ عن شخص تم العثور عليه</h2>
+                            <p>إذا صادفت شخصًا يبدو تائهًا أو غير قادر على التعرف على نفسه، يمكنك التبليغ هنا.</p>
+                        </div>
+                        <a href="./report-found.html" class="card-link">إرسال بلاغ عن العثور</a>
+                    </div>
+                </article>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 منصة فيين. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navbar = document.getElementById('navbar');
+            const authToken = localStorage.getItem('authToken');
+            const username = localStorage.getItem('username');
+
+            if (authToken && username) {
+                navbar.innerHTML = `
+                    <a href="user-reports.html">بلاغاتي</a>
+                    <span class="username">${username}</span>
+                `;
+            } else {
+                navbar.innerHTML = `
+                    <a href="./login.html" class="sign-in-btn">تسجيل الدخول</a>
+                    <a href="./register.html" class="register-btn">إنشاء حساب</a>
+                `;
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>

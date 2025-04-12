@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar">
+<html dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feen - Missing Persons Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
+        rel="stylesheet">
+        <link rel="stylesheet" href="./css/missing-matches.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1 onclick="window.location.href='/'">فيين</h1>
+            <nav id="navbar">
+                <!-- Placeholder for dynamic content -->
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="matches-container">
+            <h3 class="section-title">تطابقات المفقودين</h3>
+            <div id="matches-grid" class="matches-grid">
+                <div class="loading">جاري تحميل التطابقات...</div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const BASE_URL = "http://localhost:8787/api";
+            const navbar = document.getElementById('navbar');
+            const matchesGrid = document.getElementById('matches-grid');
+            const authToken = localStorage.getItem('authToken');
+            const username = localStorage.getItem('username');
+
+            // Get ID from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+
+            if (!id) {
+                matchesGrid.innerHTML = `
+                    <div class="error-message">
+                        المعرف مفقود. يرجى توفير معرف صالح في الرابط.
+                    </div>
+                `;
+                return;
+            }
+
+            if (authToken && username) {
+                // User is logged in
+                navbar.innerHTML = `<span class="username">${username}</span>`;
+                fetchMatches(id);
+            } else {
+                // User is not logged in, redirect to index.html
+                window.location.href = '/';
+            }
+
+            async function fetchMatches(id) {
+                try {
+                    const response = await fetch(`${BASE_URL}/lost-matches/${id}`, {
+                        headers: {
+                            'Authorization': `Bearer ${authToken}`
+                        }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('فشل في جلب التطابقات');
+                    }
+
+                    const matches = await response.json();
+                    displayMatches(matches);
+                } catch (error) {
+                    console.error('خطأ أثناء جلب التطابقات:', error);
+                    matchesGrid.innerHTML = `
+                        <div class="error-message">
+                            حدث خطأ أثناء تحميل التطابقات. يرجى المحاولة لاحقًا.
+                        </div>
+                    `;
+                }
+            }
+
+            function displayMatches(matches) {
+                if (!matches || matches.matches.length === 0) {
+                    // Redirect to no-results page
+                    window.location.href = 'no-result.html';
+                    return;
+                }
+
+                matchesGrid.innerHTML = matches.matches.map(match => {
+                    const confidence = match.facialRecognition.confidence || 0;
+                    let confidenceClass = 'confidence-low';
+                    if (confidence >= 80) {
+                        confidenceClass = 'confidence-high';
+                    } else if (confidence >= 50) {
+                        confidenceClass = 'confidence-medium';
+                    }
+
+                    return `
+                        <div class="match-card">
+                            <div class="confidence-indicator ${confidenceClass}">
+                                نسبة التطابق: ${confidence}%
+                            </div>
+                            <img src="${BASE_URL}/found/${match.id}/photo" 
+                                 alt="صورة الشخص المعثور عليه" 
+                                 class="match-photo">
+                            <h3 class="match-title">${match.name}</h3>
+                            <div class="match-details">
+                                <div class="detail-group">
+                                    <div class="detail-label">مكان العثور</div>
+                                    <div class="detail-value">${match.foundLocation}</div>
+                                </div>
+                                <div class="detail-group">
+                                    <div class="detail-label">تاريخ العثور</div>
+                                    <div class="detail-value">${new Date(match.foundDate).toLocaleDateString()}</div>
+                                </div>
+                                <div class="detail-group">
+                                    <div class="detail-label">العمر</div>
+                                    <div class="detail-value">${match.age || 'غير معروف'} سنة</div>
+                                </div>
+                                <div class="detail-group">
+                                    <div class="detail-label">الجنس</div>
+                                    <div class="detail-value">${match.gender}</div>
+                                </div>
+                                <div class="detail-group">
+                                    <div class="detail-label">معلومات الاتصال</div>
+                                    <div class="detail-value">${match.contactInfo || 'غير متوفرة'}</div>
+                                </div>
+                                <div class="detail-group">
+                                    <div class="detail-label">الوصف</div>
+                                    <div class="detail-value">${match.description || 'لا توجد تفاصيل إضافية'}</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+        });
+    </script>
+</body>
+
+</html>

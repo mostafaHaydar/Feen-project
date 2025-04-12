@@ -1,0 +1,288 @@
+
+:root {
+    --primary-color: #4f46e5;
+    --primary-hover-color: #4338ca;
+    --secondary-color: #4b5563;
+    --light-color: #f9fafb;
+    --dark-color: #1f2937;
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --text-color: var(--secondary-color);
+    --text-muted: #6b7280;
+    --border-color: rgba(229, 231, 235, 0.5);
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --border-radius: 12px;
+    --gradient-start: #e0e7ff;
+    --gradient-end: #dbeafe;
+    --accent-color: #818cf8;
+    --success-color: #10b981;
+    --error-color: #ef4444;
+}
+
+body {
+    font-family: 'Alexandria', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    background-image: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+header {
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: var(--dark-color);
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+header nav a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+header nav a:hover {
+    color: var(--primary-color);
+    background-color: rgba(79, 70, 229, 0.1);
+    transform: translateY(-1px);
+}
+
+header nav a.sign-in-btn {
+    color: var(--secondary-color);
+}
+
+header nav a.sign-in-btn:hover {
+    color: var(--primary-color);
+    background-color: var(--light-color);
+}
+
+header nav a.register-btn {
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(79, 70, 229, 0.2);
+}
+
+header nav a.register-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(79, 70, 229, 0.3);
+}
+
+main {
+    padding: 5rem 0;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-result-container {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    padding: 3rem;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease;
+}
+
+.no-result-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+}
+
+.no-result-container h2 {
+    color: var(--dark-color);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.no-result-container p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.back-link {
+    display: inline-block;
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(79, 70, 229, 0.2);
+}
+
+.back-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(79, 70, 229, 0.3);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+footer {
+    background-color: rgba(249, 250, 251, 0.8);
+    color: var(--text-muted);
+    padding: 1.5rem 0;
+    margin-top: auto;
+    text-align: center;
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+footer p {
+    margin: 0;
+}
+
+footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    main {
+        padding: 3rem 0;
+    }
+
+    .no-result-container {
+        max-width: 95%;
+        padding: 2rem 1.5rem;
+    }
+
+    .no-result-container h2 {
+        font-size: 1.8rem;
+    }
+
+    .no-result-container p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    header {
+        padding: 0.8rem 0;
+        position: static;
+    }
+
+    header h1 {
+        font-size: 1.3rem;
+    }
+
+    header nav {
+        gap: 0.2rem;
+    }
+
+    main {
+        padding: 2rem 1rem;
+    }
+
+    .no-result-container {
+        padding: 2rem 1.2rem;
+        box-shadow: var(--shadow-md);
+    }
+
+    .no-result-container h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .no-result-container p {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .back-link {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.95rem;
+    }
+}

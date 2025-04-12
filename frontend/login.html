@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar">
+<html dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feen - Missing Persons Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
+        rel="stylesheet">
+        <link rel="stylesheet" href="./css/login.css">
+</head>
+
+<body>
+    <a href="./index.html" class="back-link" aria-label="العودة إلى الصفحة الرئيسية">العودة إلى الصفحة الرئيسية</a>
+
+    <main>
+        <div class="form-container">
+            <div id="notification" class="notification"></div>
+            <h2>تسجيل الدخول</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="submit-btn">تسجيل الدخول</button>
+            </form>
+            <p class="form-link">
+                ليس لديك حساب؟ <a href="./register.html">أنشئ حسابًا الآن</a>
+            </p>
+        </div>
+    </main>
+    
+    <script>
+        const BASE_URL = "http://localhost:8787/api";
+    
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.style.display = 'block';
+    
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 5000);
+        }
+    
+        document.getElementById('loginForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+    
+            const formData = new FormData(this);
+            const data = {
+                email: formData.get('email'),
+                password: formData.get('password')
+            };
+    
+            try {
+                const response = await fetch(`${BASE_URL}/reporter/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+    
+                if (response.ok) {
+                    const result = await response.json();
+                    localStorage.setItem('authToken', result.token);
+                    localStorage.setItem('username', result.account.name);
+    
+                    showNotification('تم تسجيل الدخول بنجاح.', 'success');
+                    setTimeout(() => {
+                        window.location.href = './index.html';
+                    }, 2000);
+                } else {
+                    const error = await response.json();
+                    showNotification('خطأ: ' + error.error, 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification('حدث خطأ غير متوقع. يرجى المحاولة لاحقًا.', 'error');
+            }
+        });
+    </script>
+    
+
+</body>
+
+</html>

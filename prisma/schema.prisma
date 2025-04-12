@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "binary"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_DATABASE_URL")
+}
+
+model Reporters {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Losts     Losts[]
+  Founds    Founds[]
+}
+
+model Losts {
+  id               Int       @id @default(autoincrement())
+  name             String
+  location         String
+  lastSeenLocation String
+  lastSeenDate     DateTime
+  age              Int?
+  gender           String
+  contactInfo      String?
+  disease          String?
+  mentalHealth     String?
+  photo            String?
+  photoMimeType    String?
+  found            Boolean   @default(false)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  Founds           Founds[]
+  reporterId       Int
+  Reporters        Reporters @relation(fields: [reporterId], references: [id])
+}
+
+model Founds {
+  id            Int      @id @default(autoincrement())
+  name          String?
+  foundLocation String
+  foundDate     DateTime
+  description   String?
+  age           Int?
+  gender        String
+  contactInfo   String?
+  photo         String?
+  photoMimeType String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  lostId Int?
+  Losts  Losts? @relation(fields: [lostId], references: [id])
+
+  reporterId Int
+  Reporters  Reporters @relation(fields: [reporterId], references: [id])
+}

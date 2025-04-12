@@ -1,0 +1,11 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "feen-project"
+main = "src/index.ts"
+compatibility_date = "2025-02-28"
+
+node_compat = true
+
+r2_buckets = [
+    { binding = "LOST_PHOTOS", bucket_name = "lost-photos", preview_bucket_name = "lost-photos-preview" },
+    { binding = "FOUND_PHOTOS", bucket_name = "found-photos", preview_bucket_name = "found-photos-preview" },
+]

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ar">
+<html dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feen - Missing Persons Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
+        rel="stylesheet">
+        <link rel="stylesheet" href="./css/report-missing.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1 onclick="window.location.href='/'">فيين</h1>
+            <nav id="navbar">
+                <!-- سيتم تعبئته تلقائيًا حسب حالة تسجيل الدخول -->
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <h2>تبليغ عن شخص مفقود</h2>
+            <form action="/report-missing" method="POST" enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <label for="name">الاسم الكامل للشخص</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="age">العمر (إن وجد)</label>
+                        <input type="number" id="age" name="age" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">الجنس</label>
+                        <select id="gender" name="gender" required>
+                            <option value="" disabled selected>اختر الجنس</option>
+                            <option value="Male">ذكر</option>
+                            <option value="Female">أنثى</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">مكان السكن أو المنطقة</label>
+                    <input type="text" id="location" name="location" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastSeenLocation">أين شوهد آخر مرة؟</label>
+                    <input type="text" id="lastSeenLocation" name="lastSeenLocation" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastSeenDate">تاريخ ووقت آخر ظهور</label>
+                    <input type="datetime-local" id="lastSeenDate" name="lastSeenDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactInfo">معلومات للتواصل (أفراد العائلة أو المُبلِّغ - اختياري)</label>
+                    <textarea id="contactInfo" name="contactInfo" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="disease">هل يعاني من أمراض أو حالات طبية؟ (اختياري)</label>
+                    <textarea id="disease" name="disease" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="mentalHealth">الحالة النفسية أو الذهنية (اختياري)</label>
+                    <textarea id="mentalHealth" name="mentalHealth" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="photo">تحميل صورة (إن وُجدت)</label>
+                    <input type="file" id="photo" name="photo" accept="image/*">
+                </div>
+
+                <button type="submit" class="submit-btn">إرسال التبليغ</button>
+
+            </form>
+        </div>
+    </main>
+
+    <!-- إشعار -->
+    <div id="notification"
+        style="display: none; position: fixed; top: 20px; right: 20px; background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; box-shadow: var(--shadow-md); z-index: 1000;">
+        <span id="notification-message"></span>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const BASE_URL = "http://localhost:8787/api";
+            const navbar = document.getElementById('navbar');
+            const authToken = localStorage.getItem('authToken');
+            const username = localStorage.getItem('username');
+
+            if (authToken && username) {
+                // User is logged in
+                navbar.innerHTML = `<span class="username">${username}</span>`;
+            } else {
+                // User is not logged in, redirect to index.html
+                window.location.href = '/';
+            }
+
+            const form = document.querySelector('form');
+            const notification = document.getElementById('notification');
+            const notificationMessage = document.getElementById('notification-message');
+
+            function showNotification(message, isSuccess, reportId = null) {
+                notification.style.backgroundColor = isSuccess ? '#d4edda' : '#f8d7da';
+                notification.style.color = isSuccess ? '#155724' : '#721c24';
+                notificationMessage.textContent = message;
+                notification.style.display = 'block';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                    if (isSuccess && reportId) {
+                        // Redirect to report-result.html with query parameters
+                        window.location.href = `./missing-matches.html?id=${reportId}`;
+                    }
+                }, 3000);
+            }
+
+            async function uploadPhoto(lostId, file) {
+                const reader = new FileReader();
+                reader.onloadend = async function () {
+                    const documentB64 = reader.result.split(',')[1]; // Get base64 string
+                    try {
+                        const response = await fetch(`${BASE_URL}/lost/${lostId}/photo`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${authToken}`
+                            },
+                            body: JSON.stringify({ documentB64 })
+                        });
+
+                        if (response.ok) {
+                            showNotification('Photo uploaded successfully!', true);
+                        } else {
+                            const error = await response.json();
+                            showNotification('Error uploading photo: ' + error.error, false);
+                        }
+                    } catch (error) {
+                        showNotification('Error: ' + error.error, false);
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+
+            form.addEventListener('submit', async function (event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                const formData = new FormData(form);
+                const data = {
+                    name: formData.get('name'),
+                    location: formData.get('location'),
+                    lastSeenLocation: formData.get('lastSeenLocation'),
+                    lastSeenDate: formData.get('lastSeenDate'),
+                    age: formData.get('age') ? Number(formData.get('age')) : null,
+                    gender: formData.get('gender'),
+                    contactInfo: formData.get('contactInfo') || null,
+                    disease: formData.get('disease') || null,
+                    mentalHealth: formData.get('mentalHealth') || null,
+                    found: false // Assuming 'found' is false when reporting a missing person
+                };
+
+                try {
+                    const response = await fetch(`${BASE_URL}/lost`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${authToken}` // Include the token in the request
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        showNotification('Report submitted successfully!', true, result.id);
+
+                        // Handle photo upload if a file is selected
+                        const file = formData.get('photo');
+                        if (file && file.size > 0) {
+                            await uploadPhoto(result.id, file);
+                        }
+                    } else {
+                        const error = await response.json();
+                        showNotification('Error submitting report: ' + error.error, false);
+                    }
+                } catch (error) {
+                    showNotification('Error: ' + error.error, false);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

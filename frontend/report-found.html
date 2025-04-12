@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ar">
+<html dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feen - Missing Persons Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
+        rel="stylesheet">
+        <link rel="stylesheet" href="./css/report-found.css">
+
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <h1 onclick="window.location.href='/'">فيين</h1>
+            <nav id="navbar">
+                <!-- سيتم تعبئته ديناميكيًا -->
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <div class="form-container">
+            <h2>التبليغ عن شخص تم العثور عليه</h2>
+            <form action="/report-found" method="POST" enctype="multipart/form-data">
+    
+                <div class="form-group">
+                    <label for="name">الاسم الكامل</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+    
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="age">العمر (اختياري)</label>
+                        <input type="number" id="age" name="age" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">الجنس</label>
+                        <select id="gender" name="gender" required>
+                            <option value="" disabled selected>اختر الجنس...</option>
+                            <option value="Male">ذكر</option>
+                            <option value="Female">أنثى</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    <label for="foundLocation">مكان العثور</label>
+                    <input type="text" id="foundLocation" name="foundLocation" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="foundDate">تاريخ ووقت العثور</label>
+                    <input type="datetime-local" id="foundDate" name="foundDate" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="description">ملاحظات إضافية (اختياري)</label>
+                    <textarea id="description" name="description" rows="3"></textarea>
+                </div>
+    
+                <div class="form-group">
+                    <label for="contactInfo">معلومات للتواصل (اختياري)</label>
+                    <textarea id="contactInfo" name="contactInfo" rows="3"></textarea>
+                </div>
+    
+                <div class="form-group">
+                    <label for="photo">رفع صورة (اختياري)</label>
+                    <input type="file" id="photo" name="photo" accept="image/*">
+                </div>
+    
+                <button type="submit" class="submit-btn">إرسال التبليغ</button>
+            </form>
+        </div>
+    </main>
+    
+    <div id="notification"
+        style="display: none; position: fixed; top: 20px; right: 20px; background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; box-shadow: var(--shadow-md); z-index: 1000;">
+        <span id="notification-message"></span>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const BASE_URL = "http://localhost:8787/api";
+            const navbar = document.getElementById('navbar');
+            const authToken = localStorage.getItem('authToken');
+            const username = localStorage.getItem('username');
+    
+            if (authToken && username) {
+                navbar.innerHTML = `<span class="username">${username}</span>`;
+            } else {
+                window.location.href = '/';
+            }
+    
+            const form = document.querySelector('form');
+            const notification = document.getElementById('notification');
+            const notificationMessage = document.getElementById('notification-message');
+    
+            function showNotification(message, isSuccess, reportId = null) {
+                notification.style.backgroundColor = isSuccess ? '#d4edda' : '#f8d7da';
+                notification.style.color = isSuccess ? '#155724' : '#721c24';
+                notificationMessage.textContent = message;
+                notification.style.display = 'block';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                    if (isSuccess && reportId) {
+                        window.location.href = `./found-matches.html?id=${reportId}`;
+                    }
+                }, 3000);
+            }
+    
+            async function uploadPhoto(foundId, file) {
+                const reader = new FileReader();
+                reader.onloadend = async function () {
+                    const documentB64 = reader.result.split(',')[1];
+                    try {
+                        const response = await fetch(`${BASE_URL}/found/${foundId}/photo`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${authToken}`
+                            },
+                            body: JSON.stringify({ documentB64 })
+                        });
+    
+                        if (response.ok) {
+                            showNotification('تم رفع الصورة بنجاح!', true);
+                        } else {
+                            const error = await response.json();
+                            showNotification('حدث خطأ أثناء رفع الصورة: ' + error.error, false);
+                        }
+                    } catch (error) {
+                        showNotification('خطأ في الاتصال: ' + error.error, false);
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+    
+            form.addEventListener('submit', async function (event) {
+                event.preventDefault();
+    
+                const formData = new FormData(form);
+                const data = {
+                    name: formData.get('name'),
+                    foundLocation: formData.get('foundLocation'),
+                    foundDate: formData.get('foundDate'),
+                    description: formData.get('description') || null,
+                    age: formData.get('age') ? Number(formData.get('age')) : null,
+                    gender: formData.get('gender'),
+                    contactInfo: formData.get('contactInfo') || null
+                };
+    
+                try {
+                    const response = await fetch(`${BASE_URL}/found`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${authToken}`
+                        },
+                        body: JSON.stringify(data)
+                    });
+    
+                    if (response.ok) {
+                        const result = await response.json();
+                        showNotification('تم إرسال التبليغ بنجاح!', true, result.id);
+    
+                        const file = formData.get('photo');
+                        if (file && file.size > 0) {
+                            await uploadPhoto(result.id, file);
+                        }
+                    } else {
+                        const error = await response.json();
+                        showNotification('فشل في إرسال التبليغ: ' + error.error, false);
+                    }
+                } catch (error) {
+                    showNotification('حدث خطأ أثناء الإرسال: ' + error.error, false);
+                }
+            });
+        });
+    </script>
+    
+</body>
+
+</html>
