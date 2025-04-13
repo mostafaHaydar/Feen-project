@@ -11,7 +11,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
         rel="stylesheet">
-        <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <script  type="module" src="./js/common.js"></script>
+
 </head>
 
 <body>
@@ -37,30 +39,29 @@
             </p>
         </div>
     </main>
-    
-    <script>
-        const BASE_URL = "http://localhost:8787/api";
-    
+
+    <script type="module">
+        import { BASE_URL } from './js/common.js';
         function showNotification(message, type) {
             const notification = document.getElementById('notification');
             notification.textContent = message;
             notification.className = `notification ${type}`;
             notification.style.display = 'block';
-    
+
             setTimeout(() => {
                 notification.style.display = 'none';
             }, 5000);
         }
-    
+
         document.getElementById('loginForm').addEventListener('submit', async function (event) {
             event.preventDefault();
-    
+
             const formData = new FormData(this);
             const data = {
                 email: formData.get('email'),
                 password: formData.get('password')
             };
-    
+
             try {
                 const response = await fetch(`${BASE_URL}/reporter/login`, {
                     method: 'POST',
@@ -69,12 +70,12 @@
                     },
                     body: JSON.stringify(data)
                 });
-    
+
                 if (response.ok) {
                     const result = await response.json();
                     localStorage.setItem('authToken', result.token);
                     localStorage.setItem('username', result.account.name);
-    
+
                     showNotification('تم تسجيل الدخول بنجاح.', 'success');
                     setTimeout(() => {
                         window.location.href = './index.html';
@@ -89,7 +90,7 @@
             }
         });
     </script>
-    
+
 
 </body>
 

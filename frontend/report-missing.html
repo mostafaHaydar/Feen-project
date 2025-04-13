@@ -11,14 +11,14 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
         rel="stylesheet">
-        <link rel="stylesheet" href="./css/report-missing.css">
-
+    <link rel="stylesheet" href="./css/report-missing.css">
+    <script type="module" src="./js/common.js"></script>
 </head>
 
 <body>
     <header>
         <div class="container">
-            <h1 onclick="window.location.href='/'">فيين</h1>
+            <h1 onclick="window.location.href='./index.html'">فيين</h1>
             <nav id="navbar">
                 <!-- سيتم تعبئته تلقائيًا حسب حالة تسجيل الدخول -->
             </nav>
@@ -85,21 +85,21 @@
                     <input type="file" id="photo" name="photo" accept="image/*">
                 </div>
 
-                <button type="submit" class="submit-btn">إرسال التبليغ</button>
+                <button type="submit" class="submit-btn">إرسال البلاغ</button>
 
             </form>
         </div>
     </main>
 
-    <!-- إشعار -->
     <div id="notification"
         style="display: none; position: fixed; top: 20px; right: 20px; background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; box-shadow: var(--shadow-md); z-index: 1000;">
         <span id="notification-message"></span>
     </div>
 
-    <script>
+
+    <script type="module">
+        import { BASE_URL } from './js/common.js';
         document.addEventListener('DOMContentLoaded', function () {
-            const BASE_URL = "http://localhost:8787/api";
             const navbar = document.getElementById('navbar');
             const authToken = localStorage.getItem('authToken');
             const username = localStorage.getItem('username');
@@ -145,13 +145,13 @@
                         });
 
                         if (response.ok) {
-                            showNotification('Photo uploaded successfully!', true);
+                            showNotification('تم تحميل الصورة بنجاح!', true);
                         } else {
                             const error = await response.json();
-                            showNotification('Error uploading photo: ' + error.error, false);
+                            showNotification('حدث خطأ أثناء تحميل الصورة: ' + error.error, false);
                         }
                     } catch (error) {
-                        showNotification('Error: ' + error.error, false);
+                        showNotification('خطأ: ' + error.error, false);
                     }
                 };
                 reader.readAsDataURL(file);
@@ -186,7 +186,7 @@
 
                     if (response.ok) {
                         const result = await response.json();
-                        showNotification('Report submitted successfully!', true, result.id);
+                        showNotification('تم إرسال البلاغ بنجاح!', true, result.id);
 
                         // Handle photo upload if a file is selected
                         const file = formData.get('photo');
@@ -195,10 +195,10 @@
                         }
                     } else {
                         const error = await response.json();
-                        showNotification('Error submitting report: ' + error.error, false);
+                        showNotification('حدث خطأ أثناء إرسال البلاغ: ' + error.error, false);
                     }
                 } catch (error) {
-                    showNotification('Error: ' + error.error, false);
+                    showNotification('خطأ: ' + error.error, false);
                 }
             });
         });

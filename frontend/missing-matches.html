@@ -12,12 +12,13 @@
         href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
         rel="stylesheet">
         <link rel="stylesheet" href="./css/missing-matches.css">
+        <script  type="module" src="./js/common.js"></script>
 </head>
 
 <body>
     <header>
         <div class="container">
-            <h1 onclick="window.location.href='/'">فيين</h1>
+            <h1 onclick="window.location.href='./index.html'">فيين</h1>
             <nav id="navbar">
                 <!-- Placeholder for dynamic content -->
             </nav>
@@ -33,9 +34,10 @@
         </div>
     </main>
 
-    <script>
+    
+    <script type="module">
+        import { BASE_URL } from './js/common.js';
         document.addEventListener('DOMContentLoaded', function () {
-            const BASE_URL = "http://localhost:8787/api";
             const navbar = document.getElementById('navbar');
             const matchesGrid = document.getElementById('matches-grid');
             const authToken = localStorage.getItem('authToken');

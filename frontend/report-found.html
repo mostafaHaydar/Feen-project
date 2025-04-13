@@ -12,14 +12,14 @@
         href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
         rel="stylesheet">
         <link rel="stylesheet" href="./css/report-found.css">
-
+        <script  type="module" src="./js/common.js"></script>
 </head>
 
 <body>
 
     <header>
         <div class="container">
-            <h1 onclick="window.location.href='/'">فيين</h1>
+            <h1 onclick="window.location.href='./index.html'">فيين</h1>
             <nav id="navbar">
                 <!-- سيتم تعبئته ديناميكيًا -->
             </nav>
@@ -76,7 +76,7 @@
                     <input type="file" id="photo" name="photo" accept="image/*">
                 </div>
     
-                <button type="submit" class="submit-btn">إرسال التبليغ</button>
+                <button type="submit" class="submit-btn">إرسال البلاغ</button>
             </form>
         </div>
     </main>
@@ -86,9 +86,10 @@
         <span id="notification-message"></span>
     </div>
     
-    <script>
+   
+    <script type="module">
+        import { BASE_URL } from './js/common.js';
         document.addEventListener('DOMContentLoaded', function () {
-            const BASE_URL = "http://localhost:8787/api";
             const navbar = document.getElementById('navbar');
             const authToken = localStorage.getItem('authToken');
             const username = localStorage.getItem('username');
@@ -169,7 +170,7 @@
     
                     if (response.ok) {
                         const result = await response.json();
-                        showNotification('تم إرسال التبليغ بنجاح!', true, result.id);
+                        showNotification('تم إرسال البلاغ بنجاح!', true, result.id);
     
                         const file = formData.get('photo');
                         if (file && file.size > 0) {
@@ -177,7 +178,7 @@
                         }
                     } else {
                         const error = await response.json();
-                        showNotification('فشل في إرسال التبليغ: ' + error.error, false);
+                        showNotification('فشل في إرسال البلاغ: ' + error.error, false);
                     }
                 } catch (error) {
                     showNotification('حدث خطأ أثناء الإرسال: ' + error.error, false);
