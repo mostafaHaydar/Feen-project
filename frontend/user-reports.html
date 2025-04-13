@@ -12,15 +12,14 @@
         href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="./css/user-reports.css">
-
+    <script type="module" src="./js/common.js"></script>
 </head>
 
 <body>
     <header>
         <div class="container">
-            <h1 onclick="window.location.href='/'">فيين</h1>
+            <h1 onclick="window.location.href='./index.html'">فيين</h1>
             <nav id="navbar">
-                <!-- سيتم تحميل المحتوى لاحقًا -->
             </nav>
         </div>
     </header>
@@ -45,8 +44,9 @@
         </div>
     </main>
 
-    <script>
-        const BASE_URL = "http://localhost:8787/api";
+
+    <script type="module">
+        import { BASE_URL } from './js/common.js';
         const navbar = document.getElementById('navbar');
         const missingReportsGrid = document.getElementById('missing-reports');
         const foundReportsGrid = document.getElementById('found-reports');
@@ -166,7 +166,7 @@
             `).join('');
         }
 
-        async function deleteReport(type, reportId) {
+        window.deleteReport = async function (type, reportId) {
             if (!confirm('هل أنت متأكد من حذف هذا البلاغ؟ لا يمكن التراجع عن هذا الإجراء.')) {
                 return;
             }

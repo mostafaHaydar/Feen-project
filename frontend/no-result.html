@@ -11,13 +11,14 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Noto+Naskh+Arabic:wght@400..700&display=swap"
         rel="stylesheet">
-        <link rel="stylesheet" href="./css/no-result.css">
+    <link rel="stylesheet" href="./css/no-result.css">
+    <script type="module" src="./js/common.js"></script>
 </head>
 
 <body>
     <header>
         <div class="container">
-            <h1 onclick="window.location.href='/'">فيين</h1>
+            <h1 onclick="window.location.href='./index.html'">فيين</h1>
             <nav id="navbar">
                 <!-- Placeholder for dynamic content -->
             </nav>
@@ -28,12 +29,11 @@
             <h2>لم يتم العثور على نتائج</h2>
             <p>لم نعثر على أي تطابقات حتى الآن. سنقوم بإبلاغك عبر البريد الإلكتروني إذا وجدنا أي تطابقات في قاعدة
                 بياناتنا.</p>
-            <a href="/" class="back-link">العودة إلى الصفحة الرئيسية</a>
+            <a href="./index.html" class="back-link">العودة إلى الصفحة الرئيسية</a>
         </div>
     </main>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const BASE_URL = "http://localhost:8787/api";
             const navbar = document.getElementById('navbar');
             const authToken = localStorage.getItem('authToken');
             const username = localStorage.getItem('username');
