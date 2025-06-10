@@ -13,5 +13,5 @@ const API_ENDPOINTS = {
 };
 
 // Export the API URLs based on current environment
-const currentEnv = ENV.DEVELOPMENT;
+const currentEnv = ENV.PRODUCTION;
 export const BASE_URL = API_ENDPOINTS[currentEnv].BASE_URL;
