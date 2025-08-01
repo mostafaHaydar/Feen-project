@@ -47,7 +47,7 @@
                 <div class="flex items-center gap-3">
                     <div class="hidden md:flex items-center gap-2 text-sm">
                         <i data-lucide="user" class="w-4 h-4 text-purple-600"></i>
-                        <span class="text-gray-700 font-medium" id="user-email">example@com</span>
+                        <span class="text-gray-700 font-medium" id="user-name">مستخدم</span>
                     </div>
                     <button class="px-4 py-2 text-red-600 border border-red-200 hover:bg-red-50 font-medium rounded-lg transition-colors" onclick="logout()">
                         <i data-lucide="log-out" class="w-4 h-4 ml-1 inline"></i>
@@ -70,7 +70,7 @@
                     لوحة التحكم
                 </h1>
                 <p class="text-lg text-gray-600 font-medium">
-                    مرحباً بك، <span id="welcome-email">example@com</span>
+                    مرحباً بك، <span id="welcome-name">مستخدم</span>
                 </p>
             </div>
 
@@ -226,106 +226,201 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="js/app.js"></script>
-    <script>
+    <script src="js/notifications.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/config.js" type="module"></script>
+    <script type="module">
+        // Import BASE_URL from config
+        import { BASE_URL } from './js/config.js';
+        
+        // Fallback URL in case config fails to load
+        const API_BASE_URL = BASE_URL || '/api';
+        
         // Initialize Lucide icons
         lucide.createIcons();
 
-        // Check if user is logged in
-        function checkAuth() {
-            const isLoggedIn = localStorage.getItem('isLoggedIn');
-            const userEmail = localStorage.getItem('userEmail');
-            
-            if (!isLoggedIn || !userEmail) {
-                window.location.href = 'login.html';
-                return;
+        // Initialize authentication for dashboard
+        if (!initDashboardAuth()) {
+            // Stop execution if not authenticated
+            throw new Error('Authentication required');
+        }
+
+        // Update welcome name display
+        updateUserNameDisplay('welcome-name');
+        updateUserNameDisplay('user-name');
+
+        // Fetch all reports (found and missing)
+        async function fetchAllReports() {
+            const authToken = localStorage.getItem('authToken');
+            if (!authToken) {
+                showError('خطأ في المصادقة', 'يرجى تسجيل الدخول مرة أخرى');
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 2000);
+                return { founds: [], losts: [] };
             }
+
+            try {
+                // Fetch both found and missing reports in parallel
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 30000);
+
+                const [foundsResponse, lostsResponse] = await Promise.all([
+                    fetch(`${API_BASE_URL}/founds`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${authToken}`
+                        },
+                        signal: controller.signal
+                    }),
+                    fetch(`${API_BASE_URL}/losts`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${authToken}`
+                        },
+                        signal: controller.signal
+                    })
+                ]);
+
+                clearTimeout(timeoutId);
+
+                let founds = [];
+                let losts = [];
+
+                // Parse found reports
+                if (foundsResponse.ok) {
+                    try {
+                        founds = await foundsResponse.json();
+                    } catch (parseError) {
+                        console.error('Failed to parse founds response:', parseError);
+                    }
+                } else {
+                    console.error('Failed to fetch founds:', foundsResponse.status);
+                }
+
+                // Parse missing reports
+                if (lostsResponse.ok) {
+                    try {
+                        losts = await lostsResponse.json();
+                    } catch (parseError) {
+                        console.error('Failed to parse losts response:', parseError);
+                    }
+                } else {
+                    console.error('Failed to fetch losts:', lostsResponse.status);
+                }
+
+                return { founds, losts };
+
+            } catch (error) {
+                console.error('Error fetching reports:', error);
+                let errorMessage = 'حدث خطأ في الاتصال، يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى';
+                let errorTitle = 'خطأ في الاتصال';
+                
+                if (error.name === 'AbortError') {
+                    errorTitle = 'انتهت مهلة الاتصال';
+                    errorMessage = 'يرجى المحاولة مرة أخرى';
+                } else if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                    errorTitle = 'لا يمكن الاتصال بالخادم';
+                    errorMessage = 'يرجى التحقق من اتصالك بالإنترنت';
+                }
+                
+                showError(errorTitle, errorMessage);
+                return { founds: [], losts: [] };
+            }
+        }
+
+        // Format date for display
+        function formatDate(dateString) {
+            if (!dateString) return 'غير محدد';
             
-            // Update user email display
-            document.getElementById('user-email').textContent = userEmail;
-            document.getElementById('welcome-email').textContent = userEmail;
+            try {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('ar-SA', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            } catch (error) {
+                return 'غير محدد';
+            }
         }
 
-        // Logout function
-        function logout() {
-            localStorage.removeItem('isLoggedIn');
-            localStorage.removeItem('userEmail');
-            window.location.href = 'index.html';
+        // Format datetime for display
+        function formatDateTime(dateString) {
+            if (!dateString) return 'غير محدد';
+            
+            try {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('ar-SA', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            } catch (error) {
+                return 'غير محدد';
+            }
         }
-
-        // Mock reports data
-        const mockReports = [
-            {
-                id: 1,
-                type: "missing",
-                name: "أحمد محمد علي",
-                age: 25,
-                gender: "ذكر",
-                location: "الرياض",
-                residence: "حي الملز",
-                lastSeen: "مول الرياض غاليري",
-                lastSeenDate: "2024-01-15T14:30",
-                contactInfo: "0501234567",
-                medicalConditions: "مريض سكري",
-                mentalState: "حالة نفسية مستقرة",
-                date: "2024-01-15",
-                status: "نشط",
-                description: "شوهد آخر مرة في حي الملز",
-            },
-            {
-                id: 2,
-                type: "found",
-                name: "فاطمة السالم",
-                age: 30,
-                gender: "أنثى",
-                location: "جدة",
-                foundLocation: "مستشفى الملك عبدالعزيز",
-                foundDate: "2024-01-10T10:15",
-                notes: "تم العثور عليها في حالة جيدة",
-                contactInfo: "0509876543",
-                date: "2024-01-10",
-                status: "تم لم الشمل",
-                description: "تم العثور عليها في المستشفى",
-            },
-            {
-                id: 3,
-                type: "missing",
-                name: "سعد الأحمد",
-                age: 45,
-                gender: "ذكر",
-                location: "الدمام",
-                residence: "حي الشاطئ",
-                lastSeen: "كورنيش الدمام",
-                lastSeenDate: "2024-01-20T18:00",
-                contactInfo: "0553456789",
-                medicalConditions: "يعاني من ضعف في الذاكرة",
-                mentalState: "حالة ذهنية متدهورة",
-                date: "2024-01-20",
-                status: "نشط",
-                description: "مفقود منذ أسبوع",
-            },
-            {
-                id: 4,
-                type: "found",
-                name: "نورا الخالد",
-                age: 22,
-                gender: "أنثى",
-                location: "مكة",
-                foundLocation: "الحرم المكي",
-                foundDate: "2024-01-18T16:45",
-                notes: "كانت تبحث عن أهلها في منطقة الحرم",
-                contactInfo: "0567891234",
-                date: "2024-01-18",
-                status: "نشط",
-                description: "تم العثور عليها في الحرم",
-            },
-        ];
 
         // Render reports
-        function renderReports() {
+        async function renderReports() {
             const container = document.getElementById('reports-container');
             
-            if (mockReports.length === 0) {
+            // Show loading state
+            container.innerHTML = `
+                <div class="text-center py-12">
+                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="loader-2" class="w-10 h-10 text-gray-400 animate-spin"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">
+                        جاري تحميل البلاغات
+                    </h3>
+                    <p class="text-gray-600 font-medium">
+                        يرجى الانتظار...
+                    </p>
+                </div>
+            `;
+            lucide.createIcons();
+
+            // Fetch reports from API
+            const { founds, losts } = await fetchAllReports();
+            
+            // Combine and sort all reports by creation date
+            const allReports = [
+                ...founds.map(found => ({
+                    ...found,
+                    type: 'found',
+                    displayName: found.name || 'غير محدد',
+                    displayAge: found.age || 'غير محدد',
+                    displayGender: found.gender || 'غير محدد',
+                    displayLocation: found.foundLocation || 'غير محدد',
+                    displayDate: formatDateTime(found.foundDate),
+                    displayDescription: found.description || 'لا توجد وصف إضافي',
+                    displayStatus: 'نشط',
+                    createdAt: found.createdAt
+                })),
+                ...losts.map(lost => ({
+                    ...lost,
+                    type: 'missing',
+                    displayName: lost.name || 'غير محدد',
+                    displayAge: lost.age || 'غير محدد',
+                    displayGender: lost.gender || 'غير محدد',
+                    displayLocation: lost.lastSeen || 'غير محدد',
+                    displayDate: formatDateTime(lost.lastSeenDate),
+                    displayDescription: lost.description || 'لا توجد وصف إضافي',
+                    displayStatus: 'نشط',
+                    createdAt: lost.createdAt
+                }))
+            ].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+            // Update report count
+            const reportCountElement = document.querySelector('.bg-indigo-100');
+            if (reportCountElement) {
+                reportCountElement.textContent = `${allReports.length} بلاغ`;
+            }
+
+            if (allReports.length === 0) {
                 container.innerHTML = `
                     <div class="text-center py-12">
                         <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -349,11 +444,12 @@
                         </div>
                     </div>
                 `;
+                lucide.createIcons();
                 return;
             }
 
-            container.innerHTML = mockReports.map(report => `
-                <div class="border border-gray-200 rounded-2xl p-6 bg-white/70 backdrop-blur hover:shadow-lg transition-shadow">
+            container.innerHTML = allReports.map(report => `
+                <div class="border border-gray-200 rounded-2xl p-6 bg-white/70 backdrop-blur hover:shadow-lg transition-shadow cursor-pointer" onclick="viewReportDetails(${report.id}, '${report.type}')">
                     <div class="flex items-start justify-between mb-4">
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 rounded-xl flex items-center justify-center shadow-md ${report.type === "missing" ? "bg-gradient-to-br from-orange-400 to-red-500" : "bg-gradient-to-br from-green-400 to-emerald-500"}">
@@ -361,14 +457,14 @@
                             </div>
                             <div>
                                 <h3 class="text-lg font-bold text-gray-900">
-                                    ${report.name}
+                                    ${report.displayName}
                                 </h3>
                                 <div class="flex items-center gap-4 text-sm text-gray-600">
-                                    <span>${report.age} سنة</span>
+                                    <span>${report.displayAge} ${typeof report.displayAge === 'number' ? 'سنة' : ''}</span>
                                     <span>•</span>
-                                    <span>${report.gender}</span>
+                                    <span>${report.displayGender}</span>
                                     <span>•</span>
-                                    <span>${report.location}</span>
+                                    <span>${report.displayLocation}</span>
                                 </div>
                             </div>
                         </div>
@@ -379,29 +475,33 @@
                                 ${report.type === "missing" ? "مفقود" : "موجود"}
                             </div>
 
-                            <div class="px-3 py-1 font-medium rounded-full text-sm ${report.status === "نشط" ? "bg-blue-100 text-blue-700 border border-blue-200" : "bg-emerald-100 text-emerald-700 border border-emerald-200"}">
-                                <i data-lucide="${report.status === "نشط" ? "clock" : "check-circle"}" class="w-3 h-3 ml-1 inline"></i>
-                                ${report.status}
+                            <div class="px-3 py-1 font-medium rounded-full text-sm ${report.displayStatus === "نشط" ? "bg-blue-100 text-blue-700 border border-blue-200" : "bg-emerald-100 text-emerald-700 border border-emerald-200"}">
+                                <i data-lucide="${report.displayStatus === "نشط" ? "clock" : "check-circle"}" class="w-3 h-3 ml-1 inline"></i>
+                                ${report.displayStatus}
                             </div>
                         </div>
                     </div>
 
                     <p class="text-gray-700 font-medium mb-4">
-                        ${report.description}
+                        ${report.displayDescription}
                     </p>
 
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-2 text-sm text-gray-500">
                             <i data-lucide="calendar" class="w-4 h-4"></i>
-                            <span>تاريخ البلاغ: ${report.date}</span>
+                            <span>تاريخ البلاغ: ${report.displayDate}</span>
                         </div>
 
                         <div class="flex items-center gap-2">
-                            <button class="text-blue-600 border border-blue-300 hover:bg-blue-50 rounded-lg px-3 py-1 text-sm font-medium transition-colors" onclick="editReport(${report.id})">
-                                <i data-lucide="edit" class="w-3 h-3 ml-1 inline"></i>
-                                تعديل
+                            <button class="text-green-600 border border-green-300 hover:bg-green-50 rounded-lg px-3 py-1 text-sm font-medium transition-colors" onclick="event.stopPropagation(); viewReportDetails(${report.id}, '${report.type}')">
+                                <i data-lucide="eye" class="w-3 h-3 ml-1 inline"></i>
+                                عرض التفاصيل
                             </button>
-                            <button class="text-red-600 border border-red-300 hover:bg-red-50 rounded-lg px-3 py-1 text-sm font-medium transition-colors" onclick="deleteReport(${report.id})">
+                            <button class="text-blue-600 border border-blue-300 hover:bg-blue-50 rounded-lg px-3 py-1 text-sm font-medium transition-colors" onclick="event.stopPropagation(); viewMatches(${report.id}, '${report.type}')">
+                                <i data-lucide="users" class="w-3 h-3 ml-1 inline"></i>
+                                التطابقات
+                            </button>
+                            <button class="text-red-600 border border-red-300 hover:bg-red-50 rounded-lg px-3 py-1 text-sm font-medium transition-colors" onclick="event.stopPropagation(); deleteReport(${report.id}, '${report.type}')">
                                 حذف
                             </button>
                         </div>
@@ -413,41 +513,30 @@
             lucide.createIcons();
         }
 
-        // Edit report function
-        function editReport(reportId) {
-            const report = mockReports.find(r => r.id === reportId);
-            if (report) {
-                if (report.type === "missing") {
-                    window.location.href = `edit-missing.html?id=${reportId}`;
-                } else {
-                    window.location.href = `edit-found.html?id=${reportId}`;
-                }
+
+
+        // Delete report function
+        window.deleteReport = function(reportId, reportType) {
+            if (confirm("هل أنت متأكد من حذف هذا البلاغ؟")) {
+                // TODO: Implement actual delete API call
+                showSuccess("تم بنجاح!", "تم حذف البلاغ بنجاح");
+                // Re-render reports to refresh the list
+                renderReports();
             }
         }
 
-        // Delete report function
-        function deleteReport(reportId) {
-            if (confirm("هل أنت متأكد من حذف هذا البلاغ؟")) {
-                // In a real app, this would send a request to the server
-                showSuccess("تم بنجاح!", "تم حذف البلاغ بنجاح");
-                // Remove from mock data and re-render
-                const index = mockReports.findIndex(r => r.id === reportId);
-                if (index > -1) {
-                    mockReports.splice(index, 1);
-                    renderReports();
-                }
-            }
+        // View report details function
+        window.viewReportDetails = function(reportId, reportType) {
+            window.location.href = `report-details.html?id=${reportId}&type=${reportType}`;
+        }
+
+        // View matches function
+        window.viewMatches = function(reportId, reportType) {
+            window.location.href = `report-matches.html?id=${reportId}&type=${reportType}`;
         }
 
         // Initialize dashboard
-        checkAuth();
         renderReports();
-        
-        // Test notifications (remove in production)
-        // setTimeout(() => testNotifications(), 2000);
     </script>
-    
-    <!-- Notification System -->
-    <script src="js/notifications.js"></script>
 </body>
 </html> 

@@ -373,14 +373,35 @@
                     // Login successful
                     showSuccess('تم تسجيل الدخول بنجاح', 'مرحباً بك في فين!');
                     
-                    // Store user data and token
+                    // Store basic user data and token
                     if (data.account && data.token) {
                         localStorage.setItem('isLoggedIn', 'true');
-                        localStorage.setItem('userData', JSON.stringify(data.account));
                         localStorage.setItem('authToken', data.token);
                         
                         if (rememberMe) {
                             localStorage.setItem('rememberMe', 'true');
+                        }
+                        
+                        // Fetch complete user data using the token
+                        try {
+                            const userResponse = await fetch(`${API_BASE_URL}/reporter/me`, {
+                                method: 'GET',
+                                headers: {
+                                    'Authorization': `Bearer ${data.token}`
+                                }
+                            });
+                            
+                            if (userResponse.ok) {
+                                const userData = await userResponse.json();
+                                localStorage.setItem('userData', JSON.stringify(userData));
+                            } else {
+                                // If fetching user data fails, still store basic account data
+                                localStorage.setItem('userData', JSON.stringify(data.account));
+                            }
+                        } catch (userError) {
+                            console.error('Error fetching user data:', userError);
+                            // If fetching user data fails, still store basic account data
+                            localStorage.setItem('userData', JSON.stringify(data.account));
                         }
                     }
                     
