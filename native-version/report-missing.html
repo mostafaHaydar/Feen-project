@@ -53,7 +53,7 @@
                 <div class="flex items-center gap-3">
                     <div class="hidden md:flex items-center gap-2 text-sm">
                         <i data-lucide="user" class="w-4 h-4 text-purple-600"></i>
-                        <span class="text-gray-700 font-medium" id="user-email">example@com</span>
+                        <span class="text-gray-700 font-medium" id="user-name">مستخدم</span>
                     </div>
                     <button class="px-4 py-2 text-red-600 border border-red-200 hover:bg-red-50 font-medium rounded-lg transition-colors" onclick="logout()">
                         <i data-lucide="log-out" class="w-4 h-4 ml-1 inline"></i>
@@ -261,13 +261,13 @@
                                     <p class="text-gray-600 font-medium mb-2">
                                         اضغط لتحميل الصورة أو اسحبها هنا
                                     </p>
-                                    <p class="text-sm text-gray-500">PNG, JPG, GIF حتى 10MB</p>
+                                    <p class="text-sm text-gray-500">JPEG, PNG حتى 2MB</p>
                                     <input
                                         type="file"
                                         id="photo"
                                         name="photo"
                                         class="hidden"
-                                        accept="image/*"
+                                        accept="image/jpeg,image/png"
                                     />
                                     <div class="file-preview mt-4"></div>
                                 </div>
@@ -399,90 +399,315 @@
     <script src="js/notifications.js"></script>
     <script src="js/config.js" type="module"></script>
     <script src="js/app.js"></script>
-      <script type="module">
+    <script type="module">
+        // Import BASE_URL from config
         import { BASE_URL } from './js/config.js';
-        document.addEventListener('DOMContentLoaded', function () {
-            const navbar = document.getElementById('navbar');
+        
+        // Fallback URL in case config fails to load
+        const API_BASE_URL = BASE_URL || '/api';
+        
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Authentication check
+        function checkAuth() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
             const authToken = localStorage.getItem('authToken');
-
-            if (!authToken) {window.location.href = '/';} 
-    
-            const form = document.querySelector('form');
-            const notification = document.getElementById('notification');
-            const notificationMessage = document.getElementById('notification-message');
-
-            async function uploadPhoto(lostId, file) {
-                const reader = new FileReader();
-                reader.onloadend = async function () {
-                    const documentB64 = reader.result.split(',')[1]; // Get base64 string
-                    try {
-                        const response = await fetch(`${BASE_URL}/lost/${lostId}/photo`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${authToken}`
-                            },
-                            body: JSON.stringify({ documentB64 })
-                        });
-
-                        if (response.ok) {
-                            showSuccess('خطأ','تم تحميل الصورة بنجاح!');
-                        } else {
-                            const error = await response.json();
-                            showError('خطأ','حدث خطأ أثناء تحميل الصورة: ' + error.error, false);
-                        }
-                    } catch (error) {
-                        showError('خطأ' , error.error, false);
-                    }
-                };
-                reader.readAsDataURL(file);
+            const userData = localStorage.getItem('userData');
+            
+            if (!isLoggedIn || !authToken) {
+                // User is not logged in, redirect to login
+                showError('يجب تسجيل الدخول', 'يرجى تسجيل الدخول للوصول إلى هذه الصفحة');
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 2000);
+                return false;
             }
-
-            form.addEventListener('submit', async function (event) {
-                event.preventDefault(); // Prevent the default form submission
-
-                const formData = new FormData(form);
-                const data = {
-                    name: formData.get('name'),
-                    location: formData.get('location'),
-                    lastSeenLocation: formData.get('lastSeenLocation'),
-                    lastSeenDate: formData.get('lastSeenDate'),
-                    age: formData.get('age') ? Number(formData.get('age')) : null,
-                    gender: formData.get('gender'),
-                    contactInfo: formData.get('contactInfo') || null,
-                    disease: formData.get('disease') || null,
-                    mentalHealth: formData.get('mentalHealth') || null,
-                    found: false // Assuming 'found' is false when reporting a missing person
-                };
-
+            
+            // Load user data
+            if (userData) {
                 try {
-                    const response = await fetch(`${BASE_URL}/lost`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${authToken}` // Include the token in the request
-                        },
-                        body: JSON.stringify(data)
-                    });
-
-                    if (response.ok) {
-                        const result = await response.json();
-                        showSuccess('خطأ','تم إرسال البلاغ بنجاح!');
-
-                        // Handle photo upload if a file is selected
-                        const file = formData.get('photo');
-                        if (file && file.size > 0) {
-                            await uploadPhoto(result.id, file);
-                        }
+                    const user = JSON.parse(userData);
+                    if (user.name) {
+                        document.getElementById('user-name').textContent = user.name;
+                    } else if (user.email) {
+                        document.getElementById('user-name').textContent = user.email;
                     } else {
-                        const error = await response.json();
-                        showError('خطأ','حدث خطأ أثناء إرسال البلاغ: ' + error.error);
+                        document.getElementById('user-name').textContent = 'مستخدم';
                     }
                 } catch (error) {
-                    showError('خطأ','خطأ: ' + error.error);
+                    console.error('Error parsing user data:', error);
+                    document.getElementById('user-name').textContent = 'مستخدم';
                 }
+            }
+            
+            return true;
+        }
+
+        // Logout function
+        window.logout = function() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('userData');
+            localStorage.removeItem('rememberMe');
+            
+            showSuccess('تم تسجيل الخروج', 'تم تسجيل الخروج بنجاح');
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 1500);
+        }
+
+        // Check authentication on page load
+        if (!checkAuth()) {
+            // Stop execution if not authenticated
+            throw new Error('Authentication required');
+        }
+
+        // Handle image upload to lost person record
+        async function uploadImageToLost(lostId, file) {
+            const authToken = localStorage.getItem('authToken');
+            if (!authToken) {
+                showError('خطأ في المصادقة', 'يرجى تسجيل الدخول مرة أخرى');
+                return false;
+            }
+
+            // Validate file type and size
+            if (!file.type.startsWith('image/')) {
+                console.error('Invalid file type:', file.type);
+                return false;
+            }
+
+            // Check file size (2MB limit as per backend)
+            if (file.size > 2 * 1024 * 1024) {
+                console.error('File too large:', file.size);
+                return false;
+            }
+
+            // Convert file to base64
+            const base64 = await fileToBase64(file);
+            if (!base64) {
+                console.error('Failed to convert file to base64');
+                return false;
+            }
+
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 30000);
+
+                const response = await fetch(`${API_BASE_URL}/lost/${lostId}/photo`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify({
+                        documentB64: base64
+                    }),
+                    signal: controller.signal
+                });
+
+                clearTimeout(timeoutId);
+
+                if (response.ok) {
+                    return true;
+                } else {
+                    console.error('Image upload failed:', response.status);
+                    return false;
+                }
+            } catch (error) {
+                console.error('Image upload error:', error);
+                return false;
+            }
+        }
+
+        // Convert file to base64
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                    // Remove the data URL prefix (e.g., "data:image/jpeg;base64,")
+                    const base64 = reader.result.split(',')[1];
+                    resolve(base64);
+                };
+                reader.onerror = error => reject(error);
             });
+        }
+
+        // Handle form submission
+        document.getElementById('report-missing-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const reportData = Object.fromEntries(formData.entries());
+            
+            // convert age from string to number
+            reportData.age = parseInt(reportData.age);
+            
+            // add a found boolean field
+            reportData.found = false;
+
+            // Validate required fields
+            if (!reportData.name || !reportData.gender || !reportData.location || !reportData.lastSeenLocation || !reportData.lastSeenDate) {
+                showError('بيانات ناقصة', 'يرجى ملء جميع الحقول المطلوبة');
+                return;
+            }
+            
+            // Get auth token
+            const authToken = localStorage.getItem('authToken');
+            if (!authToken) {
+                showError('خطأ في المصادقة', 'يرجى تسجيل الدخول مرة أخرى');
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 2000);
+                return;
+            }
+            
+            // Show loading state
+            const submitButton = document.getElementById('report-missing-submit-btn');
+            const buttonSpan = submitButton.querySelector('span');
+            const originalContent = buttonSpan.innerHTML;
+            buttonSpan.innerHTML = '<i data-lucide="loader-2" class="w-6 h-6 animate-spin"></i> جاري الإرسال...';
+            submitButton.disabled = true;
+            lucide.createIcons();
+            
+            try {
+                            // Step 1: Submit the missing person data first
+            buttonSpan.innerHTML = '<i data-lucide="loader-2" class="w-6 h-6 animate-spin"></i> جاري إرسال البلاغ...';
+            lucide.createIcons();
+            
+            // API call to backend for missing person data
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 30000);
+            
+            const response = await fetch(`${API_BASE_URL}/lost`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${authToken}`
+                },
+                body: JSON.stringify(reportData),
+                signal: controller.signal
+            });
+            
+            clearTimeout(timeoutId);
+            
+            let data;
+            try {
+                data = await response.json();
+            } catch (parseError) {
+                console.error('Failed to parse response:', parseError);
+                showError('استجابة غير صحيحة', 'يرجى المحاولة مرة أخرى');
+                return;
+            }
+            
+            if (response.ok) {
+                // Step 2: If data submission successful, handle image upload
+                const photoFile = document.getElementById('photo').files[0];
+                if (photoFile && data.id) {
+                    buttonSpan.innerHTML = '<i data-lucide="loader-2" class="w-6 h-6 animate-spin"></i> جاري رفع الصورة...';
+                    lucide.createIcons();
+                    
+                    const imageUploadSuccess = await uploadImageToLost(data.id, photoFile);
+                    if (imageUploadSuccess) {
+                        showSuccess('تم إرسال البلاغ بنجاح', 'تم إرسال بلاغ الشخص المفقود مع الصورة بنجاح!');
+                    } else {
+                        showSuccess('تم إرسال البلاغ بنجاح', 'تم إرسال بلاغ الشخص المفقود بنجاح! فشل في رفع الصورة');
+                    }
+                } else {
+                    showSuccess('تم إرسال البلاغ بنجاح', 'تم إرسال بلاغ الشخص المفقود بنجاح!');
+                }
+                
+                // Redirect to dashboard after delay
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 2000);
+                
+            } else {
+                // Handle errors
+                let errorMessage = 'حدث خطأ أثناء إرسال البلاغ';
+                let errorTitle = 'خطأ في الإرسال';
+                
+                if (response.status === 401) {
+                    errorTitle = 'خطأ في المصادقة';
+                    errorMessage = 'يرجى تسجيل الدخول مرة أخرى';
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 2000);
+                } else if (response.status === 400) {
+                    errorTitle = 'بيانات غير صحيحة';
+                    errorMessage = 'يرجى التحقق من البيانات المدخلة';
+                } else if (response.status === 500) {
+                    errorTitle = 'خطأ في الخادم';
+                    errorMessage = 'يرجى المحاولة مرة أخرى لاحقاً';
+                } else {
+                    errorTitle = 'خطأ غير متوقع';
+                    errorMessage = 'يرجى المحاولة مرة أخرى';
+                }
+                
+                showError(errorTitle, errorMessage);
+            }
+                
+            } catch (error) {
+                console.error('Missing person report submission error:', error);
+                let errorMessage = 'حدث خطأ في الاتصال، يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى';
+                let errorTitle = 'خطأ في الاتصال';
+                
+                if (error.name === 'AbortError') {
+                    errorTitle = 'انتهت مهلة الاتصال';
+                    errorMessage = 'يرجى المحاولة مرة أخرى';
+                } else if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                    errorTitle = 'لا يمكن الاتصال بالخادم';
+                    errorMessage = 'يرجى التحقق من اتصالك بالإنترنت';
+                }
+                
+                showError(errorTitle, errorMessage);
+            } finally {
+                // Reset button state
+                buttonSpan.innerHTML = originalContent;
+                submitButton.disabled = false;
+                lucide.createIcons();
+            }
         });
+
+        // File upload handling
+        document.getElementById('photo').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                handleFilePreview(file, this);
+            }
+        });
+
+        // Handle file preview
+        function handleFilePreview(file, input) {
+            const preview = input.parentElement.querySelector('.file-preview');
+            
+            // Validate file type (only JPEG and PNG as per backend)
+            if (!['image/jpeg', 'image/png'].includes(file.type)) {
+                showError('نوع ملف غير مدعوم', 'يرجى اختيار صورة بصيغة JPEG أو PNG فقط');
+                input.value = '';
+                return;
+            }
+            
+            // Validate file size (2MB limit as per backend)
+            if (file.size > 2 * 1024 * 1024) {
+                showError('حجم الملف كبير', 'يرجى اختيار صورة بحجم أقل من 2 ميجابايت');
+                input.value = '';
+                return;
+            }
+            
+            // Create preview
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.innerHTML = `
+                    <div class="mt-4 p-4 bg-gray-50 rounded-lg">
+                        <img src="${e.target.result}" alt="Preview" class="w-32 h-32 object-cover rounded-lg mx-auto">
+                        <p class="text-sm text-gray-600 mt-2 text-center">${file.name}</p>
+                    </div>
+                `;
+            };
+            reader.readAsDataURL(file);
+        }
     </script>
     
     <!-- Notification System -->
