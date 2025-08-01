@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - فين</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-cyan-50 font-['Cairo']">
+    <!-- Background decoration -->
+    <div class="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-indigo-200/30 to-purple-200/30 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-10 left-10 w-96 h-96 bg-gradient-to-tr from-purple-200/30 to-cyan-200/30 rounded-full blur-3xl"></div>
+
+    <!-- Header -->
+    <header class="border-b border-purple-100 sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3 cursor-pointer transition-transform hover:scale-105" onclick="window.location.href='dashboard.html'">
+                    <div class="w-10 h-10 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <i data-lucide="search" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold bg-gradient-to-l from-cyan-600 to-purple-600 bg-clip-text text-transparent">
+                            فين
+                        </h1>
+                        <p class="text-xs text-gray-500 font-medium">FEEN</p>
+                    </div>
+                </div>
+
+                <nav class="hidden md:flex items-center gap-8">
+                    <button class="text-gray-600 hover:text-purple-600 transition-colors font-medium" onclick="window.location.href='dashboard.html'">
+                        لوحة التحكم
+                    </button>
+                </nav>
+
+                <div class="flex items-center gap-3">
+                    <div class="hidden md:flex items-center gap-2 text-sm">
+                        <i data-lucide="user" class="w-4 h-4 text-purple-600"></i>
+                        <span class="text-gray-700 font-medium" id="user-email">example@com</span>
+                    </div>
+                    <button class="px-4 py-2 text-red-600 border border-red-200 hover:bg-red-50 font-medium rounded-lg transition-colors" onclick="logout()">
+                        <i data-lucide="log-out" class="w-4 h-4 ml-1 inline"></i>
+                        تسجيل الخروج
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Content -->
+    <div class="min-h-screen py-20 px-6 relative">
+        <div class="container mx-auto max-w-6xl relative">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <div class="w-20 h-20 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <i data-lucide="home" class="w-10 h-10 text-white"></i>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+                    لوحة التحكم
+                </h1>
+                <p class="text-lg text-gray-600 font-medium">
+                    مرحباً بك، <span id="welcome-email">example@com</span>
+                </p>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="grid md:grid-cols-2 gap-6 mb-12">
+                <div class="bg-white/80 backdrop-blur-md shadow-xl border-0 hover:shadow-2xl transition-shadow cursor-pointer rounded-2xl" onclick="window.location.href='report-missing.html'">
+                    <div class="p-8 text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                            <i data-lucide="alert-circle" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">
+                            الإبلاغ عن شخص مفقود
+                        </h3>
+                        <p class="text-gray-600 font-medium mb-6">
+                            ساعد في البحث عن الأشخاص المفقودين
+                        </p>
+                        <button class="bg-gradient-to-l from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold rounded-lg px-6 py-3">
+                            <i data-lucide="plus" class="w-4 h-4 ml-2 inline"></i>
+                            إضافة بلاغ مفقود
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white/80 backdrop-blur-md shadow-xl border-0 hover:shadow-2xl transition-shadow cursor-pointer rounded-2xl" onclick="window.location.href='report-found.html'">
+                    <div class="p-8 text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                            <i data-lucide="search" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">
+                            الإبلاغ عن شخص موجود
+                        </h3>
+                        <p class="text-gray-600 font-medium mb-6">
+                            ساعد في لم الشمل بالإبلاغ عن الأشخاص الموجودين
+                        </p>
+                        <button class="bg-gradient-to-l from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold rounded-lg px-6 py-3">
+                            <i data-lucide="plus" class="w-4 h-4 ml-2 inline"></i>
+                            إضافة بلاغ موجود
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reports Section -->
+            <div class="bg-white/80 backdrop-blur-md shadow-xl border-0 rounded-2xl">
+                <div class="p-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="file-text" class="w-6 h-6 text-indigo-600"></i>
+                            <h2 class="text-2xl font-black text-gray-900">
+                                بلاغاتي
+                            </h2>
+                        </div>
+                        <div class="bg-indigo-100 text-indigo-700 border border-indigo-200 px-3 py-1 rounded-full text-sm font-medium">
+                            4 بلاغ
+                        </div>
+                    </div>
+
+                    <div class="space-y-6" id="reports-container">
+                        <!-- Reports will be loaded here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-br from-gray-800 via-gray-900 to-black text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div>
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-12 h-12 bg-gradient-to-br from-cyan-400 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
+                                <i data-lucide="search" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-black bg-gradient-to-l from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                                    فين
+                                </h3>
+                                <p class="text-xs text-gray-400 font-medium">FEEN</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm font-medium leading-relaxed">
+                            منصة مفتوحة المصدر لمساعدة العائلات في العثور على أفرادها
+                            المفقودين باستخدام أحدث التقنيات
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold mb-6 text-white text-lg">روابط سريعة</h4>
+                        <ul class="space-y-3 text-sm">
+                            <li>
+                                <a href="#about" class="text-gray-300 hover:text-cyan-400 transition-colors font-medium">
+                                    من نحن
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#how-it-works" class="text-gray-300 hover:text-purple-400 transition-colors font-medium">
+                                    كيف يعمل
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#faq" class="text-gray-300 hover:text-pink-400 transition-colors font-medium">
+                                    الأسئلة الشائعة
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#privacy" class="text-gray-300 hover:text-green-400 transition-colors font-medium">
+                                    سياسة الخصوصية
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold mb-6 text-white text-lg">تواصل معنا</h4>
+                        <div class="space-y-4 text-sm">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-green-500/20 rounded-xl flex items-center justify-center">
+                                    <i data-lucide="phone" class="w-4 h-4 text-green-400"></i>
+                                </div>
+                                <span class="text-gray-300 font-medium">
+                                    +966 50 123 4567
+                                </span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-blue-500/20 rounded-xl flex items-center justify-center">
+                                    <i data-lucide="mail" class="w-4 h-4 text-blue-400"></i>
+                                </div>
+                                <span class="text-gray-300 font-medium">
+                                    info@feen.org
+                                </span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-purple-500/20 rounded-xl flex items-center justify-center">
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-purple-400"></i>
+                                </div>
+                                <span class="text-gray-300 font-medium">
+                                    الرياض، السعودية
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-700 mt-12 pt-8 text-center text-sm text-gray-400">
+                    <p class="font-medium">
+                        &copy; 2024 فين. جميع الحقوق محفوظة. مشروع مفتوح المصدر
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/app.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Check if user is logged in
+        function checkAuth() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const userEmail = localStorage.getItem('userEmail');
+            
+            if (!isLoggedIn || !userEmail) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Update user email display
+            document.getElementById('user-email').textContent = userEmail;
+            document.getElementById('welcome-email').textContent = userEmail;
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userEmail');
+            window.location.href = 'index.html';
+        }
+
+        // Mock reports data
+        const mockReports = [
+            {
+                id: 1,
+                type: "missing",
+                name: "أحمد محمد علي",
+                age: 25,
+                gender: "ذكر",
+                location: "الرياض",
+                residence: "حي الملز",
+                lastSeen: "مول الرياض غاليري",
+                lastSeenDate: "2024-01-15T14:30",
+                contactInfo: "0501234567",
+                medicalConditions: "مريض سكري",
+                mentalState: "حالة نفسية مستقرة",
+                date: "2024-01-15",
+                status: "نشط",
+                description: "شوهد آخر مرة في حي الملز",
+            },
+            {
+                id: 2,
+                type: "found",
+                name: "فاطمة السالم",
+                age: 30,
+                gender: "أنثى",
+                location: "جدة",
+                foundLocation: "مستشفى الملك عبدالعزيز",
+                foundDate: "2024-01-10T10:15",
+                notes: "تم العثور عليها في حالة جيدة",
+                contactInfo: "0509876543",
+                date: "2024-01-10",
+                status: "تم لم الشمل",
+                description: "تم العثور عليها في المستشفى",
+            },
+            {
+                id: 3,
+                type: "missing",
+                name: "سعد الأحمد",
+                age: 45,
+                gender: "ذكر",
+                location: "الدمام",
+                residence: "حي الشاطئ",
+                lastSeen: "كورنيش الدمام",
+                lastSeenDate: "2024-01-20T18:00",
+                contactInfo: "0553456789",
+                medicalConditions: "يعاني من ضعف في الذاكرة",
+                mentalState: "حالة ذهنية متدهورة",
+                date: "2024-01-20",
+                status: "نشط",
+                description: "مفقود منذ أسبوع",
+            },
+            {
+                id: 4,
+                type: "found",
+                name: "نورا الخالد",
+                age: 22,
+                gender: "أنثى",
+                location: "مكة",
+                foundLocation: "الحرم المكي",
+                foundDate: "2024-01-18T16:45",
+                notes: "كانت تبحث عن أهلها في منطقة الحرم",
+                contactInfo: "0567891234",
+                date: "2024-01-18",
+                status: "نشط",
+                description: "تم العثور عليها في الحرم",
+            },
+        ];
+
+        // Render reports
+        function renderReports() {
+            const container = document.getElementById('reports-container');
+            
+            if (mockReports.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12">
+                        <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i data-lucide="file-text" class="w-10 h-10 text-gray-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">
+                            لا توجد بلاغات
+                        </h3>
+                        <p class="text-gray-600 font-medium mb-6">
+                            لم تقم بإنشاء أي بلاغات بعد. ابدأ بإنشاء بلاغ جديد.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <button onclick="window.location.href='report-missing.html'" class="bg-gradient-to-l from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold rounded-lg px-6 py-3">
+                                <i data-lucide="plus" class="w-4 h-4 ml-2 inline"></i>
+                                إضافة بلاغ مفقود
+                            </button>
+                            <button onclick="window.location.href='report-found.html'" class="border border-green-300 text-green-600 hover:bg-green-50 font-bold rounded-lg px-6 py-3">
+                                <i data-lucide="plus" class="w-4 h-4 ml-2 inline"></i>
+                                إضافة بلاغ موجود
+                            </button>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = mockReports.map(report => `
+                <div class="border border-gray-200 rounded-2xl p-6 bg-white/70 backdrop-blur hover:shadow-lg transition-shadow">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center shadow-md ${report.type === "missing" ? "bg-gradient-to-br from-orange-400 to-red-500" : "bg-gradient-to-br from-green-400 to-emerald-500"}">
+                                <i data-lucide="${report.type === "missing" ? "alert-circle" : "search"}" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900">
+                                    ${report.name}
+                                </h3>
+                                <div class="flex items-center gap-4 text-sm text-gray-600">
+                                    <span>${report.age} سنة</span>
+                                    <span>•</span>
+                                    <span>${report.gender}</span>
+                                    <span>•</span>
+                                    <span>${report.location}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <div class="px-3 py-1 font-medium rounded-full text-sm ${report.type === "missing" ? "bg-orange-100 text-orange-700 border border-orange-200" : "bg-green-100 text-green-700 border border-green-200"}">
+                                <i data-lucide="flag" class="w-3 h-3 ml-1 inline"></i>
+                                ${report.type === "missing" ? "مفقود" : "موجود"}
+                            </div>
+
+                            <div class="px-3 py-1 font-medium rounded-full text-sm ${report.status === "نشط" ? "bg-blue-100 text-blue-700 border border-blue-200" : "bg-emerald-100 text-emerald-700 border border-emerald-200"}">
+                                <i data-lucide="${report.status === "نشط" ? "clock" : "check-circle"}" class="w-3 h-3 ml-1 inline"></i>
+                                ${report.status}
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-gray-700 font-medium mb-4">
+                        ${report.description}
+                    </p>
+
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2 text-sm text-gray-500">
+                            <i data-lucide="calendar" class="w-4 h-4"></i>
+                            <span>تاريخ البلاغ: ${report.date}</span>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <button class="text-blue-600 border border-blue-300 hover:bg-blue-50 rounded-lg px-3 py-1 text-sm font-medium transition-colors" onclick="editReport(${report.id})">
+                                <i data-lucide="edit" class="w-3 h-3 ml-1 inline"></i>
+                                تعديل
+                            </button>
+                            <button class="text-red-600 border border-red-300 hover:bg-red-50 rounded-lg px-3 py-1 text-sm font-medium transition-colors" onclick="deleteReport(${report.id})">
+                                حذف
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Re-initialize icons for new elements
+            lucide.createIcons();
+        }
+
+        // Edit report function
+        function editReport(reportId) {
+            const report = mockReports.find(r => r.id === reportId);
+            if (report) {
+                if (report.type === "missing") {
+                    window.location.href = `edit-missing.html?id=${reportId}`;
+                } else {
+                    window.location.href = `edit-found.html?id=${reportId}`;
+                }
+            }
+        }
+
+        // Delete report function
+        function deleteReport(reportId) {
+            if (confirm("هل أنت متأكد من حذف هذا البلاغ؟")) {
+                // In a real app, this would send a request to the server
+                showSuccess("تم بنجاح!", "تم حذف البلاغ بنجاح");
+                // Remove from mock data and re-render
+                const index = mockReports.findIndex(r => r.id === reportId);
+                if (index > -1) {
+                    mockReports.splice(index, 1);
+                    renderReports();
+                }
+            }
+        }
+
+        // Initialize dashboard
+        checkAuth();
+        renderReports();
+        
+        // Test notifications (remove in production)
+        // setTimeout(() => testNotifications(), 2000);
+    </script>
+    
+    <!-- Notification System -->
+    <script src="js/notifications.js"></script>
+</body>
+</html> 

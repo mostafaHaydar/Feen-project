@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فين - منصة لم الشمل</title>
+    <meta name="description" content="فين - منصة مفتوحة المصدر لمساعدة العائلات في العثور على أفرادها المفقودين باستخدام تقنية التعرف على الوجوه">
+    <meta name="keywords" content="فين, مفقود, عثور, لم الشمل, تقنية التعرف على الوجوه, فقدان, أشخاص مفقودين">
+    <meta name="author" content="Feen Team">
+    <meta property="og:title" content="فين - منصة لم الشمل">
+    <meta property="og:description" content="منصة مفتوحة المصدر لمساعدة العائلات في العثور على أفرادها المفقودين">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="min-h-screen bg-white font-['Cairo']">
+    <!-- Header -->
+    <header class="border-b border-purple-100 sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3 cursor-pointer transition-transform hover:scale-105" onclick="navigateTo('home')">
+                    <div class="w-10 h-10 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <i data-lucide="search" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold bg-gradient-to-l from-cyan-600 to-purple-600 bg-clip-text text-transparent">
+                            فين
+                        </h1>
+                        <p class="text-xs text-gray-500 font-medium">FEEN</p>
+                    </div>
+                </div>
+
+                <nav class="hidden md:flex items-center gap-8">
+                    <!-- Navigation items can be added here if needed -->
+                </nav>
+
+                <div class="flex items-center gap-3">
+                    <button class="px-4 py-2 text-purple-600 border border-purple-200 hover:bg-purple-50 font-medium rounded-lg transition-colors" onclick="navigateTo('login')">
+                        <i data-lucide="log-in" class="w-4 h-4 ml-1 inline"></i>
+                        تسجيل الدخول
+                    </button>
+                    <button class="px-4 py-2 bg-gradient-to-l from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white font-medium rounded-lg transition-all" onclick="navigateTo('register')">
+                        <i data-lucide="user-plus" class="w-4 h-4 ml-1 inline"></i>
+                        إنشاء حساب
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Home Page -->
+        <div id="home-page" class="page active">
+            <!-- Hero Section -->
+            <section class="pt-20 pb-16 px-6 bg-gradient-to-br from-purple-50 via-cyan-50 to-blue-50 relative overflow-hidden">
+                <!-- Background decoration -->
+                <div class="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-purple-200/30 to-cyan-200/30 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-10 left-10 w-96 h-96 bg-gradient-to-tr from-blue-200/30 to-pink-200/30 rounded-full blur-3xl"></div>
+
+                <div class="container mx-auto max-w-4xl relative">
+                    <div class="text-center mb-8">
+                        <div class="mb-6 bg-gradient-to-l from-cyan-100 to-purple-100 text-purple-700 border border-purple-200 px-6 py-3 text-sm font-semibold shadow-sm rounded-full inline-flex items-center">
+                            <i data-lucide="star" class="w-4 h-4 ml-2 text-yellow-500"></i>
+                            فتح فرص لم الشمل مع فين
+                        </div>
+                    </div>
+
+                    <div class="text-center mb-12">
+                        <h1 class="text-5xl md:text-7xl font-black text-gray-900 mb-6 leading-tight">
+                            اصنع بلاغاً يساعد في
+                            <br>
+                            <span class="bg-gradient-to-l from-cyan-500 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                                لم الشمل
+                            </span>
+                        </h1>
+
+                        <p class="text-xl text-gray-700 mb-8 max-w-2xl mx-auto leading-relaxed font-medium">
+                            اعرف بالضبط مدى فعالية بلاغك في العثور على الأشخاص المطلوبين.
+                        </p>
+
+                        <p class="text-lg text-gray-600 mb-12 max-w-3xl mx-auto font-normal">
+                            قوّي بحثك عن المفقودين مع فين. ارفع صورة الشخص المفقود وتفاصيل
+                            البلاغ، ودع فين يكشف عن درجة التوافق والكلمات المفتاحية المهمة.
+                            حسّن أذكى، وابحث أسرع، وتحكم في عملية البحث.
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                            <button class="bg-gradient-to-l from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-10 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all rounded-lg" onclick="navigateTo('report-missing')">
+                                <i data-lucide="zap" class="w-5 h-5 ml-2 inline"></i>
+                                جرب فين الآن
+                            </button>
+                            <button class="border-2 border-purple-300 text-purple-700 hover:bg-purple-50 px-10 py-4 text-lg font-semibold rounded-lg transition-colors">
+                                <i data-lucide="target" class="w-5 h-5 ml-2 inline"></i>
+                                شاهد كيف يعمل
+                            </button>
+                        </div>
+
+                        <div class="flex items-center justify-center gap-8 text-sm flex-wrap">
+                            <div class="flex items-center bg-gradient-to-l from-green-100 to-emerald-100 px-4 py-2 rounded-full">
+                                <i data-lucide="shield" class="w-4 h-4 ml-1 text-green-600"></i>
+                                <span class="text-green-700 font-medium">آمن ومجاني</span>
+                            </div>
+                            <div class="flex items-center bg-gradient-to-l from-blue-100 to-cyan-100 px-4 py-2 rounded-full">
+                                <i data-lucide="clock" class="w-4 h-4 ml-1 text-blue-600"></i>
+                                <span class="text-blue-700 font-medium">متاح 24/7</span>
+                            </div>
+                            <div class="flex items-center bg-gradient-to-l from-purple-100 to-pink-100 px-4 py-2 rounded-full">
+                                <i data-lucide="camera" class="w-4 h-4 ml-1 text-purple-600"></i>
+                                <span class="text-purple-700 font-medium">تقنية متقدمة</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How It Works -->
+            <section class="py-20 bg-white" id="how-it-works">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-6">
+                            خطوات بسيطة لـ
+                            <span class="bg-gradient-to-l from-cyan-600 to-purple-600 bg-clip-text text-transparent">
+                                بلاغ محسّن
+                            </span>
+                        </h2>
+                        <p class="text-xl text-gray-600 max-w-2xl mx-auto font-medium">
+                            حسّن بلاغك واحصل على نتائج أفضل باستخدام فين
+                        </p>
+                    </div>
+
+                    <div class="max-w-5xl mx-auto">
+                        <div class="grid md:grid-cols-4 gap-8">
+                            <!-- Step 1 -->
+                            <div class="text-center group">
+                                <div class="relative mb-6">
+                                    <div class="w-20 h-20 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-2xl transition-shadow">
+                                        <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-orange-600 font-black text-lg">
+                                            1
+                                        </div>
+                                    </div>
+                                    <div class="hidden md:block absolute top-10 right-full w-full h-1 bg-gradient-to-l from-orange-300 to-transparent"></div>
+                                </div>
+                                <h3 class="font-bold text-gray-900 mb-2 text-lg">
+                                    ارفع بلاغك
+                                </h3>
+                                <p class="text-sm text-gray-600 font-medium">
+                                    ارفع بلاغك الحالي بسرعة وسهولة
+                                </p>
+                            </div>
+
+                            <!-- Step 2 -->
+                            <div class="text-center group">
+                                <div class="relative mb-6">
+                                    <div class="w-20 h-20 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-2xl transition-shadow">
+                                        <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-blue-600 font-black text-lg">
+                                            2
+                                        </div>
+                                    </div>
+                                    <div class="hidden md:block absolute top-10 right-full w-full h-1 bg-gradient-to-l from-blue-300 to-transparent"></div>
+                                </div>
+                                <h3 class="font-bold text-gray-900 mb-2 text-lg">
+                                    الصق وصف الشخص
+                                </h3>
+                                <p class="text-sm text-gray-600 font-medium">
+                                    قدم وصف دقيق للشخص المفقود
+                                </p>
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div class="text-center group">
+                                <div class="relative mb-6">
+                                    <div class="w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-2xl transition-shadow">
+                                        <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-green-600 font-black text-lg">
+                                            3
+                                        </div>
+                                    </div>
+                                    <div class="hidden md:block absolute top-10 right-full w-full h-1 bg-gradient-to-l from-green-300 to-transparent"></div>
+                                </div>
+                                <h3 class="font-bold text-gray-900 mb-2 text-lg">
+                                    احصل على رؤى فورية
+                                </h3>
+                                <p class="text-sm text-gray-600 font-medium">
+                                    اطلع على رؤى فورية وكلمات مفتاحية محسّنة
+                                </p>
+                            </div>
+
+                            <!-- Step 4 -->
+                            <div class="text-center group">
+                                <div class="relative mb-6">
+                                    <div class="w-20 h-20 bg-gradient-to-br from-purple-400 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-2xl transition-shadow">
+                                        <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-purple-600 font-black text-lg">
+                                            4
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3 class="font-bold text-gray-900 mb-2 text-lg">
+                                    ابحث بذكاء أكبر
+                                </h3>
+                                <p class="text-sm text-gray-600 font-medium">
+                                    اقدم بلاغاً مخصصاً ومحسن للعثور على المفقود
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="py-20 bg-gradient-to-br from-purple-50 via-blue-50 to-cyan-50">
+                <div class="container mx-auto px-6">
+                    <div class="max-w-6xl mx-auto">
+                        <div class="grid md:grid-cols-2 gap-16 items-center">
+                            <!-- Content -->
+                            <div>
+                                <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-8">
+                                    كل ما تحتاجه لـ
+                                    <br>
+                                    <span class="bg-gradient-to-l from-cyan-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                                        إتقان بلاغك
+                                    </span>
+                                </h2>
+
+                                <div class="space-y-8">
+                                    <div class="flex items-start gap-4 p-4 bg-white/70 backdrop-blur rounded-2xl shadow-sm border border-green-100">
+                                        <div class="w-8 h-8 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl flex items-center justify-center flex-shrink-0 mt-1">
+                                            <div class="w-3 h-3 bg-white rounded-full"></div>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-gray-900 mb-2 text-lg">
+                                                تحليل البلاغات
+                                            </h3>
+                                            <p class="text-gray-600 font-medium">
+                                                احصل على تحليل مفصل لمدى فعالية بلاغك في العثور على
+                                                المفقودين
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start gap-4 p-4 bg-white/70 backdrop-blur rounded-2xl shadow-sm border border-blue-100">
+                                        <div class="w-8 h-8 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-xl flex items-center justify-center flex-shrink-0 mt-1">
+                                            <div class="w-3 h-3 bg-white rounded-full"></div>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-gray-900 mb-2 text-lg">
+                                                تقنية التعرف على الوجوه
+                                            </h3>
+                                            <p class="text-gray-600 font-medium">
+                                                استخدم أحدث تقنيات الذكاء الاصطناعي للمطابقة الدقيقة
+                                                والسريعة
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start gap-4 p-4 bg-white/70 backdrop-blur rounded-2xl shadow-sm border border-purple-100">
+                                        <div class="w-8 h-8 bg-gradient-to-br from-purple-400 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0 mt-1">
+                                            <div class="w-3 h-3 bg-white rounded-full"></div>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-gray-900 mb-2 text-lg">
+                                                مطابقة ذكية
+                                            </h3>
+                                            <p class="text-gray-600 font-medium">
+                                                اربط البلاغات تلقائياً وساعد العائلات في لم الشمل
+                                                بسرعة وفعالية
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Visual -->
+                            <div class="bg-gradient-to-br from-purple-200 via-cyan-200 to-blue-200 rounded-3xl h-96 flex items-center justify-center relative overflow-hidden">
+                                <div class="absolute inset-0 bg-white/20 backdrop-blur-sm"></div>
+                                <div class="text-center relative z-10">
+                                    <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-2xl">
+                                        <i data-lucide="heart" class="w-12 h-12 text-pink-500"></i>
+                                    </div>
+                                    <p class="text-purple-700 font-bold text-lg">
+                                        واجهة بسيطة وفعالة
+                                    </p>
+                                    <p class="text-purple-600 font-medium text-sm mt-2">
+                                        مصممة بعناية لتجربة مستخدم مثلى
+                                    </p>
+                                </div>
+
+                                <!-- Decorative elements -->
+                                <div class="absolute top-4 right-4 w-16 h-16 bg-yellow-300/30 rounded-full"></div>
+                                <div class="absolute bottom-4 left-4 w-20 h-20 bg-pink-300/30 rounded-full"></div>
+                                <div class="absolute top-1/2 left-4 w-12 h-12 bg-cyan-300/30 rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="py-20 bg-gradient-to-l from-cyan-600 via-purple-600 to-pink-600 text-white relative overflow-hidden">
+                <div class="absolute inset-0 bg-black/10"></div>
+                <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-0 left-0 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
+
+                <div class="container mx-auto px-6 text-center relative">
+                    <div class="max-w-3xl mx-auto">
+                        <h2 class="text-4xl md:text-5xl font-black mb-6">
+                            هل تبحث عن شخص عزيز؟
+                        </h2>
+                        <p class="text-xl mb-12 text-white/90 font-medium">
+                            لا تتردد في الإبلاغ. كل ثانية مهمة في عملية البحث والعثور على
+                            الأحباب
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <button class="bg-white text-purple-600 hover:bg-gray-100 px-10 py-4 font-bold shadow-lg hover:shadow-xl transition-all rounded-lg" onclick="navigateTo('report-missing')">
+                                <i data-lucide="users" class="w-5 h-5 ml-2 inline"></i>
+                                الإبلاغ عن شخص مفقود
+                            </button>
+                            <button class="border-2 border-white text-white hover:bg-white/10 px-10 py-4 font-bold rounded-lg transition-colors" onclick="navigateTo('report-found')">
+                                <i data-lucide="search" class="w-5 h-5 ml-2 inline"></i>
+                                الإبلاغ عن شخص موجود
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-br from-gray-800 via-gray-900 to-black text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div>
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-12 h-12 bg-gradient-to-br from-cyan-400 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
+                                <i data-lucide="search" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-black bg-gradient-to-l from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                                    فين
+                                </h3>
+                                <p class="text-xs text-gray-400 font-medium">FEEN</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm font-medium leading-relaxed">
+                            منصة مفتوحة المصدر لمساعدة العائلات في العثور على أفرادها
+                            المفقودين باستخدام أحدث التقنيات
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold mb-6 text-white text-lg">روابط سريعة</h4>
+                        <ul class="space-y-3 text-sm">
+                            <li>
+                                <a href="#about" class="text-gray-300 hover:text-cyan-400 transition-colors font-medium">
+                                    من نحن
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#how-it-works" class="text-gray-300 hover:text-purple-400 transition-colors font-medium">
+                                    كيف يعمل
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#faq" class="text-gray-300 hover:text-pink-400 transition-colors font-medium">
+                                    الأسئلة الشائعة
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#privacy" class="text-gray-300 hover:text-green-400 transition-colors font-medium">
+                                    سياسة الخصوصية
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold mb-6 text-white text-lg">تواصل معنا</h4>
+                        <div class="space-y-4 text-sm">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-green-500/20 rounded-xl flex items-center justify-center">
+                                    <i data-lucide="phone" class="w-4 h-4 text-green-400"></i>
+                                </div>
+                                <span class="text-gray-300 font-medium">
+                                    +966 50 123 4567
+                                </span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-blue-500/20 rounded-xl flex items-center justify-center">
+                                    <i data-lucide="mail" class="w-4 h-4 text-blue-400"></i>
+                                </div>
+                                <span class="text-gray-300 font-medium">
+                                    info@feen.org
+                                </span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-purple-500/20 rounded-xl flex items-center justify-center">
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-purple-400"></i>
+                                </div>
+                                <span class="text-gray-300 font-medium">
+                                    الرياض، السعودية
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-700 mt-12 pt-8 text-center text-sm text-gray-400">
+                    <p class="font-medium">
+                        &copy; 2024 فين. جميع الحقوق محفوظة. مشروع مفتوح المصدر
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/app.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+    
+    <!-- Notification System -->
+    <script src="js/notifications.js"></script>
+</body>
+</html> 

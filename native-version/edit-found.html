@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تعديل بلاغ شخص موجود - فين</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-teal-50 via-green-50 to-emerald-50 font-['Cairo']">
+    <!-- Background decoration -->
+    <div class="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-teal-200/30 to-green-200/30 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-10 left-10 w-96 h-96 bg-gradient-to-tr from-green-200/30 to-emerald-200/30 rounded-full blur-3xl"></div>
+
+    <!-- Header -->
+    <header class="border-b border-purple-100 sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3 cursor-pointer transition-transform hover:scale-105" onclick="window.location.href='dashboard.html'">
+                    <div class="w-10 h-10 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <i data-lucide="search" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold bg-gradient-to-l from-cyan-600 to-purple-600 bg-clip-text text-transparent">
+                            فين
+                        </h1>
+                        <p class="text-xs text-gray-500 font-medium">FEEN</p>
+                    </div>
+                </div>
+
+                <nav class="hidden md:flex items-center gap-8">
+                    <button class="text-gray-600 hover:text-purple-600 transition-colors font-medium" onclick="window.location.href='dashboard.html'">
+                        لوحة التحكم
+                    </button>
+                </nav>
+
+                <div class="flex items-center gap-3">
+                    <div class="hidden md:flex items-center gap-2 text-sm">
+                        <i data-lucide="user" class="w-4 h-4 text-purple-600"></i>
+                        <span class="text-gray-700 font-medium" id="user-email">example@com</span>
+                    </div>
+                    <button class="px-4 py-2 text-red-600 border border-red-200 hover:bg-red-50 font-medium rounded-lg transition-colors" onclick="logout()">
+                        <i data-lucide="log-out" class="w-4 h-4 ml-1 inline"></i>
+                        تسجيل الخروج
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Edit Found Form -->
+    <div class="min-h-screen py-20 px-6 relative">
+        <div class="container mx-auto max-w-2xl relative">
+            <div class="text-center mb-8">
+                <div class="w-20 h-20 bg-gradient-to-br from-teal-400 to-green-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <i data-lucide="edit" class="w-10 h-10 text-white"></i>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+                    تعديل بلاغ شخص موجود
+                </h1>
+                <p class="text-lg text-gray-600 font-medium">
+                    قم بتحديث معلومات البلاغ حسب الحاجة
+                </p>
+            </div>
+
+            <div class="bg-white/80 backdrop-blur-md shadow-2xl border-0 rounded-2xl">
+                <div class="p-8 space-y-6">
+                    <form id="edit-found-form" class="space-y-6">
+                        <!-- Basic Information -->
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-3 mb-6">
+                                <i data-lucide="user" class="w-6 h-6 text-teal-600"></i>
+                                <h2 class="text-xl font-bold text-gray-900">
+                                    المعلومات الأساسية
+                                </h2>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label for="edit-foundFullName" class="text-gray-700 font-semibold">
+                                        الاسم الكامل *
+                                    </label>
+                                    <input
+                                        id="edit-foundFullName"
+                                        name="edit-foundFullName"
+                                        type="text"
+                                        value="فاطمة السالم"
+                                        class="w-full h-12 border border-gray-200 focus:border-teal-400 focus:ring-teal-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
+                                        required
+                                    />
+                                </div>
+
+                                <div class="space-y-2">
+                                    <label for="edit-foundAge" class="text-gray-700 font-semibold">
+                                        العمر (اختياري)
+                                    </label>
+                                    <input
+                                        id="edit-foundAge"
+                                        name="edit-foundAge"
+                                        type="number"
+                                        value="30"
+                                        class="w-full h-12 border border-gray-200 focus:border-teal-400 focus:ring-teal-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label for="edit-foundGender" class="text-gray-700 font-semibold">
+                                    الجنس *
+                                </label>
+                                <select
+                                    id="edit-foundGender"
+                                    name="edit-foundGender"
+                                    class="w-full h-12 border border-gray-200 focus:border-teal-400 focus:ring-teal-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
+                                    required
+                                >
+                                    <option value="male">ذكر</option>
+                                    <option value="female" selected>أنثى</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Location Information -->
+                        <div class="space-y-6 pt-6 border-t border-gray-200">
+                            <div class="flex items-center gap-3 mb-6">
+                                <i data-lucide="map-pin" class="w-6 h-6 text-green-600"></i>
+                                <h2 class="text-xl font-bold text-gray-900">
+                                    معلومات المكان والوقت
+                                </h2>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="space-y-2">
+                                    <label for="edit-foundLocation" class="text-gray-700 font-semibold">
+                                        مكان العثور *
+                                    </label>
+                                    <input
+                                        id="edit-foundLocation"
+                                        name="edit-foundLocation"
+                                        type="text"
+                                        value="مستشفى الملك عبدالعزيز"
+                                        class="w-full h-12 border border-gray-200 focus:border-green-400 focus:ring-green-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
+                                        required
+                                    />
+                                </div>
+
+                                <div class="space-y-2">
+                                    <label for="edit-foundDate" class="text-gray-700 font-semibold">
+                                        تاريخ ووقت العثور *
+                                    </label>
+                                    <input
+                                        id="edit-foundDate"
+                                        name="edit-foundDate"
+                                        type="datetime-local"
+                                        value="2024-01-10T10:15"
+                                        class="w-full h-12 border border-gray-200 focus:border-green-400 focus:ring-green-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Additional Information -->
+                        <div class="space-y-6 pt-6 border-t border-gray-200">
+                            <div class="flex items-center gap-3 mb-6">
+                                <i data-lucide="file-text" class="w-6 h-6 text-emerald-600"></i>
+                                <h2 class="text-xl font-bold text-gray-900">
+                                    معلومات إضافية
+                                </h2>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="space-y-2">
+                                    <label for="edit-foundNotes" class="text-gray-700 font-semibold">
+                                        ملاحظات إضافية (اختياري)
+                                    </label>
+                                    <textarea
+                                        id="edit-foundNotes"
+                                        name="edit-foundNotes"
+                                        class="w-full border border-gray-200 focus:border-emerald-400 focus:ring-emerald-400/20 rounded-xl bg-white/70 backdrop-blur px-4 py-3"
+                                        rows="4"
+                                    >تم العثور عليها في حالة جيدة</textarea>
+                                </div>
+
+                                <div class="space-y-2">
+                                    <label for="edit-foundContactInfo" class="text-gray-700 font-semibold">
+                                        معلومات للتواصل (اختياري)
+                                    </label>
+                                    <input
+                                        id="edit-foundContactInfo"
+                                        name="edit-foundContactInfo"
+                                        type="text"
+                                        value="0509876543"
+                                        class="w-full h-12 border border-gray-200 focus:border-emerald-400 focus:ring-emerald-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Photo Upload -->
+                        <div class="space-y-6 pt-6 border-t border-gray-200">
+                            <div class="flex items-center gap-3 mb-6">
+                                <i data-lucide="camera" class="w-6 h-6 text-cyan-600"></i>
+                                <h2 class="text-xl font-bold text-gray-900">
+                                    تحديث الصورة
+                                </h2>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label for="edit-foundPhoto" class="text-gray-700 font-semibold">
+                                    صورة الشخص الموجود (اختياري)
+                                </label>
+                                <div class="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center bg-white/70 backdrop-blur hover:border-cyan-400 transition-colors cursor-pointer" onclick="document.getElementById('edit-foundPhoto').click()">
+                                    <i data-lucide="upload" class="w-8 h-8 text-gray-400 mx-auto mb-4"></i>
+                                    <p class="text-gray-600 font-medium mb-2">
+                                        اضغط لتحميل صورة جديدة أو اسحبها هنا
+                                    </p>
+                                    <p class="text-sm text-gray-500">PNG, JPG, GIF حتى 10MB</p>
+                                    <input
+                                        type="file"
+                                        id="edit-foundPhoto"
+                                        name="edit-foundPhoto"
+                                        class="hidden"
+                                        accept="image/*"
+                                        onchange="handleFileSelect(this)"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="pt-6 border-t border-gray-200 flex gap-4">
+                            <button 
+                                type="submit"
+                                class="flex-1 h-14 bg-gradient-to-l from-teal-500 to-green-600 hover:from-teal-600 hover:to-green-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all text-lg"
+                            >
+                                <i data-lucide="edit" class="w-6 h-6 ml-2 inline"></i>
+                                حفظ التغييرات
+                            </button>
+
+                            <button
+                                type="button"
+                                onclick="window.location.href='dashboard.html'"
+                                class="px-8 h-14 border border-gray-300 text-gray-700 hover:bg-gray-50 font-bold rounded-xl"
+                            >
+                                إلغاء
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-br from-gray-800 via-gray-900 to-black text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div>
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-12 h-12 bg-gradient-to-br from-cyan-400 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
+                                <i data-lucide="search" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-black bg-gradient-to-l from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                                    فين
+                                </h3>
+                                <p class="text-xs text-gray-400 font-medium">FEEN</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm font-medium leading-relaxed">
+                            منصة مفتوحة المصدر لمساعدة العائلات في العثور على أفرادها
+                            المفقودين باستخدام أحدث التقنيات
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold mb-6 text-white text-lg">روابط سريعة</h4>
+                        <ul class="space-y-3 text-sm">
+                            <li>
+                                <a href="#about" class="text-gray-300 hover:text-cyan-400 transition-colors font-medium">
+                                    من نحن
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#how-it-works" class="text-gray-300 hover:text-purple-400 transition-colors font-medium">
+                                    كيف يعمل
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#faq" class="text-gray-300 hover:text-pink-400 transition-colors font-medium">
+                                    الأسئلة الشائعة
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#privacy" class="text-gray-300 hover:text-green-400 transition-colors font-medium">
+                                    سياسة الخصوصية
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold mb-6 text-white text-lg">تواصل معنا</h4>
+                        <div class="space-y-4 text-sm">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-green-500/20 rounded-xl flex items-center justify-center">
+                                    <i data-lucide="phone" class="w-4 h-4 text-green-400"></i>
+                                </div>
+                                <span class="text-gray-300 font-medium">
+                                    +966 50 123 4567
+                                </span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-blue-500/20 rounded-xl flex items-center justify-center">
+                                    <i data-lucide="mail" class="w-4 h-4 text-blue-400"></i>
+                                </div>
+                                <span class="text-gray-300 font-medium">
+                                    info@feen.org
+                                </span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-purple-500/20 rounded-xl flex items-center justify-center">
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-purple-400"></i>
+                                </div>
+                                <span class="text-gray-300 font-medium">
+                                    الرياض، السعودية
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-700 mt-12 pt-8 text-center text-sm text-gray-400">
+                    <p class="font-medium">
+                        &copy; 2024 فين. جميع الحقوق محفوظة. مشروع مفتوح المصدر
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Handle file selection
+        function handleFileSelect(input) {
+            const file = input.files[0];
+            if (file) {
+                console.log('File selected:', file.name);
+                // Here you can add file validation and preview logic
+            }
+        }
+
+        // Handle form submission
+        document.getElementById('edit-found-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            
+            // Here you would typically send the data to your backend
+            console.log('Form submitted:', Object.fromEntries(formData));
+            
+            // Show success message
+            showSuccess('تم بنجاح!', 'تم حفظ التغييرات بنجاح!');
+            
+            // Redirect to dashboard
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1500);
+        });
+
+        // Logout function
+        function logout() {
+            // Clear any stored user data
+            localStorage.removeItem('userEmail');
+            localStorage.removeItem('isLoggedIn');
+            
+            // Redirect to home page
+            window.location.href = 'index.html';
+        }
+
+        // Check if user is logged in
+        window.addEventListener('load', function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const userEmail = localStorage.getItem('userEmail');
+            
+            if (!isLoggedIn || !userEmail) {
+                // Redirect to login if not logged in
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Update user email display
+            document.getElementById('user-email').textContent = userEmail;
+        });
+    </script>
+    
+    <!-- Notification System -->
+    <script src="js/notifications.js"></script>
+</body>
+</html> 

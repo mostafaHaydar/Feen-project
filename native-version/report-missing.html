@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإبلاغ عن شخص مفقود - فين</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 font-['Cairo']">
+    <!-- Background decoration -->
+    <div class="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-orange-200/30 to-red-200/30 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-10 left-10 w-96 h-96 bg-gradient-to-tr from-red-200/30 to-pink-200/30 rounded-full blur-3xl"></div>
+
+    <!-- Header -->
+    <header class="border-b border-purple-100 sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3 cursor-pointer transition-transform hover:scale-105" onclick="window.location.href='index.html'">
+                    <div class="w-10 h-10 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <i data-lucide="search" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold bg-gradient-to-l from-cyan-600 to-purple-600 bg-clip-text text-transparent">
+                            فين
+                        </h1>
+                        <p class="text-xs text-gray-500 font-medium">FEEN</p>
+                    </div>
+                </div>
+
+                <nav class="hidden md:flex items-center gap-8">
+                    <button class="text-gray-600 hover:text-purple-600 transition-colors font-medium" onclick="window.location.href='dashboard.html'">
+                        لوحة التحكم
+                    </button>
+                    <button class="text-gray-600 hover:text-green-600 transition-colors font-medium" onclick="window.location.href='report-found.html'">
+                        تبليغ عن موجود
+                    </button>
+                    <button class="text-gray-600 hover:text-orange-600 transition-colors font-medium" onclick="window.location.href='report-missing.html'">
+                        تبليغ عن مفقود
+                    </button>
+                </nav>
+
+                <div class="flex items-center gap-3">
+                    <div class="hidden md:flex items-center gap-2 text-sm">
+                        <i data-lucide="user" class="w-4 h-4 text-purple-600"></i>
+                        <span class="text-gray-700 font-medium" id="user-email">example@com</span>
+                    </div>
+                    <button class="px-4 py-2 text-red-600 border border-red-200 hover:bg-red-50 font-medium rounded-lg transition-colors" onclick="logout()">
+                        <i data-lucide="log-out" class="w-4 h-4 ml-1 inline"></i>
+                        تسجيل الخروج
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Report Missing Form -->
+    <div class="min-h-screen py-20 px-6 relative">
+        <div class="container mx-auto max-w-2xl relative">
+            <div class="text-center mb-8">
+                <div class="w-20 h-20 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <i data-lucide="alert-circle" class="w-10 h-10 text-white"></i>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+                    تبليغ عن شخص مفقود
+                </h1>
+                <p class="text-lg text-gray-600 font-medium">
+                    ساعدنا في العثور على الشخص المفقود بتقديم المعلومات التالية
+                </p>
+            </div>
+
+            <div class="bg-white/80 backdrop-blur-md shadow-2xl border-0 rounded-2xl">
+                <div class="p-8 space-y-6">
+                    <form id="report-missing-form" class="space-y-6">
+                        <!-- Basic Information -->
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-3 mb-6">
+                                <i data-lucide="user" class="w-6 h-6 text-orange-600"></i>
+                                <h2 class="text-xl font-bold text-gray-900">
+                                    المعلومات الأساسية
+                                </h2>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label for="name" class="text-gray-700 font-semibold">
+                                        الاسم الكامل للشخص *
+                                    </label>
+                                    <input
+                                        id="name"
+                                        name="name"
+                                        type="text"
+                                        placeholder="الاسم الكامل"
+                                        class="w-full h-12 border border-gray-200 focus:border-orange-400 focus:ring-orange-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
+                                        required
+                                    />
+                                </div>
+
+                                <div class="space-y-2">
+                                    <label for="age" class="text-gray-700 font-semibold">
+                                        العمر (إن وجد)
+                                    </label>
+                                    <input
+                                        id="age"
+                                        name="age"
+                                        type="number"
+                                        placeholder="العمر"
+                                        min="0"
+                                        max="120"
+                                        class="w-full h-12 border border-gray-200 focus:border-orange-400 focus:ring-orange-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label for="gender" class="text-gray-700 font-semibold">
+                                    الجنس *
+                                </label>
+                                <select
+                                    id="gender"
+                                    name="gender"
+                                    class="w-full h-12 border border-gray-200 focus:border-orange-400 focus:ring-orange-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
+                                    required
+                                >
+                                    <option value="">اختر الجنس</option>
+                                    <option value="ذكر">ذكر</option>
+                                    <option value="أنثى">أنثى</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Location Information -->
+                        <div class="space-y-6 pt-6 border-t border-gray-200">
+                            <div class="flex items-center gap-3 mb-6">
+                                <i data-lucide="map-pin" class="w-6 h-6 text-blue-600"></i>
+                                <h2 class="text-xl font-bold text-gray-900">
+                                    معلومات المكان
+                                </h2>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="space-y-2">
+                                    <label for="location" class="text-gray-700 font-semibold">
+                                        مكان السكن أو المنطقة *
+                                    </label>
+                                    <input
+                                        id="location"
+                                        name="location"
+                                        type="text"
+                                        placeholder="المدينة أو المنطقة"
+                                        class="w-full h-12 border border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
+                                        required
+                                    />
+                                </div>
+
+                                <div class="space-y-2">
+                                    <label for="lastSeenLocation" class="text-gray-700 font-semibold">
+                                        أين شوهد آخر مرة؟ *
+                                    </label>
+                                    <input
+                                        id="lastSeenLocation"
+                                        name="lastSeenLocation"
+                                        type="text"
+                                        placeholder="المكان الذي شوهد فيه آخر مرة"
+                                        class="w-full h-12 border border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
+                                        required
+                                    />
+                                </div>
+
+                                <div class="space-y-2">
+                                    <label for="lastSeenDate" class="text-gray-700 font-semibold">
+                                        تاريخ ووقت آخر ظهور *
+                                    </label>
+                                    <input
+                                        id="lastSeenDate"
+                                        name="lastSeenDate"
+                                        type="datetime-local"
+                                        class="w-full h-12 border border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Additional Information -->
+                        <div class="space-y-6 pt-6 border-t border-gray-200">
+                            <div class="flex items-center gap-3 mb-6">
+                                <i data-lucide="file-text" class="w-6 h-6 text-purple-600"></i>
+                                <h2 class="text-xl font-bold text-gray-900">
+                                    معلومات إضافية
+                                </h2>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="space-y-2">
+                                    <label for="contactInfo" class="text-gray-700 font-semibold">
+                                        معلومات للتواصل (اختياري)
+                                    </label>
+                                    <input
+                                        id="contactInfo"
+                                        name="contactInfo"
+                                        type="text"
+                                        placeholder="رقم الهاتف أو البريد الإلكتروني للتواصل"
+                                        class="w-full h-12 border border-gray-200 focus:border-purple-400 focus:ring-purple-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
+                                    />
+                                </div>
+
+                                <div class="space-y-2">
+                                    <label for="disease" class="text-gray-700 font-semibold">
+                                        هل يعاني من أمراض أو حالات طبية؟ (اختياري)
+                                    </label>
+                                    <textarea
+                                        id="disease"
+                                        name="disease"
+                                        placeholder="اذكر أي أمراض أو حالات طبية مهمة"
+                                        class="w-full border border-gray-200 focus:border-purple-400 focus:ring-purple-400/20 rounded-xl bg-white/70 backdrop-blur px-4 py-3"
+                                        rows="3"
+                                    ></textarea>
+                                </div>
+
+                                <div class="space-y-2">
+                                    <label for="mentalHealth" class="text-gray-700 font-semibold">
+                                        الحالة النفسية أو الذهنية (اختياري)
+                                    </label>
+                                    <textarea
+                                        id="mentalHealth"
+                                        name="mentalHealth"
+                                        placeholder="اذكر أي معلومات عن الحالة النفسية أو الذهنية"
+                                        class="w-full border border-gray-200 focus:border-purple-400 focus:ring-purple-400/20 rounded-xl bg-white/70 backdrop-blur px-4 py-3"
+                                        rows="3"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Photo Upload -->
+                        <div class="space-y-6 pt-6 border-t border-gray-200">
+                            <div class="flex items-center gap-3 mb-6">
+                                <i data-lucide="camera" class="w-6 h-6 text-green-600"></i>
+                                <h2 class="text-xl font-bold text-gray-900">
+                                    تحميل صورة
+                                </h2>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label for="photo" class="text-gray-700 font-semibold">
+                                    صورة الشخص المفقود (إن وُجدت)
+                                </label>
+                                <div class="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center bg-white/70 backdrop-blur hover:border-green-400 transition-colors cursor-pointer" onclick="document.getElementById('photo').click()">
+                                    <i data-lucide="upload" class="w-8 h-8 text-gray-400 mx-auto mb-4"></i>
+                                    <p class="text-gray-600 font-medium mb-2">
+                                        اضغط لتحميل الصورة أو اسحبها هنا
+                                    </p>
+                                    <p class="text-sm text-gray-500">PNG, JPG, GIF حتى 10MB</p>
+                                    <input
+                                        type="file"
+                                        id="photo"
+                                        name="photo"
+                                        class="hidden"
+                                        accept="image/*"
+                                    />
+                                    <div class="file-preview mt-4"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hidden Fields -->
+                        <input type="hidden" name="found" value="false" />
+                        
+                        <!-- Submit Button -->
+                        <div class="pt-6 border-t border-gray-200">
+                            <button 
+                                type="submit"
+                                id="report-missing-submit-btn"
+                                class="w-full h-14 bg-gradient-to-l from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                <span class="flex items-center justify-center gap-2">
+                                    <i data-lucide="alert-circle" class="w-6 h-6"></i>
+                                    إرسال البلاغ
+                                </span>
+                            </button>
+
+                            <div class="text-center mt-4">
+                                <button
+                                    type="button"
+                                    onclick="window.location.href='index.html'"
+                                    class="text-gray-600 hover:text-gray-800 font-medium transition-colors"
+                                >
+                                    العودة للرئيسية
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-br from-gray-800 via-gray-900 to-black text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div>
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-12 h-12 bg-gradient-to-br from-cyan-400 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
+                                <i data-lucide="search" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-black bg-gradient-to-l from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                                    فين
+                                </h3>
+                                <p class="text-xs text-gray-400 font-medium">FEEN</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm font-medium leading-relaxed">
+                            منصة مفتوحة المصدر لمساعدة العائلات في العثور على أفرادها
+                            المفقودين باستخدام أحدث التقنيات
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold mb-6 text-white text-lg">روابط سريعة</h4>
+                        <ul class="space-y-3 text-sm">
+                            <li>
+                                <a href="#about" class="text-gray-300 hover:text-cyan-400 transition-colors font-medium">
+                                    من نحن
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#how-it-works" class="text-gray-300 hover:text-purple-400 transition-colors font-medium">
+                                    كيف يعمل
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#faq" class="text-gray-300 hover:text-pink-400 transition-colors font-medium">
+                                    الأسئلة الشائعة
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#privacy" class="text-gray-300 hover:text-green-400 transition-colors font-medium">
+                                    سياسة الخصوصية
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold mb-6 text-white text-lg">تواصل معنا</h4>
+                        <div class="space-y-4 text-sm">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-green-500/20 rounded-xl flex items-center justify-center">
+                                    <i data-lucide="phone" class="w-4 h-4 text-green-400"></i>
+                                </div>
+                                <span class="text-gray-300 font-medium">
+                                    +966 50 123 4567
+                                </span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-blue-500/20 rounded-xl flex items-center justify-center">
+                                    <i data-lucide="mail" class="w-4 h-4 text-blue-400"></i>
+                                </div>
+                                <span class="text-gray-300 font-medium">
+                                    info@feen.org
+                                </span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-purple-500/20 rounded-xl flex items-center justify-center">
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-purple-400"></i>
+                                </div>
+                                <span class="text-gray-300 font-medium">
+                                    الرياض، السعودية
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-700 mt-12 pt-8 text-center text-sm text-gray-400">
+                    <p class="font-medium">
+                        &copy; 2024 فين. جميع الحقوق محفوظة. مشروع مفتوح المصدر
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/notifications.js"></script>
+    <script src="js/config.js" type="module"></script>
+    <script src="js/app.js"></script>
+      <script type="module">
+        import { BASE_URL } from './js/config.js';
+        document.addEventListener('DOMContentLoaded', function () {
+            const navbar = document.getElementById('navbar');
+            const authToken = localStorage.getItem('authToken');
+
+            if (!authToken) {window.location.href = '/';} 
+    
+            const form = document.querySelector('form');
+            const notification = document.getElementById('notification');
+            const notificationMessage = document.getElementById('notification-message');
+
+            async function uploadPhoto(lostId, file) {
+                const reader = new FileReader();
+                reader.onloadend = async function () {
+                    const documentB64 = reader.result.split(',')[1]; // Get base64 string
+                    try {
+                        const response = await fetch(`${BASE_URL}/lost/${lostId}/photo`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${authToken}`
+                            },
+                            body: JSON.stringify({ documentB64 })
+                        });
+
+                        if (response.ok) {
+                            showSuccess('خطأ','تم تحميل الصورة بنجاح!');
+                        } else {
+                            const error = await response.json();
+                            showError('خطأ','حدث خطأ أثناء تحميل الصورة: ' + error.error, false);
+                        }
+                    } catch (error) {
+                        showError('خطأ' , error.error, false);
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+
+            form.addEventListener('submit', async function (event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                const formData = new FormData(form);
+                const data = {
+                    name: formData.get('name'),
+                    location: formData.get('location'),
+                    lastSeenLocation: formData.get('lastSeenLocation'),
+                    lastSeenDate: formData.get('lastSeenDate'),
+                    age: formData.get('age') ? Number(formData.get('age')) : null,
+                    gender: formData.get('gender'),
+                    contactInfo: formData.get('contactInfo') || null,
+                    disease: formData.get('disease') || null,
+                    mentalHealth: formData.get('mentalHealth') || null,
+                    found: false // Assuming 'found' is false when reporting a missing person
+                };
+
+                try {
+                    const response = await fetch(`${BASE_URL}/lost`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${authToken}` // Include the token in the request
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        showSuccess('خطأ','تم إرسال البلاغ بنجاح!');
+
+                        // Handle photo upload if a file is selected
+                        const file = formData.get('photo');
+                        if (file && file.size > 0) {
+                            await uploadPhoto(result.id, file);
+                        }
+                    } else {
+                        const error = await response.json();
+                        showError('خطأ','حدث خطأ أثناء إرسال البلاغ: ' + error.error);
+                    }
+                } catch (error) {
+                    showError('خطأ','خطأ: ' + error.error);
+                }
+            });
+        });
+    </script>
+    
+    <!-- Notification System -->
+    <script src="js/notifications.js"></script>
+</body>
+</html> 
