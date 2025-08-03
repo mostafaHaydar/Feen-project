@@ -35,8 +35,10 @@ export default function Found(api: Hono<{ Bindings: CloudflareBindings }>) {
 	// Get all found persons
 	api.get('/founds', middlewareVerifyReporterJWT(true), async (c) => {
 		const prisma = initializePrismaClient(c);
+		const reporterId = getReporterAccountId(c);
 		try {
 			const founds = await prisma.founds.findMany({
+				where: { reporterId: reporterId },
 				orderBy: { createdAt: 'desc' },
 			});
 			return c.json(founds, 200);

@@ -751,3 +751,120 @@ select:focus {
         -webkit-text-fill-color: black !important;
     }
 } 
+
+/* Mobile-friendly dashboard report buttons */
+@media (max-width: 640px) {
+    /* Hide button text on small devices */
+    .dashboard-reports button span,
+    .dashboard-reports button .btn-text {
+        display: none !important;
+    }
+    
+    /* Hide status badge text on small devices */
+    .dashboard-reports .status-badge span,
+    .dashboard-reports .status-badge .badge-text {
+        display: none !important;
+    }
+    
+    /* Make status badges more compact on mobile */
+    .dashboard-reports .status-badge {
+        padding: 0.25rem 0.5rem !important;
+        min-width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.5rem !important;
+    }
+    
+    /* Make buttons more compact on mobile */
+    .dashboard-reports button {
+        padding: 0.5rem !important;
+        min-width: 2.5rem;
+        height: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.5rem !important;
+    }
+    
+    /* Ensure icons are properly sized */
+    .dashboard-reports button i,
+    .dashboard-reports .status-badge i {
+        width: 1rem;
+        height: 1rem;
+        margin: 0 !important;
+    }
+    
+    /* Reduce spacing between action buttons */
+    .dashboard-reports .action-buttons {
+        gap: 0.25rem !important;
+    }
+    
+    /* Make report cards more compact */
+    .dashboard-reports .report-card {
+        padding: 1rem !important;
+    }
+    
+    /* Reduce text size on mobile */
+    .dashboard-reports .report-title {
+        font-size: 0.875rem !important;
+    }
+    
+    .dashboard-reports .report-description {
+        font-size: 0.75rem !important;
+    }
+    
+    .dashboard-reports .report-date {
+        font-size: 0.75rem !important;
+    }
+    
+    /* Stack action buttons vertically on very small screens */
+    @media (max-width: 480px) {
+        .dashboard-reports .action-buttons {
+            flex-direction: column !important;
+            gap: 0.5rem !important;
+        }
+        
+        .dashboard-reports button {
+            width: 100% !important;
+            justify-content: center !important;
+        }
+    }
+}
+
+/* Additional mobile optimizations for dashboard reports */
+@media (max-width: 480px) {
+    .dashboard-reports .report-card {
+        padding: 0.75rem !important;
+    }
+    
+    .dashboard-reports .report-info {
+        gap: 0.5rem !important;
+    }
+    
+    .dashboard-reports .status-badge {
+        font-size: 0.625rem !important;
+        padding: 0.25rem 0.5rem !important;
+        min-width: 1.75rem !important;
+        height: 1.75rem !important;
+    }
+    
+    /* Make the report header more compact */
+    .dashboard-reports .report-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.5rem !important;
+    }
+    
+    /* Reduce icon size in report header */
+    .dashboard-reports .report-header .report-icon {
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+    }
+    
+    .dashboard-reports .report-header .report-icon i {
+        width: 1.25rem !important;
+        height: 1.25rem !important;
+    }
+} 

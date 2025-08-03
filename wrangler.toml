@@ -2,8 +2,7 @@
 name = "feen-project"
 main = "src/index.ts"
 compatibility_date = "2025-02-28"
-
-node_compat = true
+compatibility_flags = [ "nodejs_compat" ]
 
 r2_buckets = [
     { binding = "LOST_PHOTOS", bucket_name = "lost-photos", preview_bucket_name = "lost-photos-preview" },

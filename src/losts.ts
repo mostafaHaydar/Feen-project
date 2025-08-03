@@ -38,8 +38,10 @@ export default function Lost(api: Hono<{ Bindings: CloudflareBindings }>) {
 	// Get all lost persons
 	api.get('/losts', middlewareVerifyReporterJWT(true), async (c) => {
 		const prisma = initializePrismaClient(c);
+		const reporterId = getReporterAccountId(c);
 		try {
 			const losts = await prisma.losts.findMany({
+				where: { reporterId: reporterId },
 				orderBy: { createdAt: 'desc' },
 			});
 			return c.json(losts, 200);

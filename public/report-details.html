@@ -34,7 +34,7 @@
                         <h1 class="text-xl font-bold bg-gradient-to-l from-cyan-600 to-purple-600 bg-clip-text text-transparent">
                             فين
                         </h1>
-                        <p class="text-xs text-gray-500 font-medium">FEEN</p>
+                        <p class="text-xs bg-gradient-to-l from-cyan-600 to-purple-600 bg-clip-text text-transparent font-bold">FEEN</p>
                     </div>
                 </div>
 
@@ -293,8 +293,8 @@
                                 <h3 class="text-xl font-black bg-gradient-to-l from-cyan-400 to-purple-400 bg-clip-text text-transparent">
                                     فين
                                 </h3>
-                                <p class="text-xs text-gray-400 font-medium">FEEN</p>
-                            </div>
+                                <p class="text-xs font-black bg-gradient-to-l from-cyan-400 to-purple-400 bg-clip-text text-transparent font-medium">FEEN</p>
+                           </div>
                         </div>
                         <p class="text-gray-300 text-sm font-medium leading-relaxed">
                             منصة مفتوحة المصدر لمساعدة العائلات في العثور على أفرادها
@@ -580,13 +580,55 @@
 
             // Update delete button
             const deleteButton = document.getElementById('delete-report-btn');
-            deleteButton.onclick = () => {
+            deleteButton.onclick = async () => {
                 if (confirm('هل أنت متأكد من حذف هذا البلاغ؟')) {
-                    // TODO: Implement delete API call
-                    showSuccess('تم بنجاح!', 'تم حذف البلاغ بنجاح');
-                    setTimeout(() => {
-                        window.location.href = 'dashboard.html';
-                    }, 1500);
+                    try {
+                        // Show loading state
+                        showInfo("جاري الحذف...", "يرجى الانتظار");
+                        
+                        // Get report ID and type from URL parameters
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const reportId = urlParams.get('id');
+                        const reportType = urlParams.get('type');
+                        
+                        // Determine the correct API endpoint based on report type
+                        const endpoint = reportType === 'found' ? '/found' : '/lost';
+                        
+                        // Get the JWT token from localStorage
+                        const authToken = localStorage.getItem('authToken');
+                        if (!authToken) {
+                            showError("خطأ في المصادقة", "يرجى تسجيل الدخول مرة أخرى");
+                            return;
+                        }
+                        
+                        // Make the DELETE request
+                        const response = await fetch(`${API_BASE_URL}${endpoint}/${reportId}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'Authorization': `Bearer ${authToken}`,
+                                'Content-Type': 'application/json'
+                            }
+                        });
+                        
+                        if (response.ok) {
+                            showSuccess('تم بنجاح!', 'تم حذف البلاغ بنجاح');
+                            setTimeout(() => {
+                                window.location.href = 'dashboard.html';
+                            }, 1500);
+                        } else {
+                            const errorData = await response.json();
+                            if (response.status === 404) {
+                                showError("خطأ", "البلاغ غير موجود أو تم حذفه مسبقاً");
+                            } else if (response.status === 401) {
+                                showError("خطأ في المصادقة", "يرجى تسجيل الدخول مرة أخرى");
+                            } else {
+                                showError("خطأ في الحذف", errorData.error || "حدث خطأ أثناء حذف البلاغ");
+                            }
+                        }
+                    } catch (error) {
+                        console.error('Delete report error:', error);
+                        showError("خطأ في الاتصال", "حدث خطأ في الاتصال بالخادم، يرجى المحاولة مرة أخرى");
+                    }
                 }
             };
 
