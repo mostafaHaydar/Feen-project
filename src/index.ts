@@ -3,9 +3,9 @@ import { logger } from 'hono/logger';
 import { cors } from 'hono/cors';
 import { prettyJSON } from 'hono/pretty-json';
 import { CloudflareBindings } from './common';
-import Losts from './losts';
-import Founds from './founds';
-import Matches from './matches';
+import Lost from './losts';
+import Found from './founds';
+import Matche from './matches';
 import reporterAccount from './reporters';
 const app = new Hono();
 const api = new Hono<{ Bindings: CloudflareBindings }>();
@@ -14,9 +14,9 @@ app.use('*', logger());
 app.use('*', cors());
 app.use('*', prettyJSON());
 
-Losts(api);
-Founds(api);
-Matches(api);
+Lost(api);
+Found(api);
+Matche(api);
 reporterAccount(api);
 
 app.route('/api', api);

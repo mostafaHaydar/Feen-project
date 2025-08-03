@@ -36,7 +36,6 @@ export function middlewareVerifyReporterJWT(required = true): MiddlewareHandler 
 				return c.json({ error: 'Invalid JWT token' }, 401);
 			}
 
-			// Not required
 			await next();
 			return;
 		}
@@ -45,9 +44,7 @@ export function middlewareVerifyReporterJWT(required = true): MiddlewareHandler 
 		try {
 			const payload = await verify(token, c.env.JWT_SECRET_KEY);
 
-			// ----- Enrich context
 			c.set('jwtPayload', payload);
-			// Set the staff ID
 			// @ts-expect-error
 
 			c.set('reporterAccountId', parseInt(payload.sub!, 10));

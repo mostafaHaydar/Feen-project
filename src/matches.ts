@@ -5,7 +5,7 @@ import { convertR2FileToBase64 } from './common';
 import { compareFaces } from './common';
 import { middlewareVerifyReporterJWT } from './reporters';
 
-export default function Matches(api: Hono<{ Bindings: CloudflareBindings }>) {
+export default function Matche(api: Hono<{ Bindings: CloudflareBindings }>) {
 	api.get('/lost-matches/:id', middlewareVerifyReporterJWT(true), requireNumericParams(['id']), async (c) => {
 		const lostId = Number(c.req.param('id'));
 		const prisma = initializePrismaClient(c);

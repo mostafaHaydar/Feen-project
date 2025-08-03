@@ -7,7 +7,7 @@ import { fileTypeFromBuffer } from 'file-type';
 import { foundSchema, photoSchema } from './data-validation';
 import { getReporterAccountId, middlewareVerifyReporterJWT } from './reporters';
 
-export default function Founds(api: Hono<{ Bindings: CloudflareBindings }>) {
+export default function Found(api: Hono<{ Bindings: CloudflareBindings }>) {
 	// Add a found person entry
 	api.post('/found', middlewareVerifyReporterJWT(true), zValidator('json', foundSchema), async (c) => {
 		const foundData = c.req.valid('json');

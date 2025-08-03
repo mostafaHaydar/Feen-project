@@ -6,12 +6,13 @@ import { Buffer } from 'buffer';
 import { fileTypeFromBuffer } from 'file-type';
 import { lostSchema, photoSchema } from './data-validation';
 import { getReporterAccountId, middlewareVerifyReporterJWT } from './reporters';
-export default function Losts(api: Hono<{ Bindings: CloudflareBindings }>) {
+export default function Lost(api: Hono<{ Bindings: CloudflareBindings }>) {
 	// Add a lost person entry
 	api.post('/lost', middlewareVerifyReporterJWT(true), zValidator('json', lostSchema), async (c) => {
 		const lostData = c.req.valid('json');
 		const prisma = initializePrismaClient(c);
 		try {
+			('');
 			const lost = await prisma.losts.create({
 				data: {
 					name: lostData.name,
