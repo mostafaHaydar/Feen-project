@@ -30,47 +30,47 @@ function checkAuthStatus() {
     }
 }
 
-// Setup global event listeners
-function setupEventListeners() {
-    // Navigation
-    document.addEventListener('click', function(e) {
-        if (e.target.matches('[data-navigate]')) {
-            e.preventDefault();
-            const page = e.target.getAttribute('data-navigate');
-            navigateTo(page);
-        }
-    });
+// // Setup global event listeners
+// function setupEventListeners() {
+//     // Navigation
+//     document.addEventListener('click', function(e) {
+//         if (e.target.matches('[data-navigate]')) {
+//             e.preventDefault();
+//             const page = e.target.getAttribute('data-navigate');
+//             navigateTo(page);
+//         }
+//     });
 
-    // Form submissions
-    document.addEventListener('submit', function(e) {
-        if (e.target.matches('#login-form')) {
-            e.preventDefault();
-            handleLogin(e.target);
-        }
+//     // Form submissions
+//     document.addEventListener('submit', function(e) {
+//         if (e.target.matches('#login-form')) {
+//             e.preventDefault();
+//             handleLogin(e.target);
+//         }
         
-        if (e.target.matches('#register-form')) {
-            e.preventDefault();
-            handleRegister(e.target);
-        }
+//         if (e.target.matches('#register-form')) {
+//             e.preventDefault();
+//             handleRegister(e.target);
+//         }
         
-        if (e.target.matches('#report-missing-form')) {
-            e.preventDefault();
-            handleReportMissing(e.target);
-        }
+//         if (e.target.matches('#report-missing-form')) {
+//             e.preventDefault();
+//             handleReportMissing(e.target);
+//         }
         
-        if (e.target.matches('#report-found-form')) {
-            e.preventDefault();
-            handleReportFound(e.target);
-        }
-    });
+//         if (e.target.matches('#report-found-form')) {
+//             e.preventDefault();
+//             handleReportFound(e.target);
+//         }
+//     });
 
-    // Password toggle
-    document.addEventListener('click', function(e) {
-        if (e.target.matches('[data-toggle-password]')) {
-            togglePasswordVisibility(e.target);
-        }
-    });
-}
+//     // Password toggle
+//     document.addEventListener('click', function(e) {
+//         if (e.target.matches('[data-toggle-password]')) {
+//             togglePasswordVisibility(e.target);
+//         }
+//     });
+// }
 
 // Initialize components
 function initializeComponents() {

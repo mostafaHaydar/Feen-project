@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الإبلاغ عن شخص مفقود - فين</title>
+    <title>الإبلاغ عن شخص موجود - فين</title>
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -17,10 +17,10 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 font-['Cairo']">
+<body class="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-cyan-50 font-['Cairo']">
     <!-- Background decoration -->
-    <div class="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-orange-200/30 to-red-200/30 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-10 left-10 w-96 h-96 bg-gradient-to-tr from-red-200/30 to-pink-200/30 rounded-full blur-3xl"></div>
+    <div class="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-green-200/30 to-emerald-200/30 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-10 left-10 w-96 h-96 bg-gradient-to-tr from-emerald-200/30 to-cyan-200/30 rounded-full blur-3xl"></div>
 
     <!-- Header -->
     <header class="border-b border-purple-100 sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
@@ -38,54 +38,56 @@
                     </div>
                 </div>
 
-                <nav class="hidden md:flex items-center gap-8">
-                    <button class="text-gray-600 hover:text-purple-600 transition-colors font-medium" onclick="window.location.href='dashboard.html'">
+                <nav class="hidden md:flex items-center gap-6">
+                    <button class="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-purple-600 hover:bg-purple-50 transition-all duration-200 font-medium rounded-lg" onclick="window.location.href='dashboard.html'">
+                        <i data-lucide="home" class="w-4 h-4"></i>
                         لوحة التحكم
                     </button>
-                    <button class="text-gray-600 hover:text-green-600 transition-colors font-medium" onclick="window.location.href='report-found.html'">
+                    <button class="flex items-center gap-2 px-4 py-2 text-green-600 bg-green-50 border border-green-200 font-medium rounded-lg" onclick="window.location.href='report-found.html'">
+                        <i data-lucide="search" class="w-4 h-4"></i>
                         تبليغ عن موجود
                     </button>
-                    <button class="text-gray-600 hover:text-orange-600 transition-colors font-medium" onclick="window.location.href='report-missing.html'">
+                    <button class="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-orange-600 hover:bg-orange-50 transition-all duration-200 font-medium rounded-lg" onclick="window.location.href='report-missing.html'">
+                        <i data-lucide="alert-circle" class="w-4 h-4"></i>
                         تبليغ عن مفقود
                     </button>
                 </nav>
 
-                <div class="flex items-center gap-3">
-                    <div class="hidden md:flex items-center gap-2 text-sm">
+                <div class="flex items-center gap-2">
+                    <div class="hidden md:flex items-center gap-2 text-sm bg-gray-50 px-3 py-2 rounded-lg">
                         <i data-lucide="user" class="w-4 h-4 text-purple-600"></i>
                         <span class="text-gray-700 font-medium" id="user-name">مستخدم</span>
                     </div>
-                    <button class="px-4 py-2 text-red-600 border border-red-200 hover:bg-red-50 font-medium rounded-lg transition-colors" onclick="logout()">
-                        <i data-lucide="log-out" class="w-4 h-4 ml-1 inline"></i>
-                        تسجيل الخروج
+                    <button class="p-2 text-red-600 hover:bg-red-50 hover:text-red-700 rounded-lg transition-all duration-200" onclick="logout()" title="تسجيل الخروج">
+                        <i data-lucide="log-out" class="w-5 h-5"></i>
                     </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Report Missing Form -->
+    <!-- Report Found Form -->
     <div class="min-h-screen py-20 px-6 relative">
         <div class="container mx-auto max-w-2xl relative">
             <div class="text-center mb-8">
-                <div class="w-20 h-20 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                    <i data-lucide="alert-circle" class="w-10 h-10 text-white"></i>
+                <div class="w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <i data-lucide="search" class="w-10 h-10 text-white"></i>
                 </div>
                 <h1 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">
-                    تبليغ عن شخص مفقود
+                    تبليغ عن شخص موجود
                 </h1>
                 <p class="text-lg text-gray-600 font-medium">
-                    ساعدنا في العثور على الشخص المفقود بتقديم المعلومات التالية
+                    ساعدنا في لم الشمل بتقديم معلومات الشخص الذي عثرت عليه
                 </p>
             </div>
 
             <div class="bg-white/80 backdrop-blur-md shadow-2xl border-0 rounded-2xl">
                 <div class="p-8 space-y-6">
-                    <form id="report-missing-form" class="space-y-6">
+                    <form id="report-found-form" class="space-y-6">
                         <!-- Basic Information -->
                         <div class="space-y-6">
                             <div class="flex items-center gap-3 mb-6">
-                                <i data-lucide="user" class="w-6 h-6 text-orange-600"></i>
+                                <i data-lucide="user" class="w-6 h-6 text-green-600"></i>
                                 <h2 class="text-xl font-bold text-gray-900">
                                     المعلومات الأساسية
                                 </h2>
@@ -94,30 +96,30 @@
                             <div class="grid md:grid-cols-2 gap-6">
                                 <div class="space-y-2">
                                     <label for="name" class="text-gray-700 font-semibold">
-                                        الاسم الكامل للشخص *
+                                        الاسم الكامل *
                                     </label>
                                     <input
                                         id="name"
                                         name="name"
                                         type="text"
-                                        placeholder="الاسم الكامل"
-                                        class="w-full h-12 border border-gray-200 focus:border-orange-400 focus:ring-orange-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
+                                        placeholder="الاسم الكامل (إن كان معروفاً)"
+                                        class="w-full h-12 border border-gray-200 focus:border-green-400 focus:ring-green-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
                                         required
                                     />
                                 </div>
 
                                 <div class="space-y-2">
                                     <label for="age" class="text-gray-700 font-semibold">
-                                        العمر (إن وجد)
+                                        العمر (اختياري)
                                     </label>
                                     <input
                                         id="age"
                                         name="age"
                                         type="number"
-                                        placeholder="العمر"
+                                        placeholder="العمر المتوقع"
                                         min="0"
                                         max="120"
-                                        class="w-full h-12 border border-gray-200 focus:border-orange-400 focus:ring-orange-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
+                                        class="w-full h-12 border border-gray-200 focus:border-green-400 focus:ring-green-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
                                     />
                                 </div>
                             </div>
@@ -129,7 +131,7 @@
                                 <select
                                     id="gender"
                                     name="gender"
-                                    class="w-full h-12 border border-gray-200 focus:border-orange-400 focus:ring-orange-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
+                                    class="w-full h-12 border border-gray-200 focus:border-green-400 focus:ring-green-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
                                     required
                                 >
                                     <option value="">اختر الجنس</option>
@@ -144,46 +146,32 @@
                             <div class="flex items-center gap-3 mb-6">
                                 <i data-lucide="map-pin" class="w-6 h-6 text-blue-600"></i>
                                 <h2 class="text-xl font-bold text-gray-900">
-                                    معلومات المكان
+                                    معلومات المكان والوقت
                                 </h2>
                             </div>
 
                             <div class="space-y-4">
                                 <div class="space-y-2">
-                                    <label for="location" class="text-gray-700 font-semibold">
-                                        مكان السكن أو المنطقة *
+                                    <label for="foundLocation" class="text-gray-700 font-semibold">
+                                        مكان العثور *
                                     </label>
                                     <input
-                                        id="location"
-                                        name="location"
+                                        id="foundLocation"
+                                        name="foundLocation"
                                         type="text"
-                                        placeholder="المدينة أو المنطقة"
+                                        placeholder="المكان الذي عثرت فيه على الشخص"
                                         class="w-full h-12 border border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
                                         required
                                     />
                                 </div>
 
                                 <div class="space-y-2">
-                                    <label for="lastSeenLocation" class="text-gray-700 font-semibold">
-                                        أين شوهد آخر مرة؟ *
+                                    <label for="foundDate" class="text-gray-700 font-semibold">
+                                        تاريخ ووقت العثور *
                                     </label>
                                     <input
-                                        id="lastSeenLocation"
-                                        name="lastSeenLocation"
-                                        type="text"
-                                        placeholder="المكان الذي شوهد فيه آخر مرة"
-                                        class="w-full h-12 border border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
-                                        required
-                                    />
-                                </div>
-
-                                <div class="space-y-2">
-                                    <label for="lastSeenDate" class="text-gray-700 font-semibold">
-                                        تاريخ ووقت آخر ظهور *
-                                    </label>
-                                    <input
-                                        id="lastSeenDate"
-                                        name="lastSeenDate"
+                                        id="foundDate"
+                                        name="foundDate"
                                         type="datetime-local"
                                         class="w-full h-12 border border-gray-200 focus:border-blue-400 focus:ring-blue-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
                                         required
@@ -203,6 +191,19 @@
 
                             <div class="space-y-4">
                                 <div class="space-y-2">
+                                    <label for="description" class="text-gray-700 font-semibold">
+                                        ملاحظات إضافية (اختياري)
+                                    </label>
+                                    <textarea
+                                        id="description"
+                                        name="description"
+                                        placeholder="أي معلومات إضافية قد تساعد في التعرف على الشخص"
+                                        class="w-full border border-gray-200 focus:border-purple-400 focus:ring-purple-400/20 rounded-xl bg-white/70 backdrop-blur px-4 py-3"
+                                        rows="4"
+                                    ></textarea>
+                                </div>
+
+                                <div class="space-y-2">
                                     <label for="contactInfo" class="text-gray-700 font-semibold">
                                         معلومات للتواصل (اختياري)
                                     </label>
@@ -210,35 +211,9 @@
                                         id="contactInfo"
                                         name="contactInfo"
                                         type="text"
-                                        placeholder="رقم الهاتف أو البريد الإلكتروني للتواصل"
+                                        placeholder="رقم الهاتف أو البريد الإلكتروني للتواصل معك"
                                         class="w-full h-12 border border-gray-200 focus:border-purple-400 focus:ring-purple-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
                                     />
-                                </div>
-
-                                <div class="space-y-2">
-                                    <label for="disease" class="text-gray-700 font-semibold">
-                                        هل يعاني من أمراض أو حالات طبية؟ (اختياري)
-                                    </label>
-                                    <textarea
-                                        id="disease"
-                                        name="disease"
-                                        placeholder="اذكر أي أمراض أو حالات طبية مهمة"
-                                        class="w-full border border-gray-200 focus:border-purple-400 focus:ring-purple-400/20 rounded-xl bg-white/70 backdrop-blur px-4 py-3"
-                                        rows="3"
-                                    ></textarea>
-                                </div>
-
-                                <div class="space-y-2">
-                                    <label for="mentalHealth" class="text-gray-700 font-semibold">
-                                        الحالة النفسية أو الذهنية (اختياري)
-                                    </label>
-                                    <textarea
-                                        id="mentalHealth"
-                                        name="mentalHealth"
-                                        placeholder="اذكر أي معلومات عن الحالة النفسية أو الذهنية"
-                                        class="w-full border border-gray-200 focus:border-purple-400 focus:ring-purple-400/20 rounded-xl bg-white/70 backdrop-blur px-4 py-3"
-                                        rows="3"
-                                    ></textarea>
                                 </div>
                             </div>
                         </div>
@@ -246,17 +221,15 @@
                         <!-- Photo Upload -->
                         <div class="space-y-6 pt-6 border-t border-gray-200">
                             <div class="flex items-center gap-3 mb-6">
-                                <i data-lucide="camera" class="w-6 h-6 text-green-600"></i>
-                                <h2 class="text-xl font-bold text-gray-900">
-                                    تحميل صورة
-                                </h2>
+                                <i data-lucide="camera" class="w-6 h-6 text-cyan-600"></i>
+                                <h2 class="text-xl font-bold text-gray-900">رفع صورة</h2>
                             </div>
 
                             <div class="space-y-2">
-                                <label for="photo" class="text-gray-700 font-semibold">
-                                    صورة الشخص المفقود (إن وُجدت)
+                                <label for="foundPhoto" class="text-gray-700 font-semibold">
+                                    صورة الشخص الموجود (اختياري)
                                 </label>
-                                <div class="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center bg-white/70 backdrop-blur hover:border-green-400 transition-colors cursor-pointer" onclick="document.getElementById('photo').click()">
+                                <div class="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center bg-white/70 backdrop-blur hover:border-cyan-400 transition-colors cursor-pointer" onclick="document.getElementById('foundPhoto').click()">
                                     <i data-lucide="upload" class="w-8 h-8 text-gray-400 mx-auto mb-4"></i>
                                     <p class="text-gray-600 font-medium mb-2">
                                         اضغط لتحميل الصورة أو اسحبها هنا
@@ -264,28 +237,24 @@
                                     <p class="text-sm text-gray-500">JPEG, PNG حتى 2MB</p>
                                     <input
                                         type="file"
-                                        id="photo"
-                                        name="photo"
+                                        id="foundPhoto"
+                                        name="foundPhoto"
                                         class="hidden"
                                         accept="image/jpeg,image/png"
                                     />
-                                    <div class="file-preview mt-4"></div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Hidden Fields -->
-                        <input type="hidden" name="found" value="false" />
-                        
                         <!-- Submit Button -->
                         <div class="pt-6 border-t border-gray-200">
                             <button 
                                 type="submit"
-                                id="report-missing-submit-btn"
-                                class="w-full h-14 bg-gradient-to-l from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                                id="report-found-submit-btn"
+                                class="w-full h-14 bg-gradient-to-l from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 <span class="flex items-center justify-center gap-2">
-                                    <i data-lucide="alert-circle" class="w-6 h-6"></i>
+                                    <i data-lucide="search" class="w-6 h-6"></i>
                                     إرسال البلاغ
                                 </span>
                             </button>
@@ -398,7 +367,6 @@
     <!-- JavaScript -->
     <script src="js/notifications.js"></script>
     <script src="js/config.js" type="module"></script>
-    <script src="js/app.js"></script>
     <script type="module">
         // Import BASE_URL from config
         import { BASE_URL } from './js/config.js';
@@ -408,7 +376,7 @@
         
         // Initialize Lucide icons
         lucide.createIcons();
-        
+
         // Authentication check
         function checkAuth() {
             const isLoggedIn = localStorage.getItem('isLoggedIn');
@@ -463,8 +431,8 @@
             throw new Error('Authentication required');
         }
 
-        // Handle image upload to lost person record
-        async function uploadImageToLost(lostId, file) {
+        // Handle image upload to found person record
+        async function uploadImageToFound(foundId, file) {
             const authToken = localStorage.getItem('authToken');
             if (!authToken) {
                 showError('خطأ في المصادقة', 'يرجى تسجيل الدخول مرة أخرى');
@@ -494,7 +462,7 @@
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 30000);
 
-                const response = await fetch(`${API_BASE_URL}/lost/${lostId}/photo`, {
+                const response = await fetch(`${API_BASE_URL}/found/${foundId}/photo`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -534,151 +502,14 @@
             });
         }
 
-        // Handle form submission
-        document.getElementById('report-missing-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            const reportData = Object.fromEntries(formData.entries());
-            
-            // convert age from string to number
-            reportData.age = parseInt(reportData.age);
-            
-            // add a found boolean field
-            reportData.found = false;
-
-            // Validate required fields
-            if (!reportData.name || !reportData.gender || !reportData.location || !reportData.lastSeenLocation || !reportData.lastSeenDate) {
-                showError('بيانات ناقصة', 'يرجى ملء جميع الحقول المطلوبة');
-                return;
-            }
-            
-            // Get auth token
-            const authToken = localStorage.getItem('authToken');
-            if (!authToken) {
-                showError('خطأ في المصادقة', 'يرجى تسجيل الدخول مرة أخرى');
-                setTimeout(() => {
-                    window.location.href = 'login.html';
-                }, 2000);
-                return;
-            }
-            
-            // Show loading state
-            const submitButton = document.getElementById('report-missing-submit-btn');
-            const buttonSpan = submitButton.querySelector('span');
-            const originalContent = buttonSpan.innerHTML;
-            buttonSpan.innerHTML = '<i data-lucide="loader-2" class="w-6 h-6 animate-spin"></i> جاري الإرسال...';
-            submitButton.disabled = true;
-            lucide.createIcons();
-            
-            try {
-                            // Step 1: Submit the missing person data first
-            buttonSpan.innerHTML = '<i data-lucide="loader-2" class="w-6 h-6 animate-spin"></i> جاري إرسال البلاغ...';
-            lucide.createIcons();
-            
-            // API call to backend for missing person data
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 30000);
-            
-            const response = await fetch(`${API_BASE_URL}/lost`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${authToken}`
-                },
-                body: JSON.stringify(reportData),
-                signal: controller.signal
-            });
-            
-            clearTimeout(timeoutId);
-            
-            let data;
-            try {
-                data = await response.json();
-            } catch (parseError) {
-                console.error('Failed to parse response:', parseError);
-                showError('استجابة غير صحيحة', 'يرجى المحاولة مرة أخرى');
-                return;
-            }
-            
-            if (response.ok) {
-                // Step 2: If data submission successful, handle image upload
-                const photoFile = document.getElementById('photo').files[0];
-                if (photoFile && data.id) {
-                    buttonSpan.innerHTML = '<i data-lucide="loader-2" class="w-6 h-6 animate-spin"></i> جاري رفع الصورة...';
-                    lucide.createIcons();
-                    
-                    const imageUploadSuccess = await uploadImageToLost(data.id, photoFile);
-                    if (imageUploadSuccess) {
-                        showSuccess('تم إرسال البلاغ بنجاح', 'تم إرسال بلاغ الشخص المفقود مع الصورة بنجاح!');
-                    } else {
-                        showSuccess('تم إرسال البلاغ بنجاح', 'تم إرسال بلاغ الشخص المفقود بنجاح! فشل في رفع الصورة');
-                    }
-                } else {
-                    showSuccess('تم إرسال البلاغ بنجاح', 'تم إرسال بلاغ الشخص المفقود بنجاح!');
-                }
-                
-                // Redirect to dashboard after delay
-                setTimeout(() => {
-                    window.location.href = 'dashboard.html';
-                }, 2000);
-                
-            } else {
-                // Handle errors
-                let errorMessage = 'حدث خطأ أثناء إرسال البلاغ';
-                let errorTitle = 'خطأ في الإرسال';
-                
-                if (response.status === 401) {
-                    errorTitle = 'خطأ في المصادقة';
-                    errorMessage = 'يرجى تسجيل الدخول مرة أخرى';
-                    setTimeout(() => {
-                        window.location.href = 'login.html';
-                    }, 2000);
-                } else if (response.status === 400) {
-                    errorTitle = 'بيانات غير صحيحة';
-                    errorMessage = 'يرجى التحقق من البيانات المدخلة';
-                } else if (response.status === 500) {
-                    errorTitle = 'خطأ في الخادم';
-                    errorMessage = 'يرجى المحاولة مرة أخرى لاحقاً';
-                } else {
-                    errorTitle = 'خطأ غير متوقع';
-                    errorMessage = 'يرجى المحاولة مرة أخرى';
-                }
-                
-                showError(errorTitle, errorMessage);
-            }
-                
-            } catch (error) {
-                console.error('Missing person report submission error:', error);
-                let errorMessage = 'حدث خطأ في الاتصال، يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى';
-                let errorTitle = 'خطأ في الاتصال';
-                
-                if (error.name === 'AbortError') {
-                    errorTitle = 'انتهت مهلة الاتصال';
-                    errorMessage = 'يرجى المحاولة مرة أخرى';
-                } else if (error.name === 'TypeError' && error.message.includes('fetch')) {
-                    errorTitle = 'لا يمكن الاتصال بالخادم';
-                    errorMessage = 'يرجى التحقق من اتصالك بالإنترنت';
-                }
-                
-                showError(errorTitle, errorMessage);
-            } finally {
-                // Reset button state
-                buttonSpan.innerHTML = originalContent;
-                submitButton.disabled = false;
-                lucide.createIcons();
-            }
-        });
-
-        // File upload handling
-        document.getElementById('photo').addEventListener('change', function(e) {
+        // Handle file preview
+        document.getElementById('foundPhoto').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (file) {
                 handleFilePreview(file, this);
             }
         });
 
-        // Handle file preview
         function handleFilePreview(file, input) {
             const preview = input.parentElement.querySelector('.file-preview');
             
@@ -708,6 +539,140 @@
             };
             reader.readAsDataURL(file);
         }
+
+        // Handle form submission
+        document.getElementById('report-found-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const reportData = Object.fromEntries(formData.entries());
+            
+            // Convert age from string to number
+            reportData.age = parseInt(reportData.age);
+            
+            // Validate required fields
+            if (!reportData.name || !reportData.gender || !reportData.foundLocation || !reportData.foundDate) {
+                showError('بيانات ناقصة', 'يرجى ملء جميع الحقول المطلوبة');
+                return;
+            }
+            
+            // Get auth token
+            const authToken = localStorage.getItem('authToken');
+            if (!authToken) {
+                showError('خطأ في المصادقة', 'يرجى تسجيل الدخول مرة أخرى');
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 2000);
+                return;
+            }
+            
+            // Show loading state
+            const submitButton = document.getElementById('report-found-submit-btn');
+            const buttonSpan = submitButton.querySelector('span');
+            const originalContent = buttonSpan.innerHTML;
+            buttonSpan.innerHTML = '<i data-lucide="loader-2" class="w-6 h-6 animate-spin"></i> جاري الإرسال...';
+            submitButton.disabled = true;
+            lucide.createIcons();
+            
+            try {
+                // Step 1: Submit the found person data first
+                buttonSpan.innerHTML = '<i data-lucide="loader-2" class="w-6 h-6 animate-spin"></i> جاري إرسال البلاغ...';
+                lucide.createIcons();
+                
+                // API call to backend for found person data
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 30000);
+                
+                const response = await fetch(`${API_BASE_URL}/found`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify(reportData),
+                    signal: controller.signal
+                });
+                
+                clearTimeout(timeoutId);
+                
+                let data;
+                try {
+                    data = await response.json();
+                } catch (parseError) {
+                    console.error('Failed to parse response:', parseError);
+                    showError('استجابة غير صحيحة', 'يرجى المحاولة مرة أخرى');
+                    return;
+                }
+                
+                if (response.ok) {
+                    // Step 2: If data submission successful, handle image upload
+                    const photoFile = document.getElementById('foundPhoto').files[0];
+                    if (photoFile && data.id) {
+                        buttonSpan.innerHTML = '<i data-lucide="loader-2" class="w-6 h-6 animate-spin"></i> جاري رفع الصورة...';
+                        lucide.createIcons();
+                        
+                        const imageUploadSuccess = await uploadImageToFound(data.id, photoFile);
+                        if (imageUploadSuccess) {
+                            showSuccess('تم إرسال البلاغ بنجاح', 'تم إرسال بلاغ الشخص الموجود مع الصورة بنجاح!');
+                        } else {
+                            showSuccess('تم إرسال البلاغ بنجاح', 'تم إرسال بلاغ الشخص الموجود بنجاح! فشل في رفع الصورة');
+                        }
+                    } else {
+                        showSuccess('تم إرسال البلاغ بنجاح', 'تم إرسال بلاغ الشخص الموجود بنجاح!');
+                    }
+                    
+                    // Redirect to dashboard after delay
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 2000);
+                    
+                } else {
+                    // Handle errors
+                    let errorMessage = 'حدث خطأ أثناء إرسال البلاغ';
+                    let errorTitle = 'خطأ في الإرسال';
+                    
+                    if (response.status === 401) {
+                        errorTitle = 'خطأ في المصادقة';
+                        errorMessage = 'يرجى تسجيل الدخول مرة أخرى';
+                        setTimeout(() => {
+                            window.location.href = 'login.html';
+                        }, 2000);
+                    } else if (response.status === 400) {
+                        errorTitle = 'بيانات غير صحيحة';
+                        errorMessage = 'يرجى التحقق من البيانات المدخلة';
+                    } else if (response.status === 500) {
+                        errorTitle = 'خطأ في الخادم';
+                        errorMessage = 'يرجى المحاولة مرة أخرى لاحقاً';
+                    } else {
+                        errorTitle = 'خطأ غير متوقع';
+                        errorMessage = 'يرجى المحاولة مرة أخرى';
+                    }
+                    
+                    showError(errorTitle, errorMessage);
+                }
+                
+            } catch (error) {
+                console.error('Found person report submission error:', error);
+                let errorMessage = 'حدث خطأ في الاتصال، يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى';
+                let errorTitle = 'خطأ في الاتصال';
+                
+                if (error.name === 'AbortError') {
+                    errorTitle = 'انتهت مهلة الاتصال';
+                    errorMessage = 'يرجى المحاولة مرة أخرى';
+                } else if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                    errorTitle = 'لا يمكن الاتصال بالخادم';
+                    errorMessage = 'يرجى التحقق من اتصالك بالإنترنت';
+                }
+                
+                showError(errorTitle, errorMessage);
+            } finally {
+                // Reset button state
+                buttonSpan.innerHTML = originalContent;
+                submitButton.disabled = false;
+                lucide.createIcons();
+            }
+        });
     </script>
     
     <!-- Notification System -->

@@ -38,26 +38,28 @@
                     </div>
                 </div>
 
-                <nav class="hidden md:flex items-center gap-8">
-                    <button class="text-gray-600 hover:text-purple-600 transition-colors font-medium" onclick="window.location.href='dashboard.html'">
+                <nav class="hidden md:flex items-center gap-6">
+                    <button class="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-purple-600 hover:bg-purple-50 transition-all duration-200 font-medium rounded-lg" onclick="window.location.href='dashboard.html'">
+                        <i data-lucide="home" class="w-4 h-4"></i>
                         لوحة التحكم
                     </button>
-                    <button class="text-gray-600 hover:text-green-600 transition-colors font-medium" onclick="window.location.href='report-found.html'">
+                    <button class="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-green-600 hover:bg-green-50 transition-all duration-200 font-medium rounded-lg" onclick="window.location.href='report-found.html'">
+                        <i data-lucide="search" class="w-4 h-4"></i>
                         تبليغ عن موجود
                     </button>
-                    <button class="text-gray-600 hover:text-orange-600 transition-colors font-medium" onclick="window.location.href='report-missing.html'">
+                    <button class="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-orange-600 hover:bg-orange-50 transition-all duration-200 font-medium rounded-lg" onclick="window.location.href='report-missing.html'">
+                        <i data-lucide="alert-circle" class="w-4 h-4"></i>
                         تبليغ عن مفقود
                     </button>
                 </nav>
 
-                <div class="flex items-center gap-3">
-                    <div class="hidden md:flex items-center gap-2 text-sm">
+                <div class="flex items-center gap-2">
+                    <div class="hidden md:flex items-center gap-2 text-sm bg-gray-50 px-3 py-2 rounded-lg">
                         <i data-lucide="user" class="w-4 h-4 text-purple-600"></i>
                         <span class="text-gray-700 font-medium" id="user-name">مستخدم</span>
                     </div>
-                    <button class="px-4 py-2 text-red-600 border border-red-200 hover:bg-red-50 font-medium rounded-lg transition-colors" onclick="logout()">
-                        <i data-lucide="log-out" class="w-4 h-4 ml-1 inline"></i>
-                        تسجيل الخروج
+                    <button class="p-2 text-red-600 hover:bg-red-50 hover:text-red-700 rounded-lg transition-all duration-200" onclick="logout()" title="تسجيل الخروج">
+                        <i data-lucide="log-out" class="w-5 h-5"></i>
                     </button>
                 </div>
             </div>

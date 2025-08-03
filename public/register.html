@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول - فين</title>
+    <title>إنشاء حساب - فين</title>
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -56,84 +56,99 @@
         </div>
     </header>
 
-    <!-- Login Form -->
+    <!-- Register Form -->
     <div class="min-h-screen flex items-center justify-center px-6 py-20 relative">
         <div class="w-full max-w-md bg-white/80 backdrop-blur-md shadow-2xl border-0 rounded-2xl relative">
             <div class="p-8">
                 <div class="text-center pb-8">
-                    <div class="w-16 h-16 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <i data-lucide="log-in" class="w-8 h-8 text-white"></i>
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-400 via-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <i data-lucide="user-plus" class="w-8 h-8 text-white"></i>
                     </div>
                     <h2 class="text-2xl font-black text-gray-900">
-                        تسجيل الدخول
+                        إنشاء حساب جديد
                     </h2>
                     <p class="text-gray-600 font-medium">
-                        مرحباً بك في فين، سجل دخولك للمتابعة
+                        انضم إلى فين وساعد في لم الشمل
                     </p>
                 </div>
 
-                <form id="login-form" class="space-y-6">
+                <form id="register-form" class="space-y-6">
                     <div class="space-y-2">
-                        <label for="email" class="text-gray-700 font-semibold">
-                            البريد الإلكتروني
+                        <label for="name" class="text-gray-700 font-semibold">
+                            الاسم الكامل *
                         </label>
                         <input
-                            id="email"
-                            type="email"
-                            placeholder="example@email.com"
+                            id="name"
+                            name="name"
+                            type="text"
+                            placeholder="الاسم الكامل"
                             class="w-full h-12 border border-gray-200 focus:border-purple-400 focus:ring-purple-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
                             required
                         />
                     </div>
 
                     <div class="space-y-2">
-                        <label for="password" class="text-gray-700 font-semibold">
-                            كلمة المرور
+                        <label for="register-email" class="text-gray-700 font-semibold">
+                            البريد الإلكتروني *
+                        </label>
+                        <input
+                            id="register-email"
+                            name="email"
+                            type="email"
+                            placeholder="example@gmail.com"
+                            class="w-full h-12 border border-gray-200 focus:border-purple-400 focus:ring-purple-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
+                            required
+                        />
+                        <p class="text-xs text-gray-500 mt-1">
+                            يدعم: Gmail, Hotmail, Yahoo, Outlook, iCloud
+                        </p>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label for="register-password" class="text-gray-700 font-semibold">
+                            كلمة المرور *
                         </label>
                         <div class="relative">
                             <input
-                                id="password"
+                                id="register-password"
+                                name="password"
                                 type="password"
                                 placeholder="••••••••"
+                                minlength="6"
                                 class="w-full h-12 border border-gray-200 focus:border-purple-400 focus:ring-purple-400/20 rounded-xl bg-white/70 backdrop-blur px-4 pr-12"
                                 required
                             />
                             <button
                                 type="button"
-                                id="toggle-password"
+                                id="toggle-register-password"
                                 class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                             >
                                 <i data-lucide="eye" class="w-5 h-5"></i>
                             </button>
                         </div>
+                        <p class="text-xs text-gray-500 mt-1">
+                            يجب أن تكون كلمة المرور 8 أحرف على الأقل
+                        </p>
                     </div>
 
-                    <div class="flex items-center justify-between text-sm">
-                        <label class="flex items-center gap-2 text-gray-600 cursor-pointer">
-                            <input type="checkbox" class="rounded border-gray-300">
-                            <span class="font-medium">تذكرني</span>
-                        </label>
-                        <a href="#forgot-password" class="text-purple-600 hover:text-purple-700 font-semibold">
-                            نسيت كلمة المرور؟
-                        </a>
-                    </div>
+                   
 
                     <button
                         type="submit"
-                        id="login-submit-btn"
-                        class="w-full h-12 bg-gradient-to-l from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                        id="register-submit-btn"
+                        class="w-full h-12 bg-gradient-to-l from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         <span class="flex items-center justify-center gap-2">
-                            <i data-lucide="log-in" class="w-5 h-5"></i>
-                            تسجيل الدخول
+                            <i data-lucide="user-plus" class="w-5 h-5"></i>
+                            إنشاء الحساب
                         </span>
                     </button>
 
                     <div class="text-center">
                         <p class="text-gray-600 font-medium">
-                            ليس لديك حساب؟
-                            <a href="register.html" class="text-purple-600 hover:text-purple-700 font-bold">
-                                إنشاء حساب جديد
+                            لديك حساب بالفعل؟
+                            <a href="login.html" class="text-purple-600 hover:text-purple-700 font-bold">
+                                تسجيل الدخول
                             </a>
                         </p>
                     </div>
@@ -245,21 +260,12 @@
         // Initialize Lucide icons
         lucide.createIcons();
 
-        // Check if user is already logged in
-        const isLoggedIn = localStorage.getItem('isLoggedIn');
-        const authToken = localStorage.getItem('authToken');
-        
-        if (isLoggedIn === 'true' && authToken) {
-            // User is already logged in, redirect to dashboard
-            window.location.href = 'dashboard.html';
-        }
-
-        // Clear any previous registration data on login page
+        // Clear any previous registration data on page load
         localStorage.removeItem('registeredUser');
 
         // Password toggle functionality
-        document.getElementById('toggle-password').addEventListener('click', function() {
-            const passwordInput = document.getElementById('password');
+        document.getElementById('toggle-register-password').addEventListener('click', function() {
+            const passwordInput = document.getElementById('register-password');
             const icon = this.querySelector('i');
             
             if (passwordInput.type === 'password') {
@@ -273,7 +279,7 @@
         });
 
         // Real-time email validation
-        document.getElementById('email').addEventListener('blur', function() {
+        document.getElementById('register-email').addEventListener('blur', function() {
             const email = this.value.trim().toLowerCase();
             const allowedDomains = ['gmail.com', 'hotmail.com', 'yahoo.com', 'outlook.com', 'icloud.com'];
             const emailDomain = email.split('@')[1];
@@ -288,9 +294,9 @@
         });
 
         // Real-time password validation
-        document.getElementById('password').addEventListener('input', function() {
+        document.getElementById('register-password').addEventListener('input', function() {
             const password = this.value;
-            const minLength = 6;
+            const minLength = 8;
             
             if (password.length > 0 && password.length < minLength) {
                 this.style.borderColor = '#f59e0b';
@@ -304,19 +310,36 @@
             }
         });
 
-        // Login form submission
-        document.getElementById('login-form').addEventListener('submit', async function(e) {
+        // Name validation
+        document.getElementById('name').addEventListener('input', function() {
+            const name = this.value.trim();
+            
+            if (name.length > 0 && name.length < 2) {
+                this.style.borderColor = '#f59e0b';
+                this.style.boxShadow = '0 0 0 3px rgba(245, 158, 11, 0.1)';
+            } else if (name.length >= 2) {
+                this.style.borderColor = '#10b981';
+                this.style.boxShadow = '0 0 0 3px rgba(16, 185, 129, 0.1)';
+            } else {
+                this.style.borderColor = '';
+                this.style.boxShadow = '';
+            }
+        });
+
+        // Register form submission
+        document.getElementById('register-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            const email = document.getElementById('email').value.trim().toLowerCase();
-            const password = document.getElementById('password').value;
-            const rememberMe = document.querySelector('input[type="checkbox"]').checked;
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('register-email').value.trim().toLowerCase();
+            const password = document.getElementById('register-password').value;
             
             // Validate required fields
-            if (!email || !password) {
-                showError('بيانات ناقصة', 'يرجى ملء جميع الحقول المطلوبة');
+            if (!name || !email || !password) {
+                showError('خطأ في البيانات', 'يرجى ملء جميع الحقول المطلوبة');
                 return;
             }
+            
             
             // Validate email domain
             const allowedDomains = ['gmail.com', 'hotmail.com', 'yahoo.com', 'outlook.com', 'icloud.com'];
@@ -334,10 +357,10 @@
             }
             
             // Show loading state
-            const submitButton = document.getElementById('login-submit-btn');
+            const submitButton = document.getElementById('register-submit-btn');
             const buttonSpan = submitButton.querySelector('span');
             const originalContent = buttonSpan.innerHTML;
-            buttonSpan.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> جاري تسجيل الدخول...';
+            buttonSpan.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> جاري التسجيل...';
             submitButton.disabled = true;
             lucide.createIcons();
             
@@ -346,12 +369,13 @@
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
                 
-                const response = await fetch(`${API_BASE_URL}/reporter/login`, {
+                const response = await fetch(`${API_BASE_URL}/reporter/register`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
+                        name: name,
                         email: email,
                         password: password
                     }),
@@ -370,58 +394,46 @@
                 }
                 
                 if (response.ok) {
-                    // Login successful
-                    showSuccess('تم تسجيل الدخول بنجاح', 'مرحباً بك في فين!');
+                    // Registration successful
+                    showSuccess('تم التسجيل بنجاح', 'تم إنشاء الحساب بنجاح! يمكنك الآن تسجيل الدخول.');
                     
-                    // Store basic user data and token
-                    if (data.account && data.token) {
-                        localStorage.setItem('isLoggedIn', 'true');
-                        localStorage.setItem('authToken', data.token);
-                        
-                        if (rememberMe) {
-                            localStorage.setItem('rememberMe', 'true');
-                        }
-                        
-                        // Fetch complete user data using the token
-                        try {
-                            const userResponse = await fetch(`${API_BASE_URL}/reporter/me`, {
-                                method: 'GET',
-                                headers: {
-                                    'Authorization': `Bearer ${data.token}`
-                                }
-                            });
-                            
-                            if (userResponse.ok) {
-                                const userData = await userResponse.json();
-                                localStorage.setItem('userData', JSON.stringify(userData));
-                            } else {
-                                // If fetching user data fails, still store basic account data
-                                localStorage.setItem('userData', JSON.stringify(data.account));
-                            }
-                        } catch (userError) {
-                            console.error('Error fetching user data:', userError);
-                            // If fetching user data fails, still store basic account data
-                            localStorage.setItem('userData', JSON.stringify(data.account));
-                        }
+                    // Store user data (without password) - only if backend returns user data
+                    if (data && data.id) {
+                        localStorage.setItem('registeredUser', JSON.stringify({
+                            id: data.id,
+                            name: data.name,
+                            email: data.email
+                        }));
                     }
                     
-                    // Redirect to dashboard after delay
+                    // Redirect to login page after delay
                     setTimeout(() => {
-                        window.location.href = 'dashboard.html';
-                    }, 1500);
+                        window.location.href = 'login.html';
+                    }, 2000);
                     
                 } else {
                     // Handle different error cases based on backend error codes
-                    let errorMessage = 'حدث خطأ أثناء تسجيل الدخول';
-                    let errorTitle = 'خطأ في تسجيل الدخول';
+                    let errorMessage = 'حدث خطأ أثناء التسجيل';
+                    let errorTitle = 'خطأ في التسجيل';
                     
-                    if (response.status === 401) {
-                        if (data.error === 'INVALID_CREDENTIALS') {
-                            errorTitle = 'بيانات غير صحيحة';
-                            errorMessage = 'البريد الإلكتروني أو كلمة المرور غير صحيحة';
+                    if (response.status === 400) {
+                        if (data.error === 'EMAIL_FORMAT_NOT_SUPPORTED') {
+                            errorTitle = 'بريد إلكتروني غير مدعوم';
+                            errorMessage = 'يرجى استخدام Gmail, Hotmail, Yahoo, Outlook, أو iCloud';
                         } else {
-                            errorTitle = 'فشل في تسجيل الدخول';
-                            errorMessage = 'يرجى التحقق من بياناتك والمحاولة مرة أخرى';
+                            errorTitle = 'بيانات غير صحيحة';
+                            errorMessage = 'يرجى التحقق من المدخلات والمحاولة مرة أخرى';
+                        }
+                    } else if (response.status === 409) {
+                        if (data.error === 'EMAIL_ALREADY_USED') {
+                            errorTitle = 'البريد الإلكتروني مستخدم';
+                            errorMessage = 'يرجى استخدام بريد إلكتروني آخر أو تسجيل الدخول';
+                        } else if (data.error === 'ALREADY_USED') {
+                            errorTitle = 'البيانات مستخدمة';
+                            errorMessage = 'يرجى التحقق من المعلومات المدخلة';
+                        } else {
+                            errorTitle = 'المستخدم موجود';
+                            errorMessage = 'هذا الحساب موجود بالفعل';
                         }
                     } else if (response.status === 500) {
                         errorTitle = 'خطأ في الخادم';
@@ -435,7 +447,7 @@
                 }
                 
             } catch (error) {
-                console.error('Login error:', error);
+                console.error('Registration error:', error);
                 let errorMessage = 'حدث خطأ في الاتصال، يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى';
                 let errorTitle = 'خطأ في الاتصال';
                 

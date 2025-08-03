@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار نظام الإشعارات - فين</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-purple-50 via-cyan-50 to-blue-50 font-['Cairo']">
+    <!-- Header -->
+    <header class="border-b border-purple-100 sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3 cursor-pointer transition-transform hover:scale-105" onclick="window.location.href='index.html'">
+                    <div class="w-10 h-10 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <i data-lucide="search" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold bg-gradient-to-l from-cyan-600 to-purple-600 bg-clip-text text-transparent">
+                            فين
+                        </h1>
+                        <p class="text-xs text-gray-500 font-medium">FEEN</p>
+                    </div>
+                </div>
+
+                <nav class="hidden md:flex items-center gap-8">
+                    <button class="text-gray-600 hover:text-purple-600 transition-colors font-medium" onclick="window.location.href='index.html'">
+                        الصفحة الرئيسية
+                    </button>
+                </nav>
+
+                <div class="flex items-center gap-3">
+                    <button class="px-4 py-2 text-purple-600 border border-purple-200 hover:bg-purple-50 font-medium rounded-lg transition-colors" onclick="window.location.href='login.html'">
+                        <i data-lucide="log-in" class="w-4 h-4 ml-1 inline"></i>
+                        تسجيل الدخول
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="min-h-screen py-20 px-6">
+        <div class="container mx-auto max-w-4xl">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <div class="w-20 h-20 bg-gradient-to-br from-purple-400 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <i data-lucide="bell" class="w-10 h-10 text-white"></i>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+                    اختبار نظام الإشعارات
+                </h1>
+                <p class="text-lg text-gray-600 font-medium">
+                    اختبر نظام الإشعارات المحسّن مع النصوص العربية
+                </p>
+            </div>
+
+            <!-- Test Buttons -->
+            <div class="grid md:grid-cols-2 gap-6 mb-12">
+                <!-- Success Notifications -->
+                <div class="bg-white/80 backdrop-blur-md shadow-xl border-0 rounded-2xl p-8">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                            <i data-lucide="check-circle" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">إشعارات النجاح</h3>
+                        <p class="text-gray-600 font-medium">اختبار الإشعارات الخضراء</p>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <button class="w-full bg-gradient-to-l from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold rounded-lg px-6 py-3 transition-all" onclick="showSuccess('تم بنجاح!', 'تم حفظ البيانات بنجاح في النظام')">
+                            <i data-lucide="check" class="w-4 h-4 ml-2 inline"></i>
+                            نجاح بسيط
+                        </button>
+                        
+                        <button class="w-full bg-gradient-to-l from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold rounded-lg px-6 py-3 transition-all" onclick="showLoginSuccess('أحمد محمد')">
+                            <i data-lucide="user-check" class="w-4 h-4 ml-2 inline"></i>
+                            تسجيل دخول ناجح
+                        </button>
+                        
+                        <button class="w-full bg-gradient-to-l from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold rounded-lg px-6 py-3 transition-all" onclick="showReportSubmittedSuccess()">
+                            <i data-lucide="file-check" class="w-4 h-4 ml-2 inline"></i>
+                            إرسال بلاغ ناجح
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Error Notifications -->
+                <div class="bg-white/80 backdrop-blur-md shadow-xl border-0 rounded-2xl p-8">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-red-400 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                            <i data-lucide="x-circle" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">إشعارات الخطأ</h3>
+                        <p class="text-gray-600 font-medium">اختبار الإشعارات الحمراء</p>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <button class="w-full bg-gradient-to-l from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white font-bold rounded-lg px-6 py-3 transition-all" onclick="showError('خطأ في النظام!', 'حدث خطأ أثناء حفظ البيانات، يرجى المحاولة مرة أخرى')">
+                            <i data-lucide="alert-circle" class="w-4 h-4 ml-2 inline"></i>
+                            خطأ بسيط
+                        </button>
+                        
+                        <button class="w-full bg-gradient-to-l from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white font-bold rounded-lg px-6 py-3 transition-all" onclick="showLoginError()">
+                            <i data-lucide="user-x" class="w-4 h-4 ml-2 inline"></i>
+                            فشل تسجيل الدخول
+                        </button>
+                        
+                        <button class="w-full bg-gradient-to-l from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white font-bold rounded-lg px-6 py-3 transition-all" onclick="showReportError()">
+                            <i data-lucide="file-x" class="w-4 h-4 ml-2 inline"></i>
+                            خطأ في إرسال البلاغ
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Warning Notifications -->
+                <div class="bg-white/80 backdrop-blur-md shadow-xl border-0 rounded-2xl p-8">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                            <i data-lucide="alert-triangle" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">إشعارات التحذير</h3>
+                        <p class="text-gray-600 font-medium">اختبار الإشعارات الصفراء</p>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <button class="w-full bg-gradient-to-l from-yellow-500 to-orange-600 hover:from-yellow-600 hover:to-orange-700 text-white font-bold rounded-lg px-6 py-3 transition-all" onclick="showWarning('تحذير مهم!', 'يرجى التحقق من صحة البيانات المدخلة قبل المتابعة')">
+                            <i data-lucide="alert-triangle" class="w-4 h-4 ml-2 inline"></i>
+                            تحذير بسيط
+                        </button>
+                        
+                        <button class="w-full bg-gradient-to-l from-yellow-500 to-orange-600 hover:from-yellow-600 hover:to-orange-700 text-white font-bold rounded-lg px-6 py-3 transition-all" onclick="showWarning('تحذير الأمان', 'سيتم تسجيل الخروج تلقائياً بعد 5 دقائق من عدم النشاط')">
+                            <i data-lucide="shield-alert" class="w-4 h-4 ml-2 inline"></i>
+                            تحذير أمان
+                        </button>
+                        
+                        <button class="w-full bg-gradient-to-l from-yellow-500 to-orange-600 hover:from-yellow-600 hover:to-orange-700 text-white font-bold rounded-lg px-6 py-3 transition-all" onclick="showWarning('تحذير البيانات', 'بعض البيانات المطلوبة غير مكتملة')">
+                            <i data-lucide="file-alert" class="w-4 h-4 ml-2 inline"></i>
+                            تحذير البيانات
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Info Notifications -->
+                <div class="bg-white/80 backdrop-blur-md shadow-xl border-0 rounded-2xl p-8">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                            <i data-lucide="info" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">إشعارات المعلومات</h3>
+                        <p class="text-gray-600 font-medium">اختبار الإشعارات الزرقاء</p>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <button class="w-full bg-gradient-to-l from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-bold rounded-lg px-6 py-3 transition-all" onclick="showInfo('معلومات جديدة', 'تم تحديث النظام بنجاح، يمكنك الآن استخدام الميزات الجديدة')">
+                            <i data-lucide="info" class="w-4 h-4 ml-2 inline"></i>
+                            معلومات بسيطة
+                        </button>
+                        
+                        <button class="w-full bg-gradient-to-l from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-bold rounded-lg px-6 py-3 transition-all" onclick="showInfo('تحديث النظام', 'تم إضافة ميزات جديدة لتحسين تجربة المستخدم')">
+                            <i data-lucide="refresh-cw" class="w-4 h-4 ml-2 inline"></i>
+                            تحديث النظام
+                        </button>
+                        
+                        <button class="w-full bg-gradient-to-l from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-bold rounded-lg px-6 py-3 transition-all" onclick="showInfo('نصائح مفيدة', 'يمكنك استخدام البحث المتقدم للحصول على نتائج أفضل')">
+                            <i data-lucide="lightbulb" class="w-4 h-4 ml-2 inline"></i>
+                            نصائح مفيدة
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Control Buttons -->
+            <div class="bg-white/80 backdrop-blur-md shadow-xl border-0 rounded-2xl p-8">
+                <div class="text-center mb-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">أدوات التحكم</h3>
+                    <p class="text-gray-600 font-medium">اختبار وظائف التحكم في الإشعارات</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-4">
+                    <button class="bg-gradient-to-l from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-bold rounded-lg px-6 py-3 transition-all" onclick="testNotifications()">
+                        <i data-lucide="play" class="w-4 h-4 ml-2 inline"></i>
+                        اختبار شامل
+                    </button>
+                    
+                    <button class="bg-gradient-to-l from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white font-bold rounded-lg px-6 py-3 transition-all" onclick="hideAllNotifications()">
+                        <i data-lucide="eye-off" class="w-4 h-4 ml-2 inline"></i>
+                        إخفاء جميع الإشعارات
+                    </button>
+                    
+                    <button class="bg-gradient-to-l from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-lg px-6 py-3 transition-all" onclick="clearAllNotifications()">
+                        <i data-lucide="trash-2" class="w-4 h-4 ml-2 inline"></i>
+                        مسح جميع الإشعارات
+                    </button>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="mt-8 bg-blue-50 border border-blue-200 rounded-2xl p-6">
+                <div class="flex items-start gap-4">
+                    <i data-lucide="help-circle" class="w-6 h-6 text-blue-600 mt-1"></i>
+                    <div>
+                        <h4 class="font-bold text-blue-900 mb-2">تعليمات الاستخدام</h4>
+                        <ul class="text-blue-800 space-y-1 text-sm">
+                            <li>• اضغط على أي زر لاختبار نوع الإشعار المطلوب</li>
+                            <li>• الإشعارات تختفي تلقائياً بعد 5 ثوانٍ</li>
+                            <li>• يمكنك إغلاق الإشعار يدوياً بالضغط على X</li>
+                            <li>• استخدم Ctrl+N لإخفاء جميع الإشعارات</li>
+                            <li>• الإشعارات متوافقة مع جميع الأجهزة</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-br from-gray-800 via-gray-900 to-black text-white py-16 mt-20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="flex items-center justify-center gap-3 mb-6">
+                    <div class="w-12 h-12 bg-gradient-to-br from-cyan-400 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
+                        <i data-lucide="search" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-black bg-gradient-to-l from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                            فين
+                        </h3>
+                        <p class="text-xs text-gray-400 font-medium">FEEN</p>
+                    </div>
+                </div>
+                <p class="text-gray-300 text-sm font-medium leading-relaxed">
+                    منصة مفتوحة المصدر لمساعدة العائلات في العثور على أفرادها
+                    المفقودين باستخدام أحدث التقنيات
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Scripts -->
+    <script src="js/notifications.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html> 
