@@ -43,9 +43,9 @@
     >
       <div class="container mx-auto px-6 py-4">
         <div class="flex items-center justify-between">
-          <div
+          <a
             class="flex items-center gap-3 cursor-pointer transition-transform hover:scale-105"
-            onclick="navigateTo('home')"
+            href="index.html"
           >
             <div
               class="w-10 h-10 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg"
@@ -64,7 +64,7 @@
                 FEEN
               </p>
             </div>
-          </div>
+          </a>
 
           <nav class="hidden md:flex items-center gap-8">
             <!-- Navigation items can be added here if needed -->
@@ -74,7 +74,6 @@
             <a
               href="login.html"
               class="px-4 py-2 text-purple-600 border border-purple-200 hover:bg-purple-50 font-medium rounded-lg transition-colors"
-              onclick="navigateTo('login')"
             >
               <i data-lucide="log-in" class="w-4 h-4 ml-1 inline"></i>
               تسجيل الدخول
@@ -82,7 +81,6 @@
             <a
               href="register.html"
               class="px-4 py-2 bg-gradient-to-l from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white font-medium rounded-lg transition-all"
-              onclick="navigateTo('register')"
             >
               <i data-lucide="user-plus" class="w-4 h-4 ml-1 inline"></i>
               إنشاء حساب
@@ -150,7 +148,6 @@
                 <a
                   href="login.html"
                   class="bg-gradient-to-l from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-10 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all rounded-lg"
-                  onclick="navigateTo('report-missing')"
                 >
                   <i data-lucide="zap" class="w-5 h-5 ml-2 inline"></i>
                   جرب فين الآن
@@ -336,7 +333,6 @@
                 <a
                   href="login.html"
                   class="bg-white text-purple-600 hover:bg-gray-100 px-10 py-4 font-bold shadow-lg hover:shadow-xl transition-all rounded-lg"
-                  onclick="navigateTo('report-missing')"
                 >
                   <i data-lucide="users" class="w-5 h-5 ml-2 inline"></i>
                   الإبلاغ عن شخص مفقود
@@ -344,7 +340,6 @@
                 <a
                   href="login.html"
                   class="border-2 border-white text-white hover:bg-white/10 px-10 py-4 font-bold rounded-lg transition-colors"
-                  onclick="navigateTo('report-found')"
                 >
                   <i data-lucide="search" class="w-5 h-5 ml-2 inline"></i>
                   الإبلاغ عن شخص تائه
