@@ -1,381 +1,479 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>البلاغات المتطابقة - فين</title>
-    
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/styles.css">
-    
+    <link rel="stylesheet" href="css/styles.css" />
+
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-</head>
-<body class="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-cyan-50 font-['Cairo']">
+  </head>
+  <body
+    class="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-cyan-50 font-['Cairo']"
+  >
     <!-- Background decoration -->
-    <div class="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-indigo-200/30 to-purple-200/30 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-10 left-10 w-96 h-96 bg-gradient-to-tr from-purple-200/30 to-cyan-200/30 rounded-full blur-3xl"></div>
+    <div
+      class="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-indigo-200/30 to-purple-200/30 rounded-full blur-3xl"
+    ></div>
+    <div
+      class="absolute bottom-10 left-10 w-96 h-96 bg-gradient-to-tr from-purple-200/30 to-cyan-200/30 rounded-full blur-3xl"
+    ></div>
 
     <!-- Header -->
-    <header class="border-b border-purple-100 sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3 cursor-pointer transition-transform hover:scale-105" onclick="window.location.href='dashboard.html'">
-                    <div class="w-10 h-10 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                        <i data-lucide="search" class="w-5 h-5 text-white"></i>
-                    </div>
-                    <div>
-                        <h1 class="text-xl font-bold bg-gradient-to-l from-cyan-600 to-purple-600 bg-clip-text text-transparent">
-                            فين
-                        </h1>
-                        <p class="text-xs bg-gradient-to-l from-cyan-600 to-purple-600 bg-clip-text text-transparent font-bold">FEEN</p>
-                    </div>
-                </div>
-
-                <nav class="hidden md:flex items-center gap-6">
-                    <button class="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-purple-600 hover:bg-purple-50 transition-all duration-200 font-medium rounded-lg" onclick="window.location.href='dashboard.html'">
-                        <i data-lucide="home" class="w-4 h-4"></i>
-                        لوحة التحكم
-                    </button>
-                    <button class="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-green-600 hover:bg-green-50 transition-all duration-200 font-medium rounded-lg" onclick="window.location.href='report-found.html'">
-                        <i data-lucide="search" class="w-4 h-4"></i>
-                        تبليغ عن تائه
-                    </button>
-                    <button class="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-orange-600 hover:bg-orange-50 transition-all duration-200 font-medium rounded-lg" onclick="window.location.href='report-missing.html'">
-                        <i data-lucide="alert-circle" class="w-4 h-4"></i>
-                        تبليغ عن مفقود
-                    </button>
-                </nav>
-
-                <div class="flex items-center gap-2">
-                    <div class="hidden md:flex items-center gap-2 text-sm bg-gray-50 px-3 py-2 rounded-lg">
-                        <i data-lucide="user" class="w-4 h-4 text-purple-600"></i>
-                        <span class="text-gray-700 font-medium" id="user-name">مستخدم</span>
-                    </div>
-                    <button class="p-2 text-red-600 hover:bg-red-50 hover:text-red-700 rounded-lg transition-all duration-200" onclick="logout()" title="تسجيل الخروج">
-                        <i data-lucide="log-out" class="w-5 h-5"></i>
-                    </button>
-                </div>
+    <header
+      class="border-b border-purple-100 sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm"
+    >
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <div
+            class="flex items-center gap-3 cursor-pointer transition-transform hover:scale-105"
+            onclick="window.location.href='dashboard.html'"
+          >
+            <div
+              class="w-10 h-10 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg"
+            >
+              <i data-lucide="search" class="w-5 h-5 text-white"></i>
             </div>
+            <div>
+              <h1
+                class="text-xl font-bold bg-gradient-to-l from-cyan-600 to-purple-600 bg-clip-text text-transparent"
+              >
+                فين
+              </h1>
+              <p
+                class="text-xs bg-gradient-to-l from-cyan-600 to-purple-600 bg-clip-text text-transparent font-bold"
+              >
+                FEEN
+              </p>
+            </div>
+          </div>
+
+          <nav class="hidden md:flex items-center gap-6">
+            <button
+              class="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-purple-600 hover:bg-purple-50 transition-all duration-200 font-medium rounded-lg"
+              onclick="window.location.href='dashboard.html'"
+            >
+              <i data-lucide="home" class="w-4 h-4"></i>
+              لوحة التحكم
+            </button>
+            <button
+              class="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-green-600 hover:bg-green-50 transition-all duration-200 font-medium rounded-lg"
+              onclick="window.location.href='report-found.html'"
+            >
+              <i data-lucide="search" class="w-4 h-4"></i>
+              تبليغ عن تائه
+            </button>
+            <button
+              class="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-orange-600 hover:bg-orange-50 transition-all duration-200 font-medium rounded-lg"
+              onclick="window.location.href='report-missing.html'"
+            >
+              <i data-lucide="alert-circle" class="w-4 h-4"></i>
+              تبليغ عن مفقود
+            </button>
+          </nav>
+
+          <div class="flex items-center gap-2">
+            <div
+              class="hidden md:flex items-center gap-2 text-sm bg-gray-50 px-3 py-2 rounded-lg"
+            >
+              <i data-lucide="user" class="w-4 h-4 text-purple-600"></i>
+              <span class="text-gray-700 font-medium" id="user-name"
+                >مستخدم</span
+              >
+            </div>
+            <button
+              class="p-2 text-red-600 hover:bg-red-50 hover:text-red-700 rounded-lg transition-all duration-200"
+              onclick="logout()"
+              title="تسجيل الخروج"
+            >
+              <i data-lucide="log-out" class="w-5 h-5"></i>
+            </button>
+          </div>
         </div>
+      </div>
     </header>
 
     <!-- Matches Content -->
     <div class="min-h-screen py-20 px-6 relative">
-        <div class="container mx-auto max-w-6xl relative">
-            <!-- Loading State -->
-            <div id="loading-state" class="text-center py-20">
-                <div class="w-20 h-20 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                    <i data-lucide="loader-2" class="w-10 h-10 text-white animate-spin"></i>
-                </div>
-                <h1 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">
-                    جاري البحث عن التطابقات
-                </h1>
-                <p class="text-lg text-gray-600 font-medium">
-                    يرجى الانتظار...
-                </p>
-            </div>
-
-            <!-- Matches Content -->
-            <div id="matches-content" class="hidden">
-                <!-- Header -->
-                <div class="text-center mb-12">
-                    <div class="w-20 h-20 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                        <i data-lucide="users" class="w-10 h-10 text-white"></i>
-                    </div>
-                    <h1 id="matches-title" class="text-3xl md:text-4xl font-black text-gray-900 mb-4">
-                        البلاغات المتطابقة
-                    </h1>
-                    <p id="matches-subtitle" class="text-lg text-gray-600 font-medium">
-                        عرض التطابقات المحتملة
-                    </p>
-                </div>
-
-                <!-- Original Report -->
-                <div class="bg-white/80 backdrop-blur-md shadow-xl border-0 rounded-2xl mb-8">
-                    <div class="p-8">
-                        <div class="flex items-center gap-3 mb-6">
-                            <i data-lucide="file-text" class="w-6 h-6 text-indigo-600"></i>
-                            <h2 class="text-xl font-bold text-gray-900">
-                                البلاغ الأصلي
-                            </h2>
-                        </div>
-                        <div id="original-report" class="border border-gray-200 rounded-xl p-6 bg-white/70 backdrop-blur">
-                            <!-- Original report content will be loaded here -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Matches Section -->
-                <div class="bg-white/80 backdrop-blur-md shadow-xl border-0 rounded-2xl">
-                    <div class="p-8">
-                        <div class="flex items-center justify-between mb-6">
-                            <div class="flex items-center gap-3">
-                                <i data-lucide="users" class="w-6 h-6 text-green-600"></i>
-                                <h2 class="text-xl font-bold text-gray-900">
-                                    التطابقات المحتملة
-                                </h2>
-                            </div>
-                            <div id="matches-count" class="bg-green-100 text-green-700 border border-green-200 px-3 py-1 rounded-full text-sm font-medium">
-                                0 تطابق
-                            </div>
-                        </div>
-
-                        <div id="matches-container" class="space-y-6">
-                            <!-- Matches will be loaded here -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- No Matches State -->
-            <div id="no-matches-state" class="hidden text-center py-20">
-                <div class="w-20 h-20 bg-gradient-to-br from-gray-400 to-gray-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                    <i data-lucide="users" class="w-10 h-10 text-white"></i>
-                </div>
-                <h1 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">
-                    لا توجد تطابقات
-                </h1>
-                <p class="text-lg text-gray-600 font-medium mb-8">
-                    لم نتمكن من العثور على تطابقات محتملة لهذا البلاغ
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button onclick="window.location.href='dashboard.html'" class="bg-gradient-to-l from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all px-8 py-4">
-                        <i data-lucide="arrow-right" class="w-5 h-5 ml-2 inline"></i>
-                        العودة للوحة التحكم
-                    </button>
-                </div>
-            </div>
-
-            <!-- Error State -->
-            <div id="error-state" class="hidden text-center py-20">
-                <div class="w-20 h-20 bg-gradient-to-br from-red-400 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                    <i data-lucide="alert-circle" class="w-10 h-10 text-white"></i>
-                </div>
-                <h1 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">
-                    خطأ في تحميل التطابقات
-                </h1>
-                <p class="text-lg text-gray-600 font-medium mb-8">
-                    لم نتمكن من تحميل التطابقات المحتملة
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button onclick="window.location.reload()" class="bg-gradient-to-l from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all px-8 py-4">
-                        <i data-lucide="refresh-cw" class="w-5 h-5 ml-2 inline"></i>
-                        إعادة المحاولة
-                    </button>
-                    <button onclick="window.location.href='dashboard.html'" class="border border-gray-300 text-gray-700 hover:bg-gray-50 font-bold rounded-xl px-8 py-4 transition-all">
-                        العودة للوحة التحكم
-                    </button>
-                </div>
-            </div>
+      <div class="container mx-auto max-w-6xl relative">
+        <!-- Loading State -->
+        <div id="loading-state" class="text-center py-20">
+          <div
+            class="w-20 h-20 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
+          >
+            <i
+              data-lucide="loader-2"
+              class="w-10 h-10 text-white animate-spin"
+            ></i>
+          </div>
+          <h1 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+            جاري البحث عن التطابقات
+          </h1>
+          <p class="text-lg text-gray-600 font-medium">يرجى الانتظار...</p>
         </div>
+
+        <!-- Matches Content -->
+        <div id="matches-content" class="hidden">
+          <!-- Header -->
+          <div class="text-center mb-12">
+            <div
+              class="w-20 h-20 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
+            >
+              <i data-lucide="users" class="w-10 h-10 text-white"></i>
+            </div>
+            <h1
+              id="matches-title"
+              class="text-3xl md:text-4xl font-black text-gray-900 mb-4"
+            >
+              البلاغات المتطابقة
+            </h1>
+            <p id="matches-subtitle" class="text-lg text-gray-600 font-medium">
+              عرض التطابقات المحتملة
+            </p>
+          </div>
+
+          <!-- Original Report -->
+          <div
+            class="bg-white/80 backdrop-blur-md shadow-xl border-0 rounded-2xl mb-8"
+          >
+            <div class="p-8">
+              <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="file-text" class="w-6 h-6 text-indigo-600"></i>
+                <h2 class="text-xl font-bold text-gray-900">البلاغ الأصلي</h2>
+              </div>
+              <div
+                id="original-report"
+                class="border border-gray-200 rounded-xl p-6 bg-white/70 backdrop-blur"
+              >
+                <!-- Original report content will be loaded here -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Matches Section -->
+          <div
+            class="bg-white/80 backdrop-blur-md shadow-xl border-0 rounded-2xl"
+          >
+            <div class="p-8">
+              <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="users" class="w-6 h-6 text-green-600"></i>
+                  <h2 class="text-xl font-bold text-gray-900">
+                    التطابقات المحتملة
+                  </h2>
+                </div>
+                <div
+                  id="matches-count"
+                  class="bg-green-100 text-green-700 border border-green-200 px-3 py-1 rounded-full text-sm font-medium"
+                >
+                  0 تطابق
+                </div>
+              </div>
+
+              <div id="matches-container" class="space-y-6">
+                <!-- Matches will be loaded here -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- No Matches State -->
+        <div id="no-matches-state" class="hidden text-center py-20">
+          <div
+            class="w-20 h-20 bg-gradient-to-br from-gray-400 to-gray-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
+          >
+            <i data-lucide="users" class="w-10 h-10 text-white"></i>
+          </div>
+          <h1 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+            لا توجد تطابقات
+          </h1>
+          <p class="text-lg text-gray-600 font-medium mb-8">
+            لم نتمكن من العثور على تطابقات محتملة لهذا البلاغ
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              onclick="window.location.href='dashboard.html'"
+              class="bg-gradient-to-l from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all px-8 py-4"
+            >
+              <i data-lucide="arrow-right" class="w-5 h-5 ml-2 inline"></i>
+              العودة للوحة التحكم
+            </button>
+          </div>
+        </div>
+
+        <!-- Error State -->
+        <div id="error-state" class="hidden text-center py-20">
+          <div
+            class="w-20 h-20 bg-gradient-to-br from-red-400 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
+          >
+            <i data-lucide="alert-circle" class="w-10 h-10 text-white"></i>
+          </div>
+          <h1 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+            خطأ في تحميل التطابقات
+          </h1>
+          <p class="text-lg text-gray-600 font-medium mb-8">
+            لم نتمكن من تحميل التطابقات المحتملة
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              onclick="window.location.reload()"
+              class="bg-gradient-to-l from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all px-8 py-4"
+            >
+              <i data-lucide="refresh-cw" class="w-5 h-5 ml-2 inline"></i>
+              إعادة المحاولة
+            </button>
+            <button
+              onclick="window.location.href='dashboard.html'"
+              class="border border-gray-300 text-gray-700 hover:bg-gray-50 font-bold rounded-xl px-8 py-4 transition-all"
+            >
+              العودة للوحة التحكم
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
-  <!-- Footer -->
-    <footer class="bg-gradient-to-br from-gray-800 via-gray-900 to-black text-white py-16">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto">
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div>
-                        <div class="flex items-center gap-3 mb-6">
-                            <div class="w-12 h-12 bg-gradient-to-br from-cyan-400 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
-                                <i data-lucide="search" class="w-6 h-6 text-white"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-black bg-gradient-to-l from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                                    فين
-                                </h3>
-                               <p class="text-xs font-black bg-gradient-to-l from-cyan-400 to-purple-400 bg-clip-text text-transparent font-medium">FEEN</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-300 text-sm font-medium leading-relaxed">
-                            منصة مفتوحة المصدر لمساعدة العائلات في العثور على أفرادها
-                            المفقودين باستخدام أحدث التقنيات
-                        </p>
-                    </div>
-
-                    <div>
-                        <h4 class="font-bold mb-6 text-white text-lg">روابط سريعة</h4>
-                        <ul class="space-y-3 text-sm">
-                            <li>
-                                <a href="login.html" class="text-gray-300 hover:text-cyan-400 transition-colors font-medium">
-                                      تسجيل الدخول
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#how-it-works" class="text-gray-300 hover:text-purple-400 transition-colors font-medium">
-                                    إنشاء حساب
-                                </a>
-                            </li>
-                            <li>
-                                <a href="report-missing.html" class="text-gray-300 hover:text-pink-400 transition-colors font-medium">
-                                                                   الإبلاغ عن شخص مفقود
-     </a>
-                            </li>
-                            <li>
-                                <a href="report-found.html" class="text-gray-300 hover:text-green-400 transition-colors font-medium">
-                                   الإبلاغ عن شخص تائه
-                          </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 class="font-bold mb-6 text-white text-lg">تواصل معنا</h4>
-                        <div class="space-y-4 text-sm">
-                            <div class="flex items-center gap-3">
-                                <div class="w-8 h-8 bg-green-500/20 rounded-xl flex items-center justify-center">
-                                    <i data-lucide="phone" class="w-4 h-4 text-green-400"></i>
-                                </div>
-                                <span class="text-gray-300 font-medium">
-                                    0617183593
-                                </span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-8 h-8 bg-blue-500/20 rounded-xl flex items-center justify-center">
-                                    <i data-lucide="mail" class="w-4 h-4 text-blue-400"></i>
-                                </div>
-                                <span class="text-gray-300 font-medium">
-                                  contact@feen.com
-                                </span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-8 h-8 bg-purple-500/20 rounded-xl flex items-center justify-center">
-                                    <i data-lucide="map-pin" class="w-4 h-4 text-purple-400"></i>
-                                </div>
-                                <span class="text-gray-300 font-medium">
-                                 وجدة، المغرب   
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Footer -->
+    <footer
+      class="bg-gradient-to-br from-gray-800 via-gray-900 to-black text-white py-16"
+    >
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <div class="grid md:grid-cols-3 gap-8">
+            <div>
+              <div class="flex items-center gap-3 mb-6">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-cyan-400 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg"
+                >
+                  <i data-lucide="search" class="w-6 h-6 text-white"></i>
                 </div>
-
-                <div class="border-t border-gray-700 mt-12 pt-8 text-center text-sm text-gray-400">
-                    <p class="font-medium">
-                        &copy; 2025 فين. جميع الحقوق محفوظة. مشروع مفتوح المصدر
-                    </p>
+                <div>
+                  <h3
+                    class="text-xl font-black bg-gradient-to-l from-cyan-400 to-purple-400 bg-clip-text text-transparent"
+                  >
+                    فين
+                  </h3>
+                  <p
+                    class="text-xs font-black bg-gradient-to-l from-cyan-400 to-purple-400 bg-clip-text text-transparent font-medium"
+                  >
+                    FEEN
+                  </p>
                 </div>
+              </div>
+              <p class="text-gray-300 text-sm font-medium leading-relaxed">
+                منصة مفتوحة المصدر لمساعدة العائلات في العثور على أفرادها
+                المفقودين باستخدام أحدث التقنيات
+              </p>
             </div>
-        </div>
-    </footer>
 
+            <div>
+              <h4 class="font-bold mb-6 text-white text-lg">روابط سريعة</h4>
+              <ul class="space-y-3 text-sm">
+                <li>
+                  <a
+                    href="login.html"
+                    class="text-gray-300 hover:text-cyan-400 transition-colors font-medium"
+                  >
+                    تسجيل الدخول
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#how-it-works"
+                    class="text-gray-300 hover:text-purple-400 transition-colors font-medium"
+                  >
+                    إنشاء حساب
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="report-missing.html"
+                    class="text-gray-300 hover:text-pink-400 transition-colors font-medium"
+                  >
+                    الإبلاغ عن شخص مفقود
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="report-found.html"
+                    class="text-gray-300 hover:text-green-400 transition-colors font-medium"
+                  >
+                    الإبلاغ عن شخص تائه
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 class="font-bold mb-6 text-white text-lg">تواصل معنا</h4>
+              <div class="space-y-4 text-sm">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-8 h-8 bg-green-500/20 rounded-xl flex items-center justify-center"
+                  >
+                    <i data-lucide="phone" class="w-4 h-4 text-green-400"></i>
+                  </div>
+                  <span class="text-gray-300 font-medium"> 0617183593 </span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-8 h-8 bg-blue-500/20 rounded-xl flex items-center justify-center"
+                  >
+                    <i data-lucide="mail" class="w-4 h-4 text-blue-400"></i>
+                  </div>
+                  <span class="text-gray-300 font-medium">
+                    contact@feen.com
+                  </span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-8 h-8 bg-purple-500/20 rounded-xl flex items-center justify-center"
+                  >
+                    <i
+                      data-lucide="map-pin"
+                      class="w-4 h-4 text-purple-400"
+                    ></i>
+                  </div>
+                  <span class="text-gray-300 font-medium"> وجدة، المغرب </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="border-t border-gray-700 mt-12 pt-8 text-center text-sm text-gray-400"
+          >
+            <p class="font-medium">
+              &copy; 2025 فين. جميع الحقوق محفوظة. مشروع مفتوح المصدر
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <!-- JavaScript -->
     <script src="js/notifications.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/config.js" type="module"></script>
     <script type="module">
-        // Import BASE_URL from config
-        import { BASE_URL } from './js/config.js';
-        
-        // Fallback URL in case config fails to load
-        const API_BASE_URL = BASE_URL || '/api';
-        
-        // Initialize Lucide icons
-        lucide.createIcons();
+      // Import BASE_URL from config
+      import { BASE_URL } from './js/config.js';
 
-        // Get URL parameters
-        const urlParams = new URLSearchParams(window.location.search);
-        const reportId = urlParams.get('id');
-        const reportType = urlParams.get('type'); // 'found' or 'missing'
+      // Fallback URL in case config fails to load
+      const API_BASE_URL = BASE_URL || '/api';
 
-        // Initialize authentication for dashboard
-        if (!initDashboardAuth()) {
-            // Stop execution if not authenticated
-            throw new Error('Authentication required');
+      // Initialize Lucide icons
+      lucide.createIcons();
+
+      // Get URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const reportId = urlParams.get('id');
+      const reportType = urlParams.get('type'); // 'found' or 'missing'
+
+      // Initialize authentication for dashboard
+      if (!initDashboardAuth()) {
+        // Stop execution if not authenticated
+        throw new Error('Authentication required');
+      }
+
+      // Update user name display
+      updateUserNameDisplay('user-name');
+
+      // Format date for display
+      function formatDateTime(dateString) {
+        if (!dateString) return 'غير محدد';
+
+        try {
+          const date = new Date(dateString);
+          return date.toLocaleDateString('fr-FR', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+          });
+        } catch (error) {
+          return 'غير محدد';
+        }
+      }
+
+      // Fetch original report and matches using backend API
+      async function fetchOriginalReportAndMatches() {
+        if (!reportId || !reportType) {
+          showError('معرف البلاغ مفقود', 'يرجى العودة للوحة التحكم');
+          setTimeout(() => {
+            window.location.href = 'dashboard.html';
+          }, 2000);
+          return null;
         }
 
-        // Update user name display
-        updateUserNameDisplay('user-name');
-
-        // Format date for display
-        function formatDateTime(dateString) {
-            if (!dateString) return 'غير محدد';
-            
-            try {
-                const date = new Date(dateString);
-                return date.toLocaleDateString('fr-FR', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                });
-            } catch (error) {
-                return 'غير محدد';
-            }
+        const authToken = localStorage.getItem('authToken');
+        if (!authToken) {
+          showError('خطأ في المصادقة', 'يرجى تسجيل الدخول مرة أخرى');
+          setTimeout(() => {
+            window.location.href = 'login.html';
+          }, 2000);
+          return null;
         }
 
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 60000); // Increased timeout for facial recognition
 
-
-        // Fetch original report and matches using backend API
-        async function fetchOriginalReportAndMatches() {
-            if (!reportId || !reportType) {
-                showError('معرف البلاغ مفقود', 'يرجى العودة للوحة التحكم');
-                setTimeout(() => {
-                    window.location.href = 'dashboard.html';
-                }, 2000);
-                return null;
+          // Use the specific matches endpoint based on report type
+          const endpoint =
+            reportType === 'found' ? 'found-matches' : 'lost-matches';
+          const response = await fetch(
+            `${API_BASE_URL}/${endpoint}/${reportId}`,
+            {
+              method: 'GET',
+              headers: {
+                Authorization: `Bearer ${authToken}`,
+              },
+              signal: controller.signal,
             }
+          );
 
-            const authToken = localStorage.getItem('authToken');
-            if (!authToken) {
-                showError('خطأ في المصادقة', 'يرجى تسجيل الدخول مرة أخرى');
-                setTimeout(() => {
-                    window.location.href = 'login.html';
-                }, 2000);
-                return null;
-            }
+          clearTimeout(timeoutId);
 
-            try {
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 60000); // Increased timeout for facial recognition
-
-                // Use the specific matches endpoint based on report type
-                const endpoint = reportType === 'found' ? 'found-matches' : 'lost-matches';
-                const response = await fetch(`${API_BASE_URL}/${endpoint}/${reportId}`, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${authToken}`
-                    },
-                    signal: controller.signal
-                });
-
-                clearTimeout(timeoutId);
-
-                if (response.ok) {
-                    const data = await response.json();
-                    return {
-                        originalReport: reportType === 'found' ? data.found : data.lost,
-                        matches: data.matches || []
-                    };
-                } else {
-                    console.error('Failed to fetch matches:', response.status);
-                    return null;
-                }
-            } catch (error) {
-                console.error('Error fetching matches:', error);
-                return null;
-            }
+          if (response.ok) {
+            const data = await response.json();
+            return {
+              originalReport: reportType === 'found' ? data.found : data.lost,
+              matches: data.matches || [],
+            };
+          } else {
+            console.error('Failed to fetch matches:', response.status);
+            return null;
+          }
+        } catch (error) {
+          console.error('Error fetching matches:', error);
+          return null;
         }
+      }
 
-        // Render original report
-        function renderOriginalReport(report) {
-            const isFound = reportType === 'found';
-            const container = document.getElementById('original-report');
-            
-            container.innerHTML = `
+      // Render original report
+      function renderOriginalReport(report) {
+        const isFound = reportType === 'found';
+        const container = document.getElementById('original-report');
+
+        container.innerHTML = `
                 <div class="flex items-start justify-between mb-4">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-xl flex items-center justify-center shadow-md ${isFound ? "bg-gradient-to-br from-green-400 to-emerald-500" : "bg-gradient-to-br from-orange-400 to-red-500"}">
-                            <i data-lucide="${isFound ? "search" : "alert-circle"}" class="w-6 h-6 text-white"></i>
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center shadow-md ${isFound ? 'bg-gradient-to-br from-green-400 to-emerald-500' : 'bg-gradient-to-br from-orange-400 to-red-500'}">
+                            <i data-lucide="${isFound ? 'search' : 'alert-circle'}" class="w-6 h-6 text-white"></i>
                         </div>
                         <div>
                             <h3 class="text-lg font-bold text-gray-900">
@@ -386,13 +484,13 @@
                                 <span>•</span>
                                 <span>${report.gender || 'غير محدد'}</span>
                                 <span>•</span>
-                                <span>${isFound ? (report.foundLocation || 'غير محدد') : (report.lastSeen || 'غير محدد')}</span>
+                                <span>${isFound ? report.foundLocation || 'غير محدد' : report.lastSeen || 'غير محدد'}</span>
                             </div>
                         </div>
                     </div>
-                    <div class="px-3 py-1 font-medium rounded-full text-sm ${isFound ? "bg-green-100 text-green-700 border border-green-200" : "bg-orange-100 text-orange-700 border border-orange-200"}">
+                    <div class="px-3 py-1 font-medium rounded-full text-sm ${isFound ? 'bg-green-100 text-green-700 border border-green-200' : 'bg-orange-100 text-orange-700 border border-orange-200'}">
                         <i data-lucide="flag" class="w-3 h-3 ml-1 inline"></i>
-                        ${isFound ? "تائه" : "مفقود"}
+                        ${isFound ? 'تائه' : 'مفقود'}
                     </div>
                 </div>
                 <p class="text-gray-700 font-medium mb-4">
@@ -405,19 +503,19 @@
                     </div>
                 </div>
             `;
-            
-            lucide.createIcons();
-        }
 
-        // Render matches
-        function renderMatches(matches) {
-            const container = document.getElementById('matches-container');
-            const countElement = document.getElementById('matches-count');
-            
-            countElement.textContent = `${matches.length} تطابق`;
-            
-            if (matches.length === 0) {
-                container.innerHTML = `
+        lucide.createIcons();
+      }
+
+      // Render matches
+      function renderMatches(matches) {
+        const container = document.getElementById('matches-container');
+        const countElement = document.getElementById('matches-count');
+
+        countElement.textContent = `${matches.length} تطابق`;
+
+        if (matches.length === 0) {
+          container.innerHTML = `
                     <div class="text-center py-12">
                         <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i data-lucide="users" class="w-8 h-8 text-gray-400"></i>
@@ -430,31 +528,36 @@
                         </p>
                     </div>
                 `;
-                return;
+          return;
+        }
+
+        container.innerHTML = matches
+          .map((match) => {
+            const isFound = reportType === 'missing'; // Opposite of original report type
+            const matchType = isFound ? 'found' : 'missing';
+            const facialRecognition = match.facialRecognition;
+            const confidence = facialRecognition
+              ? facialRecognition.confidence
+              : 0;
+
+            // Determine confidence level color
+            let confidenceColor = 'bg-red-100 text-red-700 border-red-200';
+            if (confidence >= 90) {
+              confidenceColor = 'bg-green-100 text-green-700 border-green-200';
+            } else if (confidence >= 80) {
+              confidenceColor =
+                'bg-yellow-100 text-yellow-700 border-yellow-200';
+            } else if (confidence >= 70) {
+              confidenceColor =
+                'bg-orange-100 text-orange-700 border-orange-200';
             }
 
-            container.innerHTML = matches.map(match => {
-                const isFound = reportType === 'missing'; // Opposite of original report type
-                const matchType = isFound ? 'found' : 'missing';
-                const facialRecognition = match.facialRecognition;
-                const confidence = facialRecognition ? facialRecognition.confidence : 0;
-                
-                // Determine confidence level color
-                let confidenceColor = 'bg-red-100 text-red-700 border-red-200';
-                if (confidence >= 90) {
-                    confidenceColor = 'bg-green-100 text-green-700 border-green-200';
-                } else if (confidence >= 80) {
-                    confidenceColor = 'bg-yellow-100 text-yellow-700 border-yellow-200';
-                } else if (confidence >= 70) {
-                    confidenceColor = 'bg-orange-100 text-orange-700 border-orange-200';
-                }
-                
-                return `
+            return `
                     <div class="border border-gray-200 rounded-2xl p-6 bg-white/70 backdrop-blur hover:shadow-lg transition-shadow cursor-pointer" onclick="viewReportDetails(${match.id}, '${matchType}')">
                         <div class="flex items-start justify-between mb-4">
                             <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 rounded-xl flex items-center justify-center shadow-md ${isFound ? "bg-gradient-to-br from-green-400 to-emerald-500" : "bg-gradient-to-br from-orange-400 to-red-500"}">
-                                    <i data-lucide="${isFound ? "search" : "alert-circle"}" class="w-6 h-6 text-white"></i>
+                                <div class="w-12 h-12 rounded-xl flex items-center justify-center shadow-md ${isFound ? 'bg-gradient-to-br from-green-400 to-emerald-500' : 'bg-gradient-to-br from-orange-400 to-red-500'}">
+                                    <i data-lucide="${isFound ? 'search' : 'alert-circle'}" class="w-6 h-6 text-white"></i>
                                 </div>
                                 <div class="flex-1">
                                     <h3 class="text-lg font-bold text-gray-900">
@@ -465,13 +568,13 @@
                                         <span>•</span>
                                         <span>${match.gender || 'غير محدد'}</span>
                                         <span>•</span>
-                                        <span>${isFound ? (match.foundLocation || 'غير محدد') : (match.lastSeen || 'غير محدد')}</span>
+                                        <span>${isFound ? match.foundLocation || 'غير محدد' : match.lastSeen || 'غير محدد'}</span>
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <div class="px-3 py-1 font-medium rounded-full text-sm ${isFound ? "bg-green-100 text-green-700 border border-green-200" : "bg-orange-100 text-orange-700 border border-orange-200"}">
+                                    <div class="px-3 py-1 font-medium rounded-full text-sm ${isFound ? 'bg-green-100 text-green-700 border border-green-200' : 'bg-orange-100 text-orange-700 border border-orange-200'}">
                                         <i data-lucide="flag" class="w-3 h-3 ml-1 inline"></i>
-                                        ${isFound ? "تائه" : "مفقود"}
+                                        ${isFound ? 'تائه' : 'مفقود'}
                                     </div>
                                     <div class="mt-2 px-3 py-1 font-medium rounded-full text-sm border ${confidenceColor}">
                                         <i data-lucide="camera" class="w-3 h-3 ml-1 inline"></i>
@@ -495,57 +598,61 @@
                         </div>
                     </div>
                 `;
-            }).join('');
-            
-            lucide.createIcons();
+          })
+          .join('');
+
+        lucide.createIcons();
+      }
+
+      // View report details function
+      window.viewReportDetails = function (reportId, reportType) {
+        window.location.href = `report-details.html?id=${reportId}&type=${reportType}`;
+      };
+
+      // Initialize page
+      async function initializePage() {
+        // Show loading state
+        document.getElementById('loading-state').classList.remove('hidden');
+        document.getElementById('matches-content').classList.add('hidden');
+        document.getElementById('no-matches-state').classList.add('hidden');
+        document.getElementById('error-state').classList.add('hidden');
+
+        try {
+          // Fetch original report and matches using backend API
+          const data = await fetchOriginalReportAndMatches();
+          if (!data) {
+            document.getElementById('loading-state').classList.add('hidden');
+            document.getElementById('error-state').classList.remove('hidden');
+            return;
+          }
+
+          const { originalReport, matches } = data;
+
+          // Hide loading state
+          document.getElementById('loading-state').classList.add('hidden');
+
+          if (matches.length === 0) {
+            // Show no matches state
+            document
+              .getElementById('no-matches-state')
+              .classList.remove('hidden');
+          } else {
+            // Show matches content
+            document
+              .getElementById('matches-content')
+              .classList.remove('hidden');
+            renderOriginalReport(originalReport);
+            renderMatches(matches);
+          }
+        } catch (error) {
+          console.error('Error initializing matches page:', error);
+          document.getElementById('loading-state').classList.add('hidden');
+          document.getElementById('error-state').classList.remove('hidden');
         }
+      }
 
-        // View report details function
-        window.viewReportDetails = function(reportId, reportType) {
-            window.location.href = `report-details.html?id=${reportId}&type=${reportType}`;
-        }
-
-        // Initialize page
-        async function initializePage() {
-            // Show loading state
-            document.getElementById('loading-state').classList.remove('hidden');
-            document.getElementById('matches-content').classList.add('hidden');
-            document.getElementById('no-matches-state').classList.add('hidden');
-            document.getElementById('error-state').classList.add('hidden');
-
-            try {
-                // Fetch original report and matches using backend API
-                const data = await fetchOriginalReportAndMatches();
-                if (!data) {
-                    document.getElementById('loading-state').classList.add('hidden');
-                    document.getElementById('error-state').classList.remove('hidden');
-                    return;
-                }
-
-                const { originalReport, matches } = data;
-
-                // Hide loading state
-                document.getElementById('loading-state').classList.add('hidden');
-
-                if (matches.length === 0) {
-                    // Show no matches state
-                    document.getElementById('no-matches-state').classList.remove('hidden');
-                } else {
-                    // Show matches content
-                    document.getElementById('matches-content').classList.remove('hidden');
-                    renderOriginalReport(originalReport);
-                    renderMatches(matches);
-                }
-
-            } catch (error) {
-                console.error('Error initializing matches page:', error);
-                document.getElementById('loading-state').classList.add('hidden');
-                document.getElementById('error-state').classList.remove('hidden');
-            }
-        }
-
-        // Initialize page when DOM is loaded
-        initializePage();
+      // Initialize page when DOM is loaded
+      initializePage();
     </script>
-</body>
-</html> 
+  </body>
+</html>

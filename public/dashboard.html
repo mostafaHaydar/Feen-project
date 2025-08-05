@@ -1,384 +1,471 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>لوحة التحكم - فين</title>
-    
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/styles.css">
-    
+    <link rel="stylesheet" href="css/styles.css" />
+
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-</head>
-<body class="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-cyan-50 font-['Cairo']">
+  </head>
+  <body
+    class="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-cyan-50 font-['Cairo']"
+  >
     <!-- Background decoration -->
-    <div class="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-indigo-200/30 to-purple-200/30 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-10 left-10 w-96 h-96 bg-gradient-to-tr from-purple-200/30 to-cyan-200/30 rounded-full blur-3xl"></div>
+    <div
+      class="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-indigo-200/30 to-purple-200/30 rounded-full blur-3xl"
+    ></div>
+    <div
+      class="absolute bottom-10 left-10 w-96 h-96 bg-gradient-to-tr from-purple-200/30 to-cyan-200/30 rounded-full blur-3xl"
+    ></div>
 
     <!-- Header -->
-    <header class="border-b border-purple-100 sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3 cursor-pointer transition-transform hover:scale-105" onclick="window.location.href='dashboard.html'">
-                    <div class="w-10 h-10 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                        <i data-lucide="search" class="w-5 h-5 text-white"></i>
-                    </div>
-                    <div>
-                        <h1 class="text-xl font-bold bg-gradient-to-l from-cyan-600 to-purple-600 bg-clip-text text-transparent">
-                            فين
-                        </h1>
-                        <p class="text-xs bg-gradient-to-l from-cyan-600 to-purple-600 bg-clip-text text-transparent font-bold">FEEN</p>
-                   
-                    </div>
-                </div>
-
-                <nav class="hidden md:flex items-center gap-6">
-                    <button class="flex items-center gap-2 px-4 py-2 text-purple-600 bg-purple-50 border border-purple-200 font-medium rounded-lg" onclick="window.location.href='dashboard.html'">
-                        <i data-lucide="home" class="w-4 h-4"></i>
-                        لوحة التحكم
-                    </button>
-                    <button class="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-green-600 hover:bg-green-50 transition-all duration-200 font-medium rounded-lg" onclick="window.location.href='report-found.html'">
-                        <i data-lucide="search" class="w-4 h-4"></i>
-                        تبليغ عن تائه
-                    </button>
-                    <button class="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-orange-600 hover:bg-orange-50 transition-all duration-200 font-medium rounded-lg" onclick="window.location.href='report-missing.html'">
-                        <i data-lucide="alert-circle" class="w-4 h-4"></i>
-                        تبليغ عن مفقود
-                    </button>
-                </nav>
-
-                <div class="flex items-center gap-2">
-                    <div class="hidden md:flex items-center gap-2 text-sm bg-gray-50 px-3 py-2 rounded-lg">
-                        <i data-lucide="user" class="w-4 h-4 text-purple-600"></i>
-                        <span class="text-gray-700 font-medium" id="user-name">مستخدم</span>
-                    </div>
-                    <button class="p-2 text-red-600 hover:bg-red-50 hover:text-red-700 rounded-lg transition-all duration-200" onclick="logout()" title="تسجيل الخروج">
-                        <i data-lucide="log-out" class="w-5 h-5"></i>
-                    </button>
-                </div>
+    <header
+      class="border-b border-purple-100 sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm"
+    >
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <div
+            class="flex items-center gap-3 cursor-pointer transition-transform hover:scale-105"
+            onclick="window.location.href='dashboard.html'"
+          >
+            <div
+              class="w-10 h-10 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg"
+            >
+              <i data-lucide="search" class="w-5 h-5 text-white"></i>
             </div>
+            <div>
+              <h1
+                class="text-xl font-bold bg-gradient-to-l from-cyan-600 to-purple-600 bg-clip-text text-transparent"
+              >
+                فين
+              </h1>
+              <p
+                class="text-xs bg-gradient-to-l from-cyan-600 to-purple-600 bg-clip-text text-transparent font-bold"
+              >
+                FEEN
+              </p>
+            </div>
+          </div>
+
+          <nav class="hidden md:flex items-center gap-6">
+            <button
+              class="flex items-center gap-2 px-4 py-2 text-purple-600 bg-purple-50 border border-purple-200 font-medium rounded-lg"
+              onclick="window.location.href='dashboard.html'"
+            >
+              <i data-lucide="home" class="w-4 h-4"></i>
+              لوحة التحكم
+            </button>
+            <button
+              class="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-green-600 hover:bg-green-50 transition-all duration-200 font-medium rounded-lg"
+              onclick="window.location.href='report-found.html'"
+            >
+              <i data-lucide="search" class="w-4 h-4"></i>
+              تبليغ عن تائه
+            </button>
+            <button
+              class="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-orange-600 hover:bg-orange-50 transition-all duration-200 font-medium rounded-lg"
+              onclick="window.location.href='report-missing.html'"
+            >
+              <i data-lucide="alert-circle" class="w-4 h-4"></i>
+              تبليغ عن مفقود
+            </button>
+          </nav>
+
+          <div class="flex items-center gap-2">
+            <div
+              class="hidden md:flex items-center gap-2 text-sm bg-gray-50 px-3 py-2 rounded-lg"
+            >
+              <i data-lucide="user" class="w-4 h-4 text-purple-600"></i>
+              <span class="text-gray-700 font-medium" id="user-name"
+                >مستخدم</span
+              >
+            </div>
+            <button
+              class="p-2 text-red-600 hover:bg-red-50 hover:text-red-700 rounded-lg transition-all duration-200"
+              onclick="logout()"
+              title="تسجيل الخروج"
+            >
+              <i data-lucide="log-out" class="w-5 h-5"></i>
+            </button>
+          </div>
         </div>
+      </div>
     </header>
 
     <!-- Dashboard Content -->
     <div class="min-h-screen py-20 px-6 relative">
-        <div class="container mx-auto max-w-6xl relative">
-            <!-- Header -->
-            <div class="text-center mb-12">
-                <div class="w-20 h-20 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                    <i data-lucide="home" class="w-10 h-10 text-white"></i>
-                </div>
-                <h1 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">
-                    لوحة التحكم
-                </h1>
-                <p class="text-lg text-gray-600 font-medium">
-                    مرحباً بك، <span id="welcome-name">مستخدم</span>
-                </p>
-            </div>
-
-            <!-- Quick Actions -->
-            <div class="grid md:grid-cols-2 gap-6 mb-12">
-                <div class="bg-white/80 backdrop-blur-md shadow-xl border-0 hover:shadow-2xl transition-shadow cursor-pointer rounded-2xl" onclick="window.location.href='report-missing.html'">
-                    <div class="p-8 text-center">
-                        <div class="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                            <i data-lucide="alert-circle" class="w-8 h-8 text-white"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">
-                            الإبلاغ عن شخص مفقود
-                        </h3>
-                        <p class="text-gray-600 font-medium mb-6">
-                            ساعد في البحث عن الأشخاص المفقودين
-                        </p>
-                        <button class="bg-gradient-to-l from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold rounded-lg px-6 py-3">
-                            <i data-lucide="plus" class="w-4 h-4 ml-2 inline"></i>
-                            إضافة بلاغ عن مفقود
-                        </button>
-                    </div>
-                </div>
-
-                <div class="bg-white/80 backdrop-blur-md shadow-xl border-0 hover:shadow-2xl transition-shadow cursor-pointer rounded-2xl" onclick="window.location.href='report-found.html'">
-                    <div class="p-8 text-center">
-                        <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                            <i data-lucide="search" class="w-8 h-8 text-white"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">
-                            الإبلاغ عن شخص تائه
-                        </h3>
-                        <p class="text-gray-600 font-medium mb-6">
-                            ساعد في لم الشمل بالإبلاغ عن الأشخاص التائهين
-                        </p>
-                        <button class="bg-gradient-to-l from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold rounded-lg px-6 py-3">
-                            <i data-lucide="plus" class="w-4 h-4 ml-2 inline"></i>
-                            إضافة بلاغ عن تائه
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Reports Section -->
-            <div class="bg-white/80 backdrop-blur-md shadow-xl border-0 rounded-2xl">
-                <div class="p-8">
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="flex items-center gap-3">
-                            <i data-lucide="file-text" class="w-6 h-6 text-indigo-600"></i>
-                            <h2 class="text-2xl font-black text-gray-900">
-                                بلاغاتي
-                            </h2>
-                        </div>
-                        <div class="bg-indigo-100 text-indigo-700 border border-indigo-200 px-3 py-1 rounded-full text-sm font-medium">
-                            0 بلاغ
-                        </div>
-                    </div>
-
-                    <div class="space-y-6" id="reports-container">
-                        <!-- Reports will be loaded here by JavaScript -->
-                    </div>
-                </div>
-            </div>
+      <div class="container mx-auto max-w-6xl relative">
+        <!-- Header -->
+        <div class="text-center mb-12">
+          <div
+            class="w-20 h-20 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
+          >
+            <i data-lucide="home" class="w-10 h-10 text-white"></i>
+          </div>
+          <h1 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+            لوحة التحكم
+          </h1>
+          <p class="text-lg text-gray-600 font-medium">
+            مرحباً بك، <span id="welcome-name">مستخدم</span>
+          </p>
         </div>
+
+        <!-- Quick Actions -->
+        <div class="grid md:grid-cols-2 gap-6 mb-12">
+          <div
+            class="bg-white/80 backdrop-blur-md shadow-xl border-0 hover:shadow-2xl transition-shadow cursor-pointer rounded-2xl"
+            onclick="window.location.href='report-missing.html'"
+          >
+            <div class="p-8 text-center">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
+              >
+                <i data-lucide="alert-circle" class="w-8 h-8 text-white"></i>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">
+                الإبلاغ عن شخص مفقود
+              </h3>
+              <p class="text-gray-600 font-medium mb-6">
+                ساعد في البحث عن الأشخاص المفقودين
+              </p>
+              <button
+                class="bg-gradient-to-l from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold rounded-lg px-6 py-3"
+              >
+                <i data-lucide="plus" class="w-4 h-4 ml-2 inline"></i>
+                إضافة بلاغ عن مفقود
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="bg-white/80 backdrop-blur-md shadow-xl border-0 hover:shadow-2xl transition-shadow cursor-pointer rounded-2xl"
+            onclick="window.location.href='report-found.html'"
+          >
+            <div class="p-8 text-center">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
+              >
+                <i data-lucide="search" class="w-8 h-8 text-white"></i>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">
+                الإبلاغ عن شخص تائه
+              </h3>
+              <p class="text-gray-600 font-medium mb-6">
+                ساعد في لم الشمل بالإبلاغ عن الأشخاص التائهين
+              </p>
+              <button
+                class="bg-gradient-to-l from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold rounded-lg px-6 py-3"
+              >
+                <i data-lucide="plus" class="w-4 h-4 ml-2 inline"></i>
+                إضافة بلاغ عن تائه
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reports Section -->
+        <div
+          class="bg-white/80 backdrop-blur-md shadow-xl border-0 rounded-2xl"
+        >
+          <div class="p-8">
+            <div class="flex items-center justify-between mb-6">
+              <div class="flex items-center gap-3">
+                <i data-lucide="file-text" class="w-6 h-6 text-indigo-600"></i>
+                <h2 class="text-2xl font-black text-gray-900">بلاغاتي</h2>
+              </div>
+              <div
+                class="bg-indigo-100 text-indigo-700 border border-indigo-200 px-3 py-1 rounded-full text-sm font-medium"
+              >
+                0 بلاغ
+              </div>
+            </div>
+
+            <div class="space-y-6" id="reports-container">
+              <!-- Reports will be loaded here by JavaScript -->
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gradient-to-br from-gray-800 via-gray-900 to-black text-white py-16">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto">
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div>
-                        <div class="flex items-center gap-3 mb-6">
-                            <div class="w-12 h-12 bg-gradient-to-br from-cyan-400 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
-                                <i data-lucide="search" class="w-6 h-6 text-white"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-black bg-gradient-to-l from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                                    فين
-                                </h3>
-                              <p class="text-xs font-black bg-gradient-to-l from-cyan-400 to-purple-400 bg-clip-text text-transparent font-medium">FEEN</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-300 text-sm font-medium leading-relaxed">
-                            منصة مفتوحة المصدر لمساعدة العائلات في العثور على أفرادها
-                            المفقودين باستخدام أحدث التقنيات
-                        </p>
-                    </div>
-
-                    <div>
-                        <h4 class="font-bold mb-6 text-white text-lg">روابط سريعة</h4>
-                        <ul class="space-y-3 text-sm">
-                            <li>
-                                <a href="login.html" class="text-gray-300 hover:text-cyan-400 transition-colors font-medium">
-                                      تسجيل الدخول
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#how-it-works" class="text-gray-300 hover:text-purple-400 transition-colors font-medium">
-                                    إنشاء حساب
-                                </a>
-                            </li>
-                            <li>
-                                <a href="report-missing.html" class="text-gray-300 hover:text-pink-400 transition-colors font-medium">
-                                                                   الإبلاغ عن شخص مفقود
-     </a>
-                            </li>
-                            <li>
-                                <a href="report-found.html" class="text-gray-300 hover:text-green-400 transition-colors font-medium">
-                                   الإبلاغ عن شخص تائه
-                          </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 class="font-bold mb-6 text-white text-lg">تواصل معنا</h4>
-                        <div class="space-y-4 text-sm">
-                            <div class="flex items-center gap-3">
-                                <div class="w-8 h-8 bg-green-500/20 rounded-xl flex items-center justify-center">
-                                    <i data-lucide="phone" class="w-4 h-4 text-green-400"></i>
-                                </div>
-                                <span class="text-gray-300 font-medium">
-                                    0617183593
-                                </span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-8 h-8 bg-blue-500/20 rounded-xl flex items-center justify-center">
-                                    <i data-lucide="mail" class="w-4 h-4 text-blue-400"></i>
-                                </div>
-                                <span class="text-gray-300 font-medium">
-                                  contact@feen.com
-                                </span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-8 h-8 bg-purple-500/20 rounded-xl flex items-center justify-center">
-                                    <i data-lucide="map-pin" class="w-4 h-4 text-purple-400"></i>
-                                </div>
-                                <span class="text-gray-300 font-medium">
-                                 وجدة، المغرب   
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+    <footer
+      class="bg-gradient-to-br from-gray-800 via-gray-900 to-black text-white py-16"
+    >
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <div class="grid md:grid-cols-3 gap-8">
+            <div>
+              <div class="flex items-center gap-3 mb-6">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-cyan-400 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg"
+                >
+                  <i data-lucide="search" class="w-6 h-6 text-white"></i>
                 </div>
-
-                <div class="border-t border-gray-700 mt-12 pt-8 text-center text-sm text-gray-400">
-                    <p class="font-medium">
-                        &copy; 2025 فين. جميع الحقوق محفوظة. مشروع مفتوح المصدر
-                    </p>
+                <div>
+                  <h3
+                    class="text-xl font-black bg-gradient-to-l from-cyan-400 to-purple-400 bg-clip-text text-transparent"
+                  >
+                    فين
+                  </h3>
+                  <p
+                    class="text-xs font-black bg-gradient-to-l from-cyan-400 to-purple-400 bg-clip-text text-transparent font-medium"
+                  >
+                    FEEN
+                  </p>
                 </div>
+              </div>
+              <p class="text-gray-300 text-sm font-medium leading-relaxed">
+                منصة مفتوحة المصدر لمساعدة العائلات في العثور على أفرادها
+                المفقودين باستخدام أحدث التقنيات
+              </p>
             </div>
-        </div>
-    </footer>
 
+            <div>
+              <h4 class="font-bold mb-6 text-white text-lg">روابط سريعة</h4>
+              <ul class="space-y-3 text-sm">
+                <li>
+                  <a
+                    href="login.html"
+                    class="text-gray-300 hover:text-cyan-400 transition-colors font-medium"
+                  >
+                    تسجيل الدخول
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#how-it-works"
+                    class="text-gray-300 hover:text-purple-400 transition-colors font-medium"
+                  >
+                    إنشاء حساب
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="report-missing.html"
+                    class="text-gray-300 hover:text-pink-400 transition-colors font-medium"
+                  >
+                    الإبلاغ عن شخص مفقود
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="report-found.html"
+                    class="text-gray-300 hover:text-green-400 transition-colors font-medium"
+                  >
+                    الإبلاغ عن شخص تائه
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 class="font-bold mb-6 text-white text-lg">تواصل معنا</h4>
+              <div class="space-y-4 text-sm">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-8 h-8 bg-green-500/20 rounded-xl flex items-center justify-center"
+                  >
+                    <i data-lucide="phone" class="w-4 h-4 text-green-400"></i>
+                  </div>
+                  <span class="text-gray-300 font-medium"> 0617183593 </span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-8 h-8 bg-blue-500/20 rounded-xl flex items-center justify-center"
+                  >
+                    <i data-lucide="mail" class="w-4 h-4 text-blue-400"></i>
+                  </div>
+                  <span class="text-gray-300 font-medium">
+                    contact@feen.com
+                  </span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-8 h-8 bg-purple-500/20 rounded-xl flex items-center justify-center"
+                  >
+                    <i
+                      data-lucide="map-pin"
+                      class="w-4 h-4 text-purple-400"
+                    ></i>
+                  </div>
+                  <span class="text-gray-300 font-medium"> وجدة، المغرب </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="border-t border-gray-700 mt-12 pt-8 text-center text-sm text-gray-400"
+          >
+            <p class="font-medium">
+              &copy; 2025 فين. جميع الحقوق محفوظة. مشروع مفتوح المصدر
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <!-- JavaScript -->
     <script src="js/notifications.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/config.js" type="module"></script>
     <script type="module">
-        // Import BASE_URL from config
-        import { BASE_URL } from './js/config.js';
-        
-        // Fallback URL in case config fails to load
-        const API_BASE_URL = BASE_URL || '/api';
-        
-        // Initialize Lucide icons
-        lucide.createIcons();
+      // Import BASE_URL from config
+      import { BASE_URL } from './js/config.js';
 
-        // Initialize authentication for dashboard
-        if (!initDashboardAuth()) {
-            // Stop execution if not authenticated
-            throw new Error('Authentication required');
+      // Fallback URL in case config fails to load
+      const API_BASE_URL = BASE_URL || '/api';
+
+      // Initialize Lucide icons
+      lucide.createIcons();
+
+      // Initialize authentication for dashboard
+      if (!initDashboardAuth()) {
+        // Stop execution if not authenticated
+        throw new Error('Authentication required');
+      }
+
+      // Update welcome name display
+      updateUserNameDisplay('welcome-name');
+      updateUserNameDisplay('user-name');
+
+      // Fetch all reports (found and missing)
+      async function fetchAllReports() {
+        const authToken = localStorage.getItem('authToken');
+        if (!authToken) {
+          showError('خطأ في المصادقة', 'يرجى تسجيل الدخول مرة أخرى');
+          setTimeout(() => {
+            window.location.href = 'login.html';
+          }, 2000);
+          return { founds: [], losts: [] };
         }
 
-        // Update welcome name display
-        updateUserNameDisplay('welcome-name');
-        updateUserNameDisplay('user-name');
+        try {
+          // Fetch both found and missing reports in parallel
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 30000);
 
-        // Fetch all reports (found and missing)
-        async function fetchAllReports() {
-            const authToken = localStorage.getItem('authToken');
-            if (!authToken) {
-                showError('خطأ في المصادقة', 'يرجى تسجيل الدخول مرة أخرى');
-                setTimeout(() => {
-                    window.location.href = 'login.html';
-                }, 2000);
-                return { founds: [], losts: [] };
-            }
+          const [foundsResponse, lostsResponse] = await Promise.all([
+            fetch(`${API_BASE_URL}/founds`, {
+              method: 'GET',
+              headers: {
+                Authorization: `Bearer ${authToken}`,
+              },
+              signal: controller.signal,
+            }),
+            fetch(`${API_BASE_URL}/losts`, {
+              method: 'GET',
+              headers: {
+                Authorization: `Bearer ${authToken}`,
+              },
+              signal: controller.signal,
+            }),
+          ]);
 
+          clearTimeout(timeoutId);
+
+          let founds = [];
+          let losts = [];
+
+          // Parse found reports
+          if (foundsResponse.ok) {
             try {
-                // Fetch both found and missing reports in parallel
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 30000);
-
-                const [foundsResponse, lostsResponse] = await Promise.all([
-                    fetch(`${API_BASE_URL}/founds`, {
-                        method: 'GET',
-                        headers: {
-                            'Authorization': `Bearer ${authToken}`
-                        },
-                        signal: controller.signal
-                    }),
-                    fetch(`${API_BASE_URL}/losts`, {
-                        method: 'GET',
-                        headers: {
-                            'Authorization': `Bearer ${authToken}`
-                        },
-                        signal: controller.signal
-                    })
-                ]);
-
-                clearTimeout(timeoutId);
-
-                let founds = [];
-                let losts = [];
-
-                // Parse found reports
-                if (foundsResponse.ok) {
-                    try {
-                        founds = await foundsResponse.json();
-                    } catch (parseError) {
-                        console.error('Failed to parse founds response:', parseError);
-                    }
-                } else {
-                    console.error('Failed to fetch founds:', foundsResponse.status);
-                }
-
-                // Parse missing reports
-                if (lostsResponse.ok) {
-                    try {
-                        losts = await lostsResponse.json();
-                    } catch (parseError) {
-                        console.error('Failed to parse losts response:', parseError);
-                    }
-                } else {
-                    console.error('Failed to fetch losts:', lostsResponse.status);
-                }
-
-                return { founds, losts };
-
-            } catch (error) {
-                console.error('Error fetching reports:', error);
-                let errorMessage = 'حدث خطأ في الاتصال، يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى';
-                let errorTitle = 'خطأ في الاتصال';
-                
-                if (error.name === 'AbortError') {
-                    errorTitle = 'انتهت مهلة الاتصال';
-                    errorMessage = 'يرجى المحاولة مرة أخرى';
-                } else if (error.name === 'TypeError' && error.message.includes('fetch')) {
-                    errorTitle = 'لا يمكن الاتصال بالخادم';
-                    errorMessage = 'يرجى التحقق من اتصالك بالإنترنت';
-                }
-                
-                showError(errorTitle, errorMessage);
-                return { founds: [], losts: [] };
+              founds = await foundsResponse.json();
+            } catch (parseError) {
+              console.error('Failed to parse founds response:', parseError);
             }
-        }
+          } else {
+            console.error('Failed to fetch founds:', foundsResponse.status);
+          }
 
-        // Format date for display
-        function formatDate(dateString) {
-            if (!dateString) return 'غير محدد';
-            
+          // Parse missing reports
+          if (lostsResponse.ok) {
             try {
-                const date = new Date(dateString);
-                return date.toLocaleDateString('fr-FR', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-            } catch (error) {
-                return 'غير محدد';
+              losts = await lostsResponse.json();
+            } catch (parseError) {
+              console.error('Failed to parse losts response:', parseError);
             }
-        }
+          } else {
+            console.error('Failed to fetch losts:', lostsResponse.status);
+          }
 
-        // Format datetime for display
-        function formatDateTime(dateString) {
-            if (!dateString) return 'غير محدد';
-            
-            try {
-                const date = new Date(dateString);
-                return date.toLocaleDateString('fr-FR', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                });
-            } catch (error) {
-                return 'غير محدد';
-            }
-        }
+          return { founds, losts };
+        } catch (error) {
+          console.error('Error fetching reports:', error);
+          let errorMessage =
+            'حدث خطأ في الاتصال، يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى';
+          let errorTitle = 'خطأ في الاتصال';
 
-        // Render reports
-        async function renderReports() {
-            const container = document.getElementById('reports-container');
-            
-            // Show loading state
-            container.innerHTML = `
+          if (error.name === 'AbortError') {
+            errorTitle = 'انتهت مهلة الاتصال';
+            errorMessage = 'يرجى المحاولة مرة أخرى';
+          } else if (
+            error.name === 'TypeError' &&
+            error.message.includes('fetch')
+          ) {
+            errorTitle = 'لا يمكن الاتصال بالخادم';
+            errorMessage = 'يرجى التحقق من اتصالك بالإنترنت';
+          }
+
+          showError(errorTitle, errorMessage);
+          return { founds: [], losts: [] };
+        }
+      }
+
+      // Format date for display
+      function formatDate(dateString) {
+        if (!dateString) return 'غير محدد';
+
+        try {
+          const date = new Date(dateString);
+          return date.toLocaleDateString('fr-FR', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          });
+        } catch (error) {
+          return 'غير محدد';
+        }
+      }
+
+      // Format datetime for display
+      function formatDateTime(dateString) {
+        if (!dateString) return 'غير محدد';
+
+        try {
+          const date = new Date(dateString);
+          return date.toLocaleDateString('fr-FR', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+          });
+        } catch (error) {
+          return 'غير محدد';
+        }
+      }
+
+      // Render reports
+      async function renderReports() {
+        const container = document.getElementById('reports-container');
+
+        // Show loading state
+        container.innerHTML = `
                 <div class="text-center py-12">
                     <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
                         <i data-lucide="loader-2" class="w-10 h-10 text-gray-400 animate-spin"></i>
@@ -391,47 +478,47 @@
                     </p>
                 </div>
             `;
-            lucide.createIcons();
+        lucide.createIcons();
 
-            // Fetch reports from API
-            const { founds, losts } = await fetchAllReports();
-            
-            // Combine and sort all reports by creation date
-            const allReports = [
-                ...founds.map(found => ({
-                    ...found,
-                    type: 'found',
-                    displayName: found.name || 'غير محدد',
-                    displayAge: found.age || 'غير محدد',
-                    displayGender: found.gender || 'غير محدد',
-                    displayLocation: found.foundLocation || 'غير محدد',
-                    displayDate: formatDateTime(found.foundDate),
-                    displayDescription: found.description || 'لا توجد وصف إضافي',
-                    displayStatus: 'نشط',
-                    createdAt: found.createdAt
-                })),
-                ...losts.map(lost => ({
-                    ...lost,
-                    type: 'missing',
-                    displayName: lost.name || 'غير محدد',
-                    displayAge: lost.age || 'غير محدد',
-                    displayGender: lost.gender || 'غير محدد',
-                    displayLocation: lost.lastSeen || 'غير محدد',
-                    displayDate: formatDateTime(lost.lastSeenDate),
-                    displayDescription: lost.description || 'لا توجد وصف إضافي',
-                    displayStatus: 'نشط',
-                    createdAt: lost.createdAt
-                }))
-            ].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        // Fetch reports from API
+        const { founds, losts } = await fetchAllReports();
 
-            // Update report count
-            const reportCountElement = document.querySelector('.bg-indigo-100');
-            if (reportCountElement) {
-                reportCountElement.textContent = `${allReports.length} بلاغ`;
-            }
+        // Combine and sort all reports by creation date
+        const allReports = [
+          ...founds.map((found) => ({
+            ...found,
+            type: 'found',
+            displayName: found.name || 'غير محدد',
+            displayAge: found.age || 'غير محدد',
+            displayGender: found.gender || 'غير محدد',
+            displayLocation: found.foundLocation || 'غير محدد',
+            displayDate: formatDateTime(found.foundDate),
+            displayDescription: found.description || 'لا توجد وصف إضافي',
+            displayStatus: 'نشط',
+            createdAt: found.createdAt,
+          })),
+          ...losts.map((lost) => ({
+            ...lost,
+            type: 'missing',
+            displayName: lost.name || 'غير محدد',
+            displayAge: lost.age || 'غير محدد',
+            displayGender: lost.gender || 'غير محدد',
+            displayLocation: lost.lastSeen || 'غير محدد',
+            displayDate: formatDateTime(lost.lastSeenDate),
+            displayDescription: lost.description || 'لا توجد وصف إضافي',
+            displayStatus: 'نشط',
+            createdAt: lost.createdAt,
+          })),
+        ].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-            if (allReports.length === 0) {
-                container.innerHTML = `
+        // Update report count
+        const reportCountElement = document.querySelector('.bg-indigo-100');
+        if (reportCountElement) {
+          reportCountElement.textContent = `${allReports.length} بلاغ`;
+        }
+
+        if (allReports.length === 0) {
+          container.innerHTML = `
                     <div class="text-center py-12">
                         <div class="w-20 h-20 bg-gray-100 roundfetched-full flex items-center justify-center mx-auto mb-6">
                             <i data-lucide="file-text" class="w-10 h-10 text-gray-400"></i>
@@ -454,16 +541,18 @@
                         </div>
                     </div>
                 `;
-                lucide.createIcons();
-                return;
-            }
+          lucide.createIcons();
+          return;
+        }
 
-            container.innerHTML = allReports.map(report => `
+        container.innerHTML = allReports
+          .map(
+            (report) => `
                 <div class="border border-gray-200 rounded-2xl p-6 bg-white/70 backdrop-blur hover:shadow-lg transition-shadow cursor-pointer dashboard-reports report-card" onclick="viewReportDetails(${report.id}, '${report.type}')">
                     <div class="flex items-start justify-between mb-4 report-header">
                         <div class="flex items-center gap-4 report-info">
-                            <div class="w-12 h-12 rounded-xl flex items-center justify-center shadow-md report-icon ${report.type === "missing" ? "bg-gradient-to-br from-orange-400 to-red-500" : "bg-gradient-to-br from-green-400 to-emerald-500"}">
-                                <i data-lucide="${report.type === "missing" ? "alert-circle" : "search"}" class="w-6 h-6 text-white"></i>
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center shadow-md report-icon ${report.type === 'missing' ? 'bg-gradient-to-br from-orange-400 to-red-500' : 'bg-gradient-to-br from-green-400 to-emerald-500'}">
+                                <i data-lucide="${report.type === 'missing' ? 'alert-circle' : 'search'}" class="w-6 h-6 text-white"></i>
                             </div>
                             <div>
                                 <h3 class="text-lg font-bold text-gray-900 report-title">
@@ -480,13 +569,13 @@
                         </div>
 
                         <div class="flex items-center gap-3">
-                            <div class="px-3 py-1 font-medium rounded-full text-sm status-badge ${report.type === "missing" ? "bg-orange-100 text-orange-700 border border-orange-200" : "bg-green-100 text-green-700 border border-green-200"}">
+                            <div class="px-3 py-1 font-medium rounded-full text-sm status-badge ${report.type === 'missing' ? 'bg-orange-100 text-orange-700 border border-orange-200' : 'bg-green-100 text-green-700 border border-green-200'}">
                                 <i data-lucide="flag" class="w-3 h-3 ml-1 inline"></i>
-                                <span class="badge-text">${report.type === "missing" ? "مفقود" : "تائه"}</span>
+                                <span class="badge-text">${report.type === 'missing' ? 'مفقود' : 'تائه'}</span>
                             </div>
 
-                            <div class="px-3 py-1 font-medium rounded-full text-sm status-badge ${report.displayStatus === "نشط" ? "bg-blue-100 text-blue-700 border border-blue-200" : "bg-emerald-100 text-emerald-700 border border-emerald-200"}">
-                                <i data-lucide="${report.displayStatus === "نشط" ? "clock" : "check-circle"}" class="w-3 h-3 ml-1 inline"></i>
+                            <div class="px-3 py-1 font-medium rounded-full text-sm status-badge ${report.displayStatus === 'نشط' ? 'bg-blue-100 text-blue-700 border border-blue-200' : 'bg-emerald-100 text-emerald-700 border border-emerald-200'}">
+                                <i data-lucide="${report.displayStatus === 'نشط' ? 'clock' : 'check-circle'}" class="w-3 h-3 ml-1 inline"></i>
                                 <span class="badge-text">${report.displayStatus}</span>
                             </div>
                         </div>
@@ -518,73 +607,82 @@
                         </div>
                     </div>
                 </div>
-            `).join('');
-            
-            // Re-initialize icons for new elements
-            lucide.createIcons();
-        }
+            `
+          )
+          .join('');
 
+        // Re-initialize icons for new elements
+        lucide.createIcons();
+      }
 
+      // Delete report function
+      window.deleteReport = async function (reportId, reportType) {
+        if (confirm('هل أنت متأكد من حذف هذا البلاغ؟')) {
+          try {
+            // Show loading state
+            showInfo('جاري الحذف...', 'يرجى الانتظار');
 
-        // Delete report function
-        window.deleteReport = async function(reportId, reportType) {
-            if (confirm("هل أنت متأكد من حذف هذا البلاغ؟")) {
-                try {
-                    // Show loading state
-                    showInfo("جاري الحذف...", "يرجى الانتظار");
-                    
-                    // Determine the correct API endpoint based on report type
-                    const endpoint = reportType === 'found' ? '/found' : '/lost';
-                    
-                    // Get the JWT token from localStorage
-                    const authToken = localStorage.getItem('authToken');
-                    if (!authToken) {
-                        showError("خطأ في المصادقة", "يرجى تسجيل الدخول مرة أخرى");
-                        return;
-                    }
-                    
-                    // Make the DELETE request
-                    const response = await fetch(`${API_BASE_URL}${endpoint}/${reportId}`, {
-                        method: 'DELETE',
-                        headers: {
-                            'Authorization': `Bearer ${authToken}`,
-                            'Content-Type': 'application/json'
-                        }
-                    });
-                    
-                    if (response.ok) {
-                        showSuccess("تم بنجاح!", "تم حذف البلاغ بنجاح");
-                        // Re-render reports to refresh the list
-                        renderReports();
-                    } else {
-                        const errorData = await response.json();
-                        if (response.status === 404) {
-                            showError("خطأ", "البلاغ غير موجود أو تم حذفه مسبقاً");
-                        } else if (response.status === 401) {
-                            showError("خطأ في المصادقة", "يرجى تسجيل الدخول مرة أخرى");
-                        } else {
-                            showError("خطأ في الحذف", errorData.error || "حدث خطأ أثناء حذف البلاغ");
-                        }
-                    }
-                } catch (error) {
-                    console.error('Delete report error:', error);
-                    showError("خطأ في الاتصال", "حدث خطأ في الاتصال بالخادم، يرجى المحاولة مرة أخرى");
-                }
+            // Determine the correct API endpoint based on report type
+            const endpoint = reportType === 'found' ? '/found' : '/lost';
+
+            // Get the JWT token from localStorage
+            const authToken = localStorage.getItem('authToken');
+            if (!authToken) {
+              showError('خطأ في المصادقة', 'يرجى تسجيل الدخول مرة أخرى');
+              return;
             }
-        }
 
-        // View report details function
-        window.viewReportDetails = function(reportId, reportType) {
-            window.location.href = `report-details.html?id=${reportId}&type=${reportType}`;
-        }
+            // Make the DELETE request
+            const response = await fetch(
+              `${API_BASE_URL}${endpoint}/${reportId}`,
+              {
+                method: 'DELETE',
+                headers: {
+                  Authorization: `Bearer ${authToken}`,
+                  'Content-Type': 'application/json',
+                },
+              }
+            );
 
-        // View matches function
-        window.viewMatches = function(reportId, reportType) {
-            window.location.href = `report-matches.html?id=${reportId}&type=${reportType}`;
+            if (response.ok) {
+              showSuccess('تم بنجاح!', 'تم حذف البلاغ بنجاح');
+              // Re-render reports to refresh the list
+              renderReports();
+            } else {
+              const errorData = await response.json();
+              if (response.status === 404) {
+                showError('خطأ', 'البلاغ غير موجود أو تم حذفه مسبقاً');
+              } else if (response.status === 401) {
+                showError('خطأ في المصادقة', 'يرجى تسجيل الدخول مرة أخرى');
+              } else {
+                showError(
+                  'خطأ في الحذف',
+                  errorData.error || 'حدث خطأ أثناء حذف البلاغ'
+                );
+              }
+            }
+          } catch (error) {
+            console.error('Delete report error:', error);
+            showError(
+              'خطأ في الاتصال',
+              'حدث خطأ في الاتصال بالخادم، يرجى المحاولة مرة أخرى'
+            );
+          }
         }
+      };
 
-        // Initialize dashboard
-        renderReports();
+      // View report details function
+      window.viewReportDetails = function (reportId, reportType) {
+        window.location.href = `report-details.html?id=${reportId}&type=${reportType}`;
+      };
+
+      // View matches function
+      window.viewMatches = function (reportId, reportType) {
+        window.location.href = `report-matches.html?id=${reportId}&type=${reportType}`;
+      };
+
+      // Initialize dashboard
+      renderReports();
     </script>
-</body>
-</html> 
+  </body>
+</html>

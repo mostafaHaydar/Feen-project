@@ -1,447 +1,547 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>تسجيل الدخول - فين</title>
-    
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/styles.css">
-    
+    <link rel="stylesheet" href="css/styles.css" />
+
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-</head>
-<body class="min-h-screen bg-gradient-to-br from-purple-50 via-cyan-50 to-blue-50 font-['Cairo']">
+  </head>
+  <body
+    class="min-h-screen bg-gradient-to-br from-purple-50 via-cyan-50 to-blue-50 font-['Cairo']"
+  >
     <!-- Background decoration -->
-    <div class="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-purple-200/30 to-cyan-200/30 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-10 left-10 w-96 h-96 bg-gradient-to-tr from-blue-200/30 to-pink-200/30 rounded-full blur-3xl"></div>
+    <div
+      class="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-purple-200/30 to-cyan-200/30 rounded-full blur-3xl"
+    ></div>
+    <div
+      class="absolute bottom-10 left-10 w-96 h-96 bg-gradient-to-tr from-blue-200/30 to-pink-200/30 rounded-full blur-3xl"
+    ></div>
 
     <!-- Header -->
-    <header class="border-b border-purple-100 sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3 cursor-pointer transition-transform hover:scale-105" onclick="window.location.href='index.html'">
-                    <div class="w-10 h-10 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                        <i data-lucide="search" class="w-5 h-5 text-white"></i>
-                    </div>
-                    <div>
-                        <h1 class="text-xl font-bold bg-gradient-to-l from-cyan-600 to-purple-600 bg-clip-text text-transparent">
-                            فين
-                        </h1>
-                        <p class="text-xs bg-gradient-to-l from-cyan-600 to-purple-600 bg-clip-text text-transparent font-bold">FEEN</p>
-                    </div>
-                </div>
-
-                <nav class="hidden md:flex items-center gap-8">
-                    <!-- Navigation items can be added here if needed -->
-                </nav>
-
-                <div class="flex items-center gap-3">
-                    <button class="px-4 py-2 text-purple-600 border border-purple-200 hover:bg-purple-50 font-medium rounded-lg transition-colors" onclick="window.location.href='login.html'">
-                        <i data-lucide="log-in" class="w-4 h-4 ml-1 inline"></i>
-                        تسجيل الدخول
-                    </button>
-                    <button class="px-4 py-2 bg-gradient-to-l from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white font-medium rounded-lg transition-all" onclick="window.location.href='register.html'">
-                        <i data-lucide="user-plus" class="w-4 h-4 ml-1 inline"></i>
-                        إنشاء حساب
-                    </button>
-                </div>
+    <header
+      class="border-b border-purple-100 sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm"
+    >
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <div
+            class="flex items-center gap-3 cursor-pointer transition-transform hover:scale-105"
+            onclick="window.location.href='index.html'"
+          >
+            <div
+              class="w-10 h-10 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg"
+            >
+              <i data-lucide="search" class="w-5 h-5 text-white"></i>
             </div>
+            <div>
+              <h1
+                class="text-xl font-bold bg-gradient-to-l from-cyan-600 to-purple-600 bg-clip-text text-transparent"
+              >
+                فين
+              </h1>
+              <p
+                class="text-xs bg-gradient-to-l from-cyan-600 to-purple-600 bg-clip-text text-transparent font-bold"
+              >
+                FEEN
+              </p>
+            </div>
+          </div>
+
+          <nav class="hidden md:flex items-center gap-8">
+            <!-- Navigation items can be added here if needed -->
+          </nav>
+
+          <div class="flex items-center gap-3">
+            <button
+              class="px-4 py-2 text-purple-600 border border-purple-200 hover:bg-purple-50 font-medium rounded-lg transition-colors"
+              onclick="window.location.href='login.html'"
+            >
+              <i data-lucide="log-in" class="w-4 h-4 ml-1 inline"></i>
+              تسجيل الدخول
+            </button>
+            <button
+              class="px-4 py-2 bg-gradient-to-l from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white font-medium rounded-lg transition-all"
+              onclick="window.location.href='register.html'"
+            >
+              <i data-lucide="user-plus" class="w-4 h-4 ml-1 inline"></i>
+              إنشاء حساب
+            </button>
+          </div>
         </div>
+      </div>
     </header>
 
     <!-- Login Form -->
-    <div class="min-h-screen flex items-center justify-center px-6 py-20 relative">
-        <div class="w-full max-w-md bg-white/80 backdrop-blur-md shadow-2xl border-0 rounded-2xl relative">
-            <div class="p-8">
-                <div class="text-center pb-8">
-                    <div class="w-16 h-16 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <i data-lucide="log-in" class="w-8 h-8 text-white"></i>
-                    </div>
-                    <h2 class="text-2xl font-black text-gray-900">
-                        تسجيل الدخول
-                    </h2>
-                    <p class="text-gray-600 font-medium">
-                        مرحباً بك في فين، سجل دخولك للمتابعة
-                    </p>
-                </div>
-
-                <form id="login-form" class="space-y-6">
-                    <div class="space-y-2">
-                        <label for="email" class="text-gray-700 font-semibold">
-                            البريد الإلكتروني
-                        </label>
-                        <input
-                            id="email"
-                            type="email"
-                            placeholder="example@email.com"
-                            class="w-full h-12 border border-gray-200 focus:border-purple-400 focus:ring-purple-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
-                            required
-                        />
-                    </div>
-
-                    <div class="space-y-2">
-                        <label for="password" class="text-gray-700 font-semibold">
-                            كلمة المرور
-                        </label>
-                        <div class="relative">
-                            <input
-                                id="password"
-                                type="password"
-                                placeholder="••••••••"
-                                class="w-full h-12 border border-gray-200 focus:border-purple-400 focus:ring-purple-400/20 rounded-xl bg-white/70 backdrop-blur px-4 pr-12"
-                                required
-                            />
-                            <button
-                                type="button"
-                                id="toggle-password"
-                                class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                            >
-                                <i data-lucide="eye" class="w-5 h-5"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                  
-                    <button
-                        type="submit"
-                        id="login-submit-btn"
-                        class="w-full h-12 bg-gradient-to-l from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                        <span class="flex items-center justify-center gap-2">
-                            <i data-lucide="log-in" class="w-5 h-5"></i>
-                            تسجيل الدخول
-                        </span>
-                    </button>
-
-                    <div class="text-center">
-                        <p class="text-gray-600 font-medium">
-                            ليس لديك حساب؟
-                            <a href="register.html" class="text-purple-600 hover:text-purple-700 font-bold">
-                                إنشاء حساب جديد
-                            </a>
-                        </p>
-                    </div>
-                </form>
+    <div
+      class="min-h-screen flex items-center justify-center px-6 py-20 relative"
+    >
+      <div
+        class="w-full max-w-md bg-white/80 backdrop-blur-md shadow-2xl border-0 rounded-2xl relative"
+      >
+        <div class="p-8">
+          <div class="text-center pb-8">
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg"
+            >
+              <i data-lucide="log-in" class="w-8 h-8 text-white"></i>
             </div>
+            <h2 class="text-2xl font-black text-gray-900">تسجيل الدخول</h2>
+            <p class="text-gray-600 font-medium">
+              مرحباً بك في فين، سجل دخولك للمتابعة
+            </p>
+          </div>
+
+          <form id="login-form" class="space-y-6">
+            <div class="space-y-2">
+              <label for="email" class="text-gray-700 font-semibold">
+                البريد الإلكتروني
+              </label>
+              <input
+                id="email"
+                type="email"
+                placeholder="example@email.com"
+                class="w-full h-12 border border-gray-200 focus:border-purple-400 focus:ring-purple-400/20 rounded-xl bg-white/70 backdrop-blur px-4"
+                required
+              />
+            </div>
+
+            <div class="space-y-2">
+              <label for="password" class="text-gray-700 font-semibold">
+                كلمة المرور
+              </label>
+              <div class="relative">
+                <input
+                  id="password"
+                  type="password"
+                  placeholder="••••••••"
+                  class="w-full h-12 border border-gray-200 focus:border-purple-400 focus:ring-purple-400/20 rounded-xl bg-white/70 backdrop-blur px-4 pr-12"
+                  required
+                />
+                <button
+                  type="button"
+                  id="toggle-password"
+                  class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                >
+                  <i data-lucide="eye" class="w-5 h-5"></i>
+                </button>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              id="login-submit-btn"
+              class="w-full h-12 bg-gradient-to-l from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <span class="flex items-center justify-center gap-2">
+                <i data-lucide="log-in" class="w-5 h-5"></i>
+                تسجيل الدخول
+              </span>
+            </button>
+
+            <div class="text-center">
+              <p class="text-gray-600 font-medium">
+                ليس لديك حساب؟
+                <a
+                  href="register.html"
+                  class="text-purple-600 hover:text-purple-700 font-bold"
+                >
+                  إنشاء حساب جديد
+                </a>
+              </p>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
 
-     <!-- Footer -->
-    <footer class="bg-gradient-to-br from-gray-800 via-gray-900 to-black text-white py-16">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto">
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div>
-                        <div class="flex items-center gap-3 mb-6">
-                            <div class="w-12 h-12 bg-gradient-to-br from-cyan-400 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
-                                <i data-lucide="search" class="w-6 h-6 text-white"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-black bg-gradient-to-l from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                                    فين
-                                </h3>
-                               <p class="text-xs font-black bg-gradient-to-l from-cyan-400 to-purple-400 bg-clip-text text-transparent font-medium">FEEN</p>
-                           </div>
-                        </div>
-                        <p class="text-gray-300 text-sm font-medium leading-relaxed">
-                            منصة مفتوحة المصدر لمساعدة العائلات في العثور على أفرادها
-                            المفقودين باستخدام أحدث التقنيات
-                        </p>
-                    </div>
-
-                    <div>
-                        <h4 class="font-bold mb-6 text-white text-lg">روابط سريعة</h4>
-                        <ul class="space-y-3 text-sm">
-                            <li>
-                                <a href="login.html" class="text-gray-300 hover:text-cyan-400 transition-colors font-medium">
-                                      تسجيل الدخول
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#how-it-works" class="text-gray-300 hover:text-purple-400 transition-colors font-medium">
-                                    إنشاء حساب
-                                </a>
-                            </li>
-                            <li>
-                                <a href="report-missing.html" class="text-gray-300 hover:text-pink-400 transition-colors font-medium">
-                                                                   الإبلاغ عن شخص مفقود
-     </a>
-                            </li>
-                            <li>
-                                <a href="report-found.html" class="text-gray-300 hover:text-green-400 transition-colors font-medium">
-                                   الإبلاغ عن شخص تائه
-                          </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 class="font-bold mb-6 text-white text-lg">تواصل معنا</h4>
-                        <div class="space-y-4 text-sm">
-                            <div class="flex items-center gap-3">
-                                <div class="w-8 h-8 bg-green-500/20 rounded-xl flex items-center justify-center">
-                                    <i data-lucide="phone" class="w-4 h-4 text-green-400"></i>
-                                </div>
-                                <span class="text-gray-300 font-medium">
-                                    0617183593
-                                </span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-8 h-8 bg-blue-500/20 rounded-xl flex items-center justify-center">
-                                    <i data-lucide="mail" class="w-4 h-4 text-blue-400"></i>
-                                </div>
-                                <span class="text-gray-300 font-medium">
-                                  contact@feen.com
-                                </span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-8 h-8 bg-purple-500/20 rounded-xl flex items-center justify-center">
-                                    <i data-lucide="map-pin" class="w-4 h-4 text-purple-400"></i>
-                                </div>
-                                <span class="text-gray-300 font-medium">
-                                 وجدة، المغرب   
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Footer -->
+    <footer
+      class="bg-gradient-to-br from-gray-800 via-gray-900 to-black text-white py-16"
+    >
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <div class="grid md:grid-cols-3 gap-8">
+            <div>
+              <div class="flex items-center gap-3 mb-6">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-cyan-400 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg"
+                >
+                  <i data-lucide="search" class="w-6 h-6 text-white"></i>
                 </div>
-
-                <div class="border-t border-gray-700 mt-12 pt-8 text-center text-sm text-gray-400">
-                    <p class="font-medium">
-                        &copy; 2025 فين. جميع الحقوق محفوظة. مشروع مفتوح المصدر
-                    </p>
+                <div>
+                  <h3
+                    class="text-xl font-black bg-gradient-to-l from-cyan-400 to-purple-400 bg-clip-text text-transparent"
+                  >
+                    فين
+                  </h3>
+                  <p
+                    class="text-xs font-black bg-gradient-to-l from-cyan-400 to-purple-400 bg-clip-text text-transparent font-medium"
+                  >
+                    FEEN
+                  </p>
                 </div>
+              </div>
+              <p class="text-gray-300 text-sm font-medium leading-relaxed">
+                منصة مفتوحة المصدر لمساعدة العائلات في العثور على أفرادها
+                المفقودين باستخدام أحدث التقنيات
+              </p>
             </div>
-        </div>
-    </footer>
 
+            <div>
+              <h4 class="font-bold mb-6 text-white text-lg">روابط سريعة</h4>
+              <ul class="space-y-3 text-sm">
+                <li>
+                  <a
+                    href="login.html"
+                    class="text-gray-300 hover:text-cyan-400 transition-colors font-medium"
+                  >
+                    تسجيل الدخول
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#how-it-works"
+                    class="text-gray-300 hover:text-purple-400 transition-colors font-medium"
+                  >
+                    إنشاء حساب
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="report-missing.html"
+                    class="text-gray-300 hover:text-pink-400 transition-colors font-medium"
+                  >
+                    الإبلاغ عن شخص مفقود
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="report-found.html"
+                    class="text-gray-300 hover:text-green-400 transition-colors font-medium"
+                  >
+                    الإبلاغ عن شخص تائه
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 class="font-bold mb-6 text-white text-lg">تواصل معنا</h4>
+              <div class="space-y-4 text-sm">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-8 h-8 bg-green-500/20 rounded-xl flex items-center justify-center"
+                  >
+                    <i data-lucide="phone" class="w-4 h-4 text-green-400"></i>
+                  </div>
+                  <span class="text-gray-300 font-medium"> 0617183593 </span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-8 h-8 bg-blue-500/20 rounded-xl flex items-center justify-center"
+                  >
+                    <i data-lucide="mail" class="w-4 h-4 text-blue-400"></i>
+                  </div>
+                  <span class="text-gray-300 font-medium">
+                    contact@feen.com
+                  </span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-8 h-8 bg-purple-500/20 rounded-xl flex items-center justify-center"
+                  >
+                    <i
+                      data-lucide="map-pin"
+                      class="w-4 h-4 text-purple-400"
+                    ></i>
+                  </div>
+                  <span class="text-gray-300 font-medium"> وجدة، المغرب </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="border-t border-gray-700 mt-12 pt-8 text-center text-sm text-gray-400"
+          >
+            <p class="font-medium">
+              &copy; 2025 فين. جميع الحقوق محفوظة. مشروع مفتوح المصدر
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <!-- JavaScript -->
     <script src="js/config.js" type="module"></script>
     <script src="js/notifications.js"></script>
     <script type="module">
-        // Import BASE_URL from config
-        import { BASE_URL } from './js/config.js';
-        
-        // Fallback URL in case config fails to load
-        const API_BASE_URL = BASE_URL || '/api';
-        
-        // Initialize Lucide icons
-        lucide.createIcons();
+      // Import BASE_URL from config
+      import { BASE_URL } from './js/config.js';
 
-        // Check if user is already logged in
-        const isLoggedIn = localStorage.getItem('isLoggedIn');
-        const authToken = localStorage.getItem('authToken');
-        
-        if (isLoggedIn === 'true' && authToken) {
-            // User is already logged in, redirect to dashboard
-            window.location.href = 'dashboard.html';
+      // Fallback URL in case config fails to load
+      const API_BASE_URL = BASE_URL || '/api';
+
+      // Initialize Lucide icons
+      lucide.createIcons();
+
+      // Check if user is already logged in
+      const isLoggedIn = localStorage.getItem('isLoggedIn');
+      const authToken = localStorage.getItem('authToken');
+
+      if (isLoggedIn === 'true' && authToken) {
+        // User is already logged in, redirect to dashboard
+        window.location.href = 'dashboard.html';
+      }
+
+      // Clear any previous registration data on login page
+      localStorage.removeItem('registeredUser');
+
+      // Password toggle functionality
+      document
+        .getElementById('toggle-password')
+        .addEventListener('click', function () {
+          const passwordInput = document.getElementById('password');
+          const icon = this.querySelector('i');
+
+          if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.setAttribute('data-lucide', 'eye-off');
+          } else {
+            passwordInput.type = 'password';
+            icon.setAttribute('data-lucide', 'eye');
+          }
+          lucide.createIcons();
+        });
+
+      // Real-time email validation
+      document.getElementById('email').addEventListener('blur', function () {
+        const email = this.value.trim().toLowerCase();
+        const allowedDomains = [
+          'gmail.com',
+          'hotmail.com',
+          'yahoo.com',
+          'outlook.com',
+          'icloud.com',
+        ];
+        const emailDomain = email.split('@')[1];
+
+        if (email && !allowedDomains.includes(emailDomain)) {
+          this.style.borderColor = '#ef4444';
+          this.style.boxShadow = '0 0 0 3px rgba(239, 68, 68, 0.1)';
+        } else {
+          this.style.borderColor = '';
+          this.style.boxShadow = '';
         }
+      });
 
-        // Clear any previous registration data on login page
-        localStorage.removeItem('registeredUser');
+      // Real-time password validation
+      document
+        .getElementById('password')
+        .addEventListener('input', function () {
+          const password = this.value;
+          const minLength = 8;
 
-        // Password toggle functionality
-        document.getElementById('toggle-password').addEventListener('click', function() {
-            const passwordInput = document.getElementById('password');
-            const icon = this.querySelector('i');
-            
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                icon.setAttribute('data-lucide', 'eye-off');
-            } else {
-                passwordInput.type = 'password';
-                icon.setAttribute('data-lucide', 'eye');
-            }
-            lucide.createIcons();
+          if (password.length > 0 && password.length < minLength) {
+            this.style.borderColor = '#f59e0b';
+            this.style.boxShadow = '0 0 0 3px rgba(245, 158, 11, 0.1)';
+          } else if (password.length >= minLength) {
+            this.style.borderColor = '#10b981';
+            this.style.boxShadow = '0 0 0 3px rgba(16, 185, 129, 0.1)';
+          } else {
+            this.style.borderColor = '';
+            this.style.boxShadow = '';
+          }
         });
 
-        // Real-time email validation
-        document.getElementById('email').addEventListener('blur', function() {
-            const email = this.value.trim().toLowerCase();
-            const allowedDomains = ['gmail.com', 'hotmail.com', 'yahoo.com', 'outlook.com', 'icloud.com'];
-            const emailDomain = email.split('@')[1];
-            
-            if (email && !allowedDomains.includes(emailDomain)) {
-                this.style.borderColor = '#ef4444';
-                this.style.boxShadow = '0 0 0 3px rgba(239, 68, 68, 0.1)';
-            } else {
-                this.style.borderColor = '';
-                this.style.boxShadow = '';
-            }
-        });
+      // Login form submission
+      document
+        .getElementById('login-form')
+        .addEventListener('submit', async function (e) {
+          e.preventDefault();
 
-        // Real-time password validation
-        document.getElementById('password').addEventListener('input', function() {
-            const password = this.value;
-            const minLength = 8;
-            
-            if (password.length > 0 && password.length < minLength) {
-                this.style.borderColor = '#f59e0b';
-                this.style.boxShadow = '0 0 0 3px rgba(245, 158, 11, 0.1)';
-            } else if (password.length >= minLength) {
-                this.style.borderColor = '#10b981';
-                this.style.boxShadow = '0 0 0 3px rgba(16, 185, 129, 0.1)';
-            } else {
-                this.style.borderColor = '';
-                this.style.boxShadow = '';
-            }
-        });
+          const email = document
+            .getElementById('email')
+            .value.trim()
+            .toLowerCase();
+          const password = document.getElementById('password').value;
 
-        // Login form submission
-        document.getElementById('login-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value.trim().toLowerCase();
-            const password = document.getElementById('password').value;
-            
-            // Validate required fields
-            if (!email || !password) {
-                showError('بيانات ناقصة', 'يرجى ملء جميع الحقول المطلوبة');
-                return;
-            }
-            
-            // Validate email domain
-            const allowedDomains = ['gmail.com', 'hotmail.com', 'yahoo.com', 'outlook.com', 'icloud.com'];
-            const emailDomain = email.split('@')[1];
-            
-            if (!allowedDomains.includes(emailDomain)) {
-                showError('بريد إلكتروني غير مدعوم', 'يرجى استخدام Gmail, Hotmail, Yahoo, Outlook, أو iCloud');
-                return;
-            }
-            
-            // Validate password length
-            if (password.length < 6) {
-                showError('كلمة مرور ضعيفة', 'كلمة المرور يجب أن تكون 6 أحرف على الأقل');
-                return;
-            }
-            
-            // Show loading state
-            const submitButton = document.getElementById('login-submit-btn');
-            const buttonSpan = submitButton.querySelector('span');
-            const originalContent = buttonSpan.innerHTML;
-            buttonSpan.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> جاري تسجيل الدخول...';
-            submitButton.disabled = true;
-            lucide.createIcons();
-            
+          // Validate required fields
+          if (!email || !password) {
+            showError('بيانات ناقصة', 'يرجى ملء جميع الحقول المطلوبة');
+            return;
+          }
+
+          // Validate email domain
+          const allowedDomains = [
+            'gmail.com',
+            'hotmail.com',
+            'yahoo.com',
+            'outlook.com',
+            'icloud.com',
+          ];
+          const emailDomain = email.split('@')[1];
+
+          if (!allowedDomains.includes(emailDomain)) {
+            showError(
+              'بريد إلكتروني غير مدعوم',
+              'يرجى استخدام Gmail, Hotmail, Yahoo, Outlook, أو iCloud'
+            );
+            return;
+          }
+
+          // Validate password length
+          if (password.length < 6) {
+            showError(
+              'كلمة مرور ضعيفة',
+              'كلمة المرور يجب أن تكون 6 أحرف على الأقل'
+            );
+            return;
+          }
+
+          // Show loading state
+          const submitButton = document.getElementById('login-submit-btn');
+          const buttonSpan = submitButton.querySelector('span');
+          const originalContent = buttonSpan.innerHTML;
+          buttonSpan.innerHTML =
+            '<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> جاري تسجيل الدخول...';
+          submitButton.disabled = true;
+          lucide.createIcons();
+
+          try {
+            // API call to backend - using the exact route from backend
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+
+            const response = await fetch(`${API_BASE_URL}/reporter/login`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                email: email,
+                password: password,
+              }),
+              signal: controller.signal,
+            });
+
+            clearTimeout(timeoutId);
+
+            let data;
             try {
-                // API call to backend - using the exact route from backend
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
-                
-                const response = await fetch(`${API_BASE_URL}/reporter/login`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        email: email,
-                        password: password
-                    }),
-                    signal: controller.signal
-                });
-                
-                clearTimeout(timeoutId);
-                
-                let data;
-                try {
-                    data = await response.json();
-                } catch (parseError) {
-                    console.error('Failed to parse response:', parseError);
-                    showError('استجابة غير صحيحة', 'يرجى المحاولة مرة أخرى');
-                    return;
-                }
-                
-                if (response.ok) {
-                    // Login successful
-                    showSuccess('تم تسجيل الدخول بنجاح', 'مرحباً بك في فين!');
-                    
-                    // Store basic user data and token
-                    if (data.account && data.token) {
-                        localStorage.setItem('isLoggedIn', 'true');
-                        localStorage.setItem('authToken', data.token);
-                        
-                        
-                        // Fetch complete user data using the token
-                        try {
-                            const userResponse = await fetch(`${API_BASE_URL}/reporter/me`, {
-                                method: 'GET',
-                                headers: {
-                                    'Authorization': `Bearer ${data.token}`
-                                }
-                            });
-                            
-                            if (userResponse.ok) {
-                                const userData = await userResponse.json();
-                                localStorage.setItem('userData', JSON.stringify(userData));
-                            } else {
-                                // If fetching user data fails, still store basic account data
-                                localStorage.setItem('userData', JSON.stringify(data.account));
-                            }
-                        } catch (userError) {
-                            console.error('Error fetching user data:', userError);
-                            // If fetching user data fails, still store basic account data
-                            localStorage.setItem('userData', JSON.stringify(data.account));
-                        }
-                    }
-                    
-                    // Redirect to dashboard after delay
-                    setTimeout(() => {
-                        window.location.href = 'dashboard.html';
-                    }, 1500);
-                    
-                } else {
-                    // Handle different error cases based on backend error codes
-                    let errorMessage = 'حدث خطأ أثناء تسجيل الدخول';
-                    let errorTitle = 'خطأ في تسجيل الدخول';
-                    
-                    if (response.status === 401) {
-                        if (data.error === 'INVALID_CREDENTIALS') {
-                            errorTitle = 'بيانات غير صحيحة';
-                            errorMessage = 'البريد الإلكتروني أو كلمة المرور غير صحيحة';
-                        } else {
-                            errorTitle = 'فشل في تسجيل الدخول';
-                            errorMessage = 'يرجى التحقق من بياناتك والمحاولة مرة أخرى';
-                        }
-                    } else if (response.status === 500) {
-                        errorTitle = 'خطأ في الخادم';
-                        errorMessage = 'يرجى المحاولة مرة أخرى لاحقاً';
-                    } else {
-                        errorTitle = 'خطأ غير متوقع';
-                        errorMessage = 'يرجى المحاولة مرة أخرى';
-                    }
-                    
-                    showError(errorTitle, errorMessage);
-                }
-                
-            } catch (error) {
-                console.error('Login error:', error);
-                let errorMessage = 'حدث خطأ في الاتصال، يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى';
-                let errorTitle = 'خطأ في الاتصال';
-                
-                if (error.name === 'AbortError') {
-                    errorTitle = 'انتهت مهلة الاتصال';
-                    errorMessage = 'يرجى المحاولة مرة أخرى';
-                } else if (error.name === 'TypeError' && error.message.includes('fetch')) {
-                    errorTitle = 'لا يمكن الاتصال بالخادم';
-                    errorMessage = 'يرجى التحقق من اتصالك بالإنترنت';
-                }
-                
-                showError(errorTitle, errorMessage);
-            } finally {
-                // Reset button state
-                buttonSpan.innerHTML = originalContent;
-                submitButton.disabled = false;
-                lucide.createIcons();
+              data = await response.json();
+            } catch (parseError) {
+              console.error('Failed to parse response:', parseError);
+              showError('استجابة غير صحيحة', 'يرجى المحاولة مرة أخرى');
+              return;
             }
+
+            if (response.ok) {
+              // Login successful
+              showSuccess('تم تسجيل الدخول بنجاح', 'مرحباً بك في فين!');
+
+              // Store basic user data and token
+              if (data.account && data.token) {
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('authToken', data.token);
+
+                // Fetch complete user data using the token
+                try {
+                  const userResponse = await fetch(
+                    `${API_BASE_URL}/reporter/me`,
+                    {
+                      method: 'GET',
+                      headers: {
+                        Authorization: `Bearer ${data.token}`,
+                      },
+                    }
+                  );
+
+                  if (userResponse.ok) {
+                    const userData = await userResponse.json();
+                    localStorage.setItem('userData', JSON.stringify(userData));
+                  } else {
+                    // If fetching user data fails, still store basic account data
+                    localStorage.setItem(
+                      'userData',
+                      JSON.stringify(data.account)
+                    );
+                  }
+                } catch (userError) {
+                  console.error('Error fetching user data:', userError);
+                  // If fetching user data fails, still store basic account data
+                  localStorage.setItem(
+                    'userData',
+                    JSON.stringify(data.account)
+                  );
+                }
+              }
+
+              // Redirect to dashboard after delay
+              setTimeout(() => {
+                window.location.href = 'dashboard.html';
+              }, 1500);
+            } else {
+              // Handle different error cases based on backend error codes
+              let errorMessage = 'حدث خطأ أثناء تسجيل الدخول';
+              let errorTitle = 'خطأ في تسجيل الدخول';
+
+              if (response.status === 401) {
+                if (data.error === 'INVALID_CREDENTIALS') {
+                  errorTitle = 'بيانات غير صحيحة';
+                  errorMessage = 'البريد الإلكتروني أو كلمة المرور غير صحيحة';
+                } else {
+                  errorTitle = 'فشل في تسجيل الدخول';
+                  errorMessage = 'يرجى التحقق من بياناتك والمحاولة مرة أخرى';
+                }
+              } else if (response.status === 500) {
+                errorTitle = 'خطأ في الخادم';
+                errorMessage = 'يرجى المحاولة مرة أخرى لاحقاً';
+              } else {
+                errorTitle = 'خطأ غير متوقع';
+                errorMessage = 'يرجى المحاولة مرة أخرى';
+              }
+
+              showError(errorTitle, errorMessage);
+            }
+          } catch (error) {
+            console.error('Login error:', error);
+            let errorMessage =
+              'حدث خطأ في الاتصال، يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى';
+            let errorTitle = 'خطأ في الاتصال';
+
+            if (error.name === 'AbortError') {
+              errorTitle = 'انتهت مهلة الاتصال';
+              errorMessage = 'يرجى المحاولة مرة أخرى';
+            } else if (
+              error.name === 'TypeError' &&
+              error.message.includes('fetch')
+            ) {
+              errorTitle = 'لا يمكن الاتصال بالخادم';
+              errorMessage = 'يرجى التحقق من اتصالك بالإنترنت';
+            }
+
+            showError(errorTitle, errorMessage);
+          } finally {
+            // Reset button state
+            buttonSpan.innerHTML = originalContent;
+            submitButton.disabled = false;
+            lucide.createIcons();
+          }
         });
     </script>
-</body>
-</html> 
+  </body>
+</html>
