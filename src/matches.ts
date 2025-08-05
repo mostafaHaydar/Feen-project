@@ -3,7 +3,7 @@ import { Hono } from 'hono';
 import { initializePrismaClient } from './common';
 import { convertR2FileToBase64 } from './common';
 import { compareFaces } from './common';
-import { middlewareVerifyReporterJWT } from './reporters';
+import { middlewareVerifyReporterJWT } from './auth';
 
 export default function Matche(api: Hono<{ Bindings: CloudflareBindings }>) {
   api.get(

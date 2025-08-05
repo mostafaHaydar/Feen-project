@@ -208,8 +208,9 @@ body {
   cursor: pointer;
   transition: all 0.2s ease;
   flex-shrink: 0;
-  margin-right: -8px;
-  margin-top: -4px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
 }
 
 .notification-close:hover {
