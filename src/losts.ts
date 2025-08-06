@@ -67,13 +67,7 @@ export default function Lost(api: Hono<{ Bindings: CloudflareBindings }>) {
           data: sanitizedData,
         });
 
-        return c.json(
-          {
-            message: 'Missing person report created successfully',
-            report: lost,
-          },
-          201
-        );
+        return c.json(lost, 201);
       } catch (error: any) {
         console.error('Error creating lost person report:', error);
         return c.json(

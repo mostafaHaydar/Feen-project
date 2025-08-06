@@ -64,14 +64,8 @@ export default function Found(api: Hono<{ Bindings: CloudflareBindings }>) {
         const found = await prisma.founds.create({
           data: sanitizedData,
         });
-
-        return c.json(
-          {
-            message: 'Found person report created successfully',
-            report: found,
-          },
-          201
-        );
+        
+        return c.json(found, 201);
       } catch (error: any) {
         console.error('Error creating found person report:', error);
         return c.json(
@@ -104,7 +98,6 @@ export default function Found(api: Hono<{ Bindings: CloudflareBindings }>) {
           contactInfo: true,
           createdAt: true,
           updatedAt: true,
-          // Exclude photo fields for list view to reduce payload size
         },
       });
 
@@ -357,14 +350,14 @@ export default function Found(api: Hono<{ Bindings: CloudflareBindings }>) {
         });
 
         // Update database with photo information
-        await prisma.founds.update({
+        const newImageData = await prisma.founds.update({
           where: { id: foundId },
           data: {
             photo: fileName,
             photoMimeType: type.mime,
           },
         });
-
+        console.log('im here', newImageData);
         return c.json(
           {
             message: 'Photo uploaded successfully',

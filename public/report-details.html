@@ -596,7 +596,6 @@
       async function fetchReportPhoto(reportId, reportType) {
         const authToken = localStorage.getItem('authToken');
         if (!authToken) return null;
-
         try {
           const endpoint = reportType === 'found' ? 'found' : 'lost';
           const response = await fetch(
@@ -668,14 +667,23 @@
           dateElement.textContent = formatDateTime(report.foundDate);
         } else {
           locationLabel.textContent = 'آخر مكان شوهد فيه';
-          locationElement.textContent = report.lastSeen || 'غير محدد';
+          locationElement.textContent = report.lastSeenLocation || 'غير محدد';
           dateLabel.textContent = 'تاريخ آخر مشاهدة';
           dateElement.textContent = formatDateTime(report.lastSeenDate);
         }
 
         // Update additional information
-        document.getElementById('report-description').textContent =
-          report.description || 'لا توجد وصف إضافي';
+        if (isFound) {
+          document.getElementById('report-description').textContent =
+            report.description || 'لا توجد وصف إضافي';
+        } else {
+          // Combine disease and mentalHealth for lost reports
+          let desc = '';
+          if (report.disease) desc += `الحالة الصحية: ${report.disease}`;
+          if (report.mentalHealth) desc += (desc ? ' | ' : '') + `الحالة النفسية: ${report.mentalHealth}`;
+          document.getElementById('report-description').textContent =
+            desc || 'لا توجد وصف إضافي';
+        }
         document.getElementById('report-contact').textContent =
           report.contactInfo || 'غير محدد';
 

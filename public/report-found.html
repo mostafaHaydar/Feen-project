@@ -461,7 +461,6 @@
     <script type="module">
       // Import BASE_URL from config
       import { BASE_URL } from './js/config.js';
-
       // Fallback URL in case config fails to load
       const API_BASE_URL = BASE_URL || '/api';
 
@@ -551,7 +550,7 @@
           console.error('Failed to convert file to base64');
           return false;
         }
-
+        console.log("imherr")
         try {
           const controller = new AbortController();
           const timeoutId = setTimeout(() => controller.abort(), 30000);
@@ -728,7 +727,6 @@
                 buttonSpan.innerHTML =
                   '<i data-lucide="loader-2" class="w-6 h-6 animate-spin"></i> جاري رفع الصورة...';
                 lucide.createIcons();
-
                 const imageUploadSuccess = await uploadImageToFound(
                   data.id,
                   photoFile
@@ -805,8 +803,5 @@
           }
         });
     </script>
-
-    <!-- Notification System -->
-    <script src="js/notifications.js"></script>
   </body>
 </html>
