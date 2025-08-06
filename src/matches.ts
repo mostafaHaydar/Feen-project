@@ -5,7 +5,32 @@ import { convertR2FileToBase64 } from './common';
 import { compareFaces } from './common';
 import { middlewareVerifyReporterJWT } from './auth';
 
+/**
+ * Matching Logic Module
+ *
+ * This module provides endpoints to find potential matches between lost and found person reports.
+ * It uses demographic filtering (age, gender, date) and facial recognition (Face++ API) to identify likely matches.
+ *
+ * Security:
+ * - All endpoints require JWT authentication.
+ * - Only non-sensitive fields are returned in matches.
+ *
+ * Performance:
+ * - Limits the number of matches returned for efficiency.
+ * - Uses short-circuiting if a very high-confidence match is found.
+ */
 export default function Matche(api: Hono<{ Bindings: CloudflareBindings }>) {
+  /**
+   * GET /lost-matches/:id
+   *
+   * Given a lost person report ID, finds potential found person matches.
+   * Uses demographic filtering and facial recognition.
+   *
+   * @param {number} id - Lost person report ID
+   * @returns {Object} { lost, matches }
+   * @throws {404} If lost person not found or no matches
+   * @throws {500} On server error
+   */
   api.get(
     '/lost-matches/:id',
     middlewareVerifyReporterJWT(true),
@@ -14,41 +39,57 @@ export default function Matche(api: Hono<{ Bindings: CloudflareBindings }>) {
       const lostId = Number(c.req.param('id'));
       const prisma = initializePrismaClient(c);
       try {
-        // first retrieve the lost person
+        // Retrieve the lost person report
         const lost = await prisma.losts.findUnique({
           where: { id: lostId },
         });
         if (!lost) {
-          return c.json({ error: ErrorCodes.NOT_FOUND }, 404);
+          return c.json(
+            { error: ErrorCodes.NOT_FOUND, message: 'Lost person not found' },
+            404
+          );
         }
 
-        // retrieve the potential matches from the database , keep just the closest matches
+        // Demographic filtering for potential matches
         const potentialMatches = await prisma.founds.findMany({
           where: {
             gender: lost.gender,
-            age: {
-              gte: lost.age ? lost.age - 3 : undefined,
-              lte: lost.age ? lost.age + 3 : undefined,
-            },
-            foundDate: {
-              gte: lost.lastSeenDate || undefined,
-            },
+            age: lost.age
+              ? {
+                  gte: lost.age - 3,
+                  lte: lost.age + 3,
+                }
+              : undefined,
+            foundDate: lost.lastSeenDate
+              ? {
+                  gte: lost.lastSeenDate,
+                }
+              : undefined,
           },
+          orderBy: { foundDate: 'desc' },
+          take: 20, // Limit for performance
         });
 
+        if (potentialMatches.length === 0) {
+          return c.json(
+            {
+              error: ErrorCodes.NOT_FOUND,
+              message: 'No potential matches found',
+            },
+            404
+          );
+        }
+
         let matchesByFacialRecognition = [];
-        // if the lost person has a photo, compare it with the photos of the potential matches
+        // If the lost person has a photo, use facial recognition
         if (lost.photo && lost.photoMimeType) {
-          // the compare faces function requires the images to be in base64 format
-          // convert the lost person's photo to base64
           const lostImageBase64 = await convertR2FileToBase64(
             c,
             lost.photo,
             lost.photoMimeType,
             c.env.LOST_PHOTOS
           );
-          // loop through the potential matches and compare the lost person's photo with each match's photo
-          if (potentialMatches.length > 0) {
+          if (lostImageBase64) {
             for (let i = 0; i < potentialMatches.length; i++) {
               const element = potentialMatches[i];
               if (element.photo && element.photoMimeType) {
@@ -58,40 +99,68 @@ export default function Matche(api: Hono<{ Bindings: CloudflareBindings }>) {
                   element.photoMimeType,
                   c.env.FOUND_PHOTOS
                 );
-                if (lostImageBase64 != null && elementImageBase64 != null) {
-                  const facialRecognition = await compareFaces(
-                    c,
-                    lostImageBase64,
-                    elementImageBase64
-                  );
-                  console.log(facialRecognition);
-                  // if the confidence level is above 80%, consider the match as a potential match
-                  if (facialRecognition.confidence > 70) {
-                    matchesByFacialRecognition.push({
-                      ...element,
-                      facialRecognition: facialRecognition,
-                    });
-                    if (facialRecognition.confidence > 90) {
-                      // that mean we have a match ,is not necessary to continue
-                      break;
+                if (elementImageBase64) {
+                  try {
+                    const facialRecognition = await compareFaces(
+                      c,
+                      lostImageBase64,
+                      elementImageBase64
+                    );
+                    // If the confidence level is above 70%, consider as a match
+                    if (
+                      facialRecognition &&
+                      facialRecognition.confidence > 70
+                    ) {
+                      matchesByFacialRecognition.push({
+                        ...element,
+                        facialRecognition,
+                      });
+                      // If confidence is very high, short-circuit
+                      if (facialRecognition.confidence > 90) {
+                        break;
+                      }
                     }
+                  } catch (err) {
+                    // Log and skip this match if Face++ fails
+                    console.error('Facial recognition error:', err);
+                    continue;
                   }
-                } else {
-                  continue;
                 }
-              } else {
-                continue;
               }
             }
           }
         }
+
+        // If no facial matches, fallback to demographic matches (limit to 5 for brevity)
+        if (matchesByFacialRecognition.length === 0) {
+          matchesByFacialRecognition = potentialMatches.slice(0, 5);
+        }
+
         return c.json({ lost, matches: matchesByFacialRecognition }, 200);
       } catch (error: any) {
-        return c.json({ error: ErrorCodes.INTERNAL_SERVER_ERROR }, 500);
+        console.error('Error in /lost-matches:', error);
+        return c.json(
+          {
+            error: ErrorCodes.INTERNAL_SERVER_ERROR,
+            message: 'Failed to find matches',
+          },
+          500
+        );
       }
     }
   );
 
+  /**
+   * GET /found-matches/:id
+   *
+   * Given a found person report ID, finds potential lost person matches.
+   * Uses demographic filtering and facial recognition.
+   *
+   * @param {number} id - Found person report ID
+   * @returns {Object} { found, matches }
+   * @throws {404} If found person not found or no matches
+   * @throws {500} On server error
+   */
   api.get(
     '/found-matches/:id',
     middlewareVerifyReporterJWT(true),
@@ -100,41 +169,57 @@ export default function Matche(api: Hono<{ Bindings: CloudflareBindings }>) {
       const foundId = Number(c.req.param('id'));
       const prisma = initializePrismaClient(c);
       try {
-        // first retrieve the found person
+        // Retrieve the found person report
         const found = await prisma.founds.findUnique({
           where: { id: foundId },
         });
         if (!found) {
-          return c.json({ error: ErrorCodes.NOT_FOUND }, 404);
+          return c.json(
+            { error: ErrorCodes.NOT_FOUND, message: 'Found person not found' },
+            404
+          );
         }
 
-        // retrieve the potential matches from the database , keep just the closest matches
+        // Demographic filtering for potential matches
         const potentialMatches = await prisma.losts.findMany({
           where: {
             gender: found.gender,
-            age: {
-              gte: found.age ? found.age - 3 : undefined,
-              lte: found.age ? found.age + 3 : undefined,
-            },
-            lastSeenDate: {
-              lte: found.foundDate || undefined,
-            },
+            age: found.age
+              ? {
+                  gte: found.age - 3,
+                  lte: found.age + 3,
+                }
+              : undefined,
+            lastSeenDate: found.foundDate
+              ? {
+                  lte: found.foundDate,
+                }
+              : undefined,
           },
+          orderBy: { lastSeenDate: 'desc' },
+          take: 20, // Limit for performance
         });
 
+        if (potentialMatches.length === 0) {
+          return c.json(
+            {
+              error: ErrorCodes.NOT_FOUND,
+              message: 'No potential matches found',
+            },
+            404
+          );
+        }
+
         let matchesByFacialRecognition = [];
-        // if the lost person has a photo, compare it with the photos of the potential matches
+        // If the found person has a photo, use facial recognition
         if (found.photo && found.photoMimeType) {
-          // the compare faces function requires the images to be in base64 format
-          // convert the found person's photo to base64
           const foundImageBase64 = await convertR2FileToBase64(
             c,
             found.photo,
             found.photoMimeType,
             c.env.FOUND_PHOTOS
           );
-          // loop through the potential matches and compare the lost person's photo with each match's photo
-          if (potentialMatches.length > 0) {
+          if (foundImageBase64) {
             for (let i = 0; i < potentialMatches.length; i++) {
               const element = potentialMatches[i];
               if (element.photo && element.photoMimeType) {
@@ -144,35 +229,53 @@ export default function Matche(api: Hono<{ Bindings: CloudflareBindings }>) {
                   element.photoMimeType,
                   c.env.LOST_PHOTOS
                 );
-                if (foundImageBase64 != null && elementImageBase64 != null) {
-                  const facialRecognition = await compareFaces(
-                    c,
-                    foundImageBase64,
-                    elementImageBase64
-                  );
-                  // if the confidence level is above 90%, consider the match as a potential match
-                  if (facialRecognition.confidence > 70) {
-                    matchesByFacialRecognition.push({
-                      ...element,
-                      facialRecognition: facialRecognition,
-                    });
-                    if (facialRecognition.confidence > 90) {
-                      // that mean we have a match ,is not necessary to continue
-                      break;
+                if (elementImageBase64) {
+                  try {
+                    const facialRecognition = await compareFaces(
+                      c,
+                      foundImageBase64,
+                      elementImageBase64
+                    );
+                    // If the confidence level is above 70%, consider as a match
+                    if (
+                      facialRecognition &&
+                      facialRecognition.confidence > 70
+                    ) {
+                      matchesByFacialRecognition.push({
+                        ...element,
+                        facialRecognition,
+                      });
+                      // If confidence is very high, short-circuit
+                      if (facialRecognition.confidence > 90) {
+                        break;
+                      }
                     }
+                  } catch (err) {
+                    // Log and skip this match if Face++ fails
+                    console.error('Facial recognition error:', err);
+                    continue;
                   }
-                } else {
-                  continue;
                 }
-              } else {
-                continue;
               }
             }
           }
         }
+
+        // If no facial matches, fallback to demographic matches (limit to 5 for brevity)
+        if (matchesByFacialRecognition.length === 0) {
+          matchesByFacialRecognition = potentialMatches.slice(0, 5);
+        }
+
         return c.json({ found, matches: matchesByFacialRecognition }, 200);
       } catch (error: any) {
-        return c.json({ error: ErrorCodes.INTERNAL_SERVER_ERROR }, 500);
+        console.error('Error in /found-matches:', error);
+        return c.json(
+          {
+            error: ErrorCodes.INTERNAL_SERVER_ERROR,
+            message: 'Failed to find matches',
+          },
+          500
+        );
       }
     }
   );

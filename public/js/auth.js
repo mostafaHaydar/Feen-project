@@ -6,10 +6,10 @@
  * @returns {boolean} True if user is logged in, false otherwise
  */
 function isAuthenticated() {
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    const authToken = localStorage.getItem('authToken');
-    
-    return !!(isLoggedIn && authToken);
+  const isLoggedIn = localStorage.getItem('isLoggedIn');
+  const authToken = localStorage.getItem('authToken');
+
+  return !!(isLoggedIn && authToken);
 }
 
 /**
@@ -17,16 +17,16 @@ function isAuthenticated() {
  * @returns {object|null} User data object or null if not found
  */
 function getUserData() {
-    const userData = localStorage.getItem('userData');
-    if (userData) {
-        try {
-            return JSON.parse(userData);
-        } catch (error) {
-            console.error('Error parsing user data:', error);
-            return null;
-        }
+  const userData = localStorage.getItem('userData');
+  if (userData) {
+    try {
+      return JSON.parse(userData);
+    } catch (error) {
+      console.error('Error parsing user data:', error);
+      return null;
     }
-    return null;
+  }
+  return null;
 }
 
 /**
@@ -34,7 +34,7 @@ function getUserData() {
  * @returns {string|null} JWT token or null if not found
  */
 function getAuthToken() {
-    return localStorage.getItem('authToken');
+  return localStorage.getItem('authToken');
 }
 
 /**
@@ -43,21 +43,21 @@ function getAuthToken() {
  * @returns {boolean} True if authenticated, false if redirected
  */
 function checkAuthAndRedirect(redirectUrl = 'index.html') {
-    if (!isAuthenticated()) {
-        // Show error message if notifications are available
-        if (typeof showError === 'function') {
-            showError('يجب تسجيل الدخول', 'يرجى تسجيل الدخول للوصول إلى هذه الصفحة');
-        }
-        
-        // Redirect after a short delay
-        setTimeout(() => {
-            window.location.href = redirectUrl;
-        }, 2000);
-        
-        return false;
+  if (!isAuthenticated()) {
+    // Show error message if notifications are available
+    if (typeof showError === 'function') {
+      showError('يجب تسجيل الدخول', 'يرجى تسجيل الدخول للوصول إلى هذه الصفحة');
     }
-    
-    return true;
+
+    // Redirect after a short delay
+    setTimeout(() => {
+      window.location.href = redirectUrl;
+    }, 2000);
+
+    return false;
+  }
+
+  return true;
 }
 
 /**
@@ -65,7 +65,7 @@ function checkAuthAndRedirect(redirectUrl = 'index.html') {
  * @returns {boolean} True if authenticated, false if redirected
  */
 function checkAuthAndRedirectToLogin() {
-    return checkAuthAndRedirect('login.html');
+  return checkAuthAndRedirect('login.html');
 }
 
 /**
@@ -73,7 +73,7 @@ function checkAuthAndRedirectToLogin() {
  * @returns {boolean} True if authenticated, false if redirected
  */
 function checkAuthAndRedirectToHome() {
-    return checkAuthAndRedirect('index.html');
+  return checkAuthAndRedirect('index.html');
 }
 
 /**
@@ -81,21 +81,21 @@ function checkAuthAndRedirectToHome() {
  * @param {string} redirectUrl - URL to redirect to after logout (default: 'login.html')
  */
 function logout(redirectUrl = 'login.html') {
-    // Clear all authentication data
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('userData');
-    localStorage.removeItem('rememberMe');
-    
-    // Show success message if notifications are available
-    if (typeof showSuccess === 'function') {
-        showSuccess('تم تسجيل الخروج', 'تم تسجيل الخروج بنجاح');
-    }
-    
-    // Redirect after a short delay
-    setTimeout(() => {
-        window.location.href = redirectUrl;
-    }, 1500);
+  // Clear all authentication data
+  localStorage.removeItem('isLoggedIn');
+  localStorage.removeItem('authToken');
+  localStorage.removeItem('userData');
+  localStorage.removeItem('rememberMe');
+
+  // Show success message if notifications are available
+  if (typeof showSuccess === 'function') {
+    showSuccess('تم تسجيل الخروج', 'تم تسجيل الخروج بنجاح');
+  }
+
+  // Redirect after a short delay
+  setTimeout(() => {
+    window.location.href = redirectUrl;
+  }, 1500);
 }
 
 /**
@@ -103,19 +103,19 @@ function logout(redirectUrl = 'login.html') {
  * @param {string} elementId - ID of the element to update (default: 'user-name')
  */
 function updateUserNameDisplay(elementId = 'user-name') {
-    const userData = getUserData();
-    const element = document.getElementById(elementId);
-    
-    if (element) {
-        if (userData && userData.name) {
-            element.textContent = userData.name;
-        } else if (userData && userData.email) {
-            // Fallback to email if name is not available
-            element.textContent = userData.email;
-        } else {
-            element.textContent = 'مستخدم';
-        }
+  const userData = getUserData();
+  const element = document.getElementById(elementId);
+
+  if (element) {
+    if (userData && userData.name) {
+      element.textContent = userData.name;
+    } else if (userData && userData.email) {
+      // Fallback to email if name is not available
+      element.textContent = userData.email;
+    } else {
+      element.textContent = 'مستخدم';
     }
+  }
 }
 
 /**
@@ -123,16 +123,16 @@ function updateUserNameDisplay(elementId = 'user-name') {
  * @param {string} elementId - ID of the element to update (default: 'user-email')
  */
 function updateUserEmailDisplay(elementId = 'user-email') {
-    const userData = getUserData();
-    const element = document.getElementById(elementId);
-    
-    if (element) {
-        if (userData && userData.email) {
-            element.textContent = userData.email;
-        } else {
-            element.textContent = 'مستخدم';
-        }
+  const userData = getUserData();
+  const element = document.getElementById(elementId);
+
+  if (element) {
+    if (userData && userData.email) {
+      element.textContent = userData.email;
+    } else {
+      element.textContent = 'مستخدم';
     }
+  }
 }
 
 /**
@@ -145,23 +145,23 @@ function updateUserEmailDisplay(elementId = 'user-email') {
  * @returns {boolean} True if authenticated, false if redirected
  */
 function initAuth(options = {}) {
-    const {
-        redirectUrl = 'index.html',
-        updateEmail = true,
-        emailElementId = 'user-email'
-    } = options;
-    
-    // Check authentication
-    if (!checkAuthAndRedirect(redirectUrl)) {
-        return false;
-    }
-    
-    // Update email display if requested
-    if (updateEmail) {
-        updateUserEmailDisplay(emailElementId);
-    }
-    
-    return true;
+  const {
+    redirectUrl = 'index.html',
+    updateEmail = true,
+    emailElementId = 'user-email',
+  } = options;
+
+  // Check authentication
+  if (!checkAuthAndRedirect(redirectUrl)) {
+    return false;
+  }
+
+  // Update email display if requested
+  if (updateEmail) {
+    updateUserEmailDisplay(emailElementId);
+  }
+
+  return true;
 }
 
 /**
@@ -170,10 +170,10 @@ function initAuth(options = {}) {
  * @returns {boolean} True if authenticated, false if redirected
  */
 function initDashboardAuth(options = {}) {
-    return initAuth({
-        redirectUrl: 'login.html',
-        ...options
-    });
+  return initAuth({
+    redirectUrl: 'login.html',
+    ...options,
+  });
 }
 
 /**
@@ -182,28 +182,28 @@ function initDashboardAuth(options = {}) {
  * @returns {boolean} True if authenticated, false if redirected
  */
 function initPublicAuth(options = {}) {
-    return initAuth({
-        redirectUrl: 'index.html',
-        ...options
-    });
+  return initAuth({
+    redirectUrl: 'index.html',
+    ...options,
+  });
 }
 
 // Export functions for use in other scripts
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        isAuthenticated,
-        getUserData,
-        getAuthToken,
-        checkAuthAndRedirect,
-        checkAuthAndRedirectToLogin,
-        checkAuthAndRedirectToHome,
-        logout,
-        updateUserEmailDisplay,
-        updateUserNameDisplay,
-        initAuth,
-        initDashboardAuth,
-        initPublicAuth
-    };
+  module.exports = {
+    isAuthenticated,
+    getUserData,
+    getAuthToken,
+    checkAuthAndRedirect,
+    checkAuthAndRedirectToLogin,
+    checkAuthAndRedirectToHome,
+    logout,
+    updateUserEmailDisplay,
+    updateUserNameDisplay,
+    initAuth,
+    initDashboardAuth,
+    initPublicAuth,
+  };
 }
 
 // Make functions globally available
@@ -218,4 +218,4 @@ window.updateUserEmailDisplay = updateUserEmailDisplay;
 window.updateUserNameDisplay = updateUserNameDisplay;
 window.initAuth = initAuth;
 window.initDashboardAuth = initDashboardAuth;
-window.initPublicAuth = initPublicAuth; 
+window.initPublicAuth = initPublicAuth;

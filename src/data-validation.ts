@@ -7,7 +7,7 @@ export const reporterSchema = z.object({
 });
 
 export const logInSchema = z.object({
-  email: z.string().max(100).email().toLowerCase().optional(),
+  email: z.string().max(100).email().toLowerCase(),
   password: z.string().min(8),
 });
 

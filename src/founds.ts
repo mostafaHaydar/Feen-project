@@ -3,7 +3,6 @@ import {
   ErrorCodes,
   r2FileDownload,
   requireNumericParams,
-  success,
 } from './common';
 import { Hono } from 'hono';
 import { initializePrismaClient } from './common';

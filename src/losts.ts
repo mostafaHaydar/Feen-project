@@ -3,7 +3,6 @@ import {
   ErrorCodes,
   r2FileDownload,
   requireNumericParams,
-  success,
 } from './common';
 import { Hono } from 'hono';
 import { initializePrismaClient } from './common';
@@ -19,7 +18,7 @@ export default function Lost(api: Hono<{ Bindings: CloudflareBindings }>) {
     middlewareVerifyReporterJWT(true),
     zValidator('json', lostSchema),
     async (c) => {
-      const lostData = c.req.valid('json'); // Use validated data from Zod
+      const lostData = c.req.valid('json');
       const prisma = initializePrismaClient(c);
       const reporterId = getReporterAccountId(c);
 
@@ -57,7 +56,7 @@ export default function Lost(api: Hono<{ Bindings: CloudflareBindings }>) {
         if (sanitizedData.lastSeenDate > new Date()) {
           return c.json(
             {
-              error: 'INVALID_DATE',
+              error: ErrorCodes.INVALID_DATE,
               message: 'Last seen date cannot be in the future',
             },
             400

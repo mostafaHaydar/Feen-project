@@ -43,6 +43,7 @@ export const ErrorCodes = {
   INVALID_VERIFICATION_NUMBER: 'invalid_verification_number',
   EMAIL_NOT_VERIFIED: 'email_not_verified',
   FILE_TOO_LARGE: 'file_too_large',
+  INVALID_DATE: 'invalid_date',
 };
 
 export function requireNumericParams(names: string[]): MiddlewareHandler {

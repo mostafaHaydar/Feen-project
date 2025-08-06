@@ -18,7 +18,15 @@ export default function reporterAccount(
     zValidator('json', reporterSchema), // Validate request body against schema
     async (c: Context) => {
       const prisma = initializePrismaClient(c);
-      const { name, email, password } = await c.req.json();
+      const {
+        name,
+        email,
+        password,
+      }: {
+        name: string;
+        email: string;
+        password: string;
+      } = c.req.valid('json' as never);
 
       // Normalize email to prevent duplicate accounts with different cases
       const normalizedEmail = email.toLowerCase().trim();
@@ -32,30 +40,36 @@ export default function reporterAccount(
         'outlook.com',
         'icloud.com',
       ];
-      
+
       // Extract domain from email for validation
       const emailDomain = normalizedEmail.split('@')[1];
-      
+
       // Validate email domain against whitelist
       if (!emailDomain || !allowedDomains.includes(emailDomain)) {
-        return c.json({ 
-          error: ErrorCodes.EMAIL_FORMAT_NOT_SUPPORTED,
-          message: 'Only popular email providers are supported for security reasons'
-        }, 400);
+        return c.json(
+          {
+            error: ErrorCodes.EMAIL_FORMAT_NOT_SUPPORTED,
+            message:
+              'Only popular email providers are supported for security reasons',
+          },
+          400
+        );
       }
 
       try {
         // Check for existing user to prevent duplicate accounts
-        // Using count() is more efficient than findFirst() for existence checks
         const existingUserByEmail = await prisma.reporters.count({
           where: { email: normalizedEmail },
         });
 
         if (existingUserByEmail > 0) {
-          return c.json({ 
-            error: ErrorCodes.EMAIL_ALREADY_USED,
-            message: 'An account with this email already exists'
-          }, 409);
+          return c.json(
+            {
+              error: ErrorCodes.EMAIL_ALREADY_USED,
+              message: 'An account with this email already exists',
+            },
+            409
+          );
         }
 
         // Securely hash password using bcrypt with salt rounds of 10
@@ -74,38 +88,53 @@ export default function reporterAccount(
           select: reporterSelect, // Select only safe fields to return
         });
 
-        return c.json({
-          message: 'Account created successfully',
-          user: newUser
-        }, 201);
+        return c.json(
+          {
+            message: 'Account created successfully',
+            user: newUser,
+          },
+          201
+        );
       } catch (error: any) {
         // Handle Prisma unique constraint violations
         if (error.code === 'P2002') {
-          return c.json({ 
-            error: ErrorCodes.ALREADY_USED,
-            message: 'An account with this email already exists'
-          }, 409);
+          return c.json(
+            {
+              error: ErrorCodes.ALREADY_USED,
+              message: 'An account with this email already exists',
+            },
+            409
+          );
         }
-        
+
         // Log error for debugging but don't expose internal details
         console.error('Registration error:', error);
-        return c.json({ 
-          error: ErrorCodes.INTERNAL_SERVER_ERROR,
-          message: 'Failed to create account. Please try again.'
-        }, 500);
+        return c.json(
+          {
+            error: ErrorCodes.INTERNAL_SERVER_ERROR,
+            message: 'Failed to create account. Please try again.',
+          },
+          500
+        );
       }
     }
   );
 
-  
   api.post('/reporter/login', zValidator('json', logInSchema), async (c) => {
-    const { email, password } = await c.req.json();
     const prisma = initializePrismaClient(c);
+
+    const {
+      email,
+      password,
+    }: {
+      email: string;
+      password: string;
+    } = c.req.valid('json');
 
     try {
       // Normalize email input for consistent comparison
       const normalizedEmail = email.toLowerCase().trim();
-      
+
       // Find reporter by email
       const account = await prisma.reporters.findFirst({
         where: { email: normalizedEmail },
@@ -115,10 +144,13 @@ export default function reporterAccount(
       // This prevents attackers from determining which emails exist in the system
       if (!account) {
         console.log('Login attempt with non-existent email:', normalizedEmail);
-        return c.json({ 
-          error: ErrorCodes.INVALID_CREDENTIALS,
-          message: 'Invalid email or password'
-        }, 401);
+        return c.json(
+          {
+            error: ErrorCodes.INVALID_CREDENTIALS,
+            message: 'Invalid email or password',
+          },
+          401
+        );
       }
 
       // Validate password using bcrypt compare function
@@ -126,10 +158,13 @@ export default function reporterAccount(
       const isPasswordValid = compareSync(password, account.password);
       if (!isPasswordValid) {
         console.log('Invalid password attempt for account:', account.id);
-        return c.json({ 
-          error: ErrorCodes.INVALID_CREDENTIALS,
-          message: 'Invalid email or password'
-        }, 401);
+        return c.json(
+          {
+            error: ErrorCodes.INVALID_CREDENTIALS,
+            message: 'Invalid email or password',
+          },
+          401
+        );
       }
 
       // Generate JWT token for authenticated session
@@ -154,10 +189,13 @@ export default function reporterAccount(
       );
     } catch (error: any) {
       console.error('Login error:', error);
-      return c.json({ 
-        error: ErrorCodes.INTERNAL_SERVER_ERROR,
-        message: 'Authentication failed. Please try again.'
-      }, 500);
+      return c.json(
+        {
+          error: ErrorCodes.INTERNAL_SERVER_ERROR,
+          message: 'Authentication failed. Please try again.',
+        },
+        500
+      );
     }
   });
 
@@ -188,7 +226,7 @@ export default function reporterAccount(
               createdAt: true,
               updatedAt: true,
               // Exclude sensitive fields like contactInfo, disease, mentalHealth
-            }
+            },
           },
           Founds: {
             orderBy: { createdAt: 'desc' }, // Most recent reports first
@@ -203,7 +241,7 @@ export default function reporterAccount(
               createdAt: true,
               updatedAt: true,
               // Exclude sensitive fields like contactInfo
-            }
+            },
           },
         },
       });
@@ -211,24 +249,33 @@ export default function reporterAccount(
       if (!reporter) {
         // This should rarely happen since JWT validation ensures the user exists
         console.error('Reporter not found for valid JWT:', reporterAccountId);
-        return c.json({ 
-          error: ErrorCodes.NOT_FOUND,
-          message: 'User account not found'
-        }, 404);
+        return c.json(
+          {
+            error: ErrorCodes.NOT_FOUND,
+            message: 'User account not found',
+          },
+          404
+        );
       }
 
       // Return the reporter's profile with related data
       // This provides a complete view of the user's activity
-      return c.json({
-        message: 'Profile retrieved successfully',
-        profile: reporter
-      }, 200);
+      return c.json(
+        {
+          message: 'Profile retrieved successfully',
+          profile: reporter,
+        },
+        200
+      );
     } catch (error: any) {
       console.error('Error fetching reporter data:', error);
-      return c.json({ 
-        error: ErrorCodes.INTERNAL_SERVER_ERROR,
-        message: 'Failed to retrieve profile data'
-      }, 500);
+      return c.json(
+        {
+          error: ErrorCodes.INTERNAL_SERVER_ERROR,
+          message: 'Failed to retrieve profile data',
+        },
+        500
+      );
     }
   });
 }

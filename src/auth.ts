@@ -5,12 +5,6 @@ import { sign } from 'hono/jwt';
 import { JWTPayload } from 'hono/utils/jwt/types';
 import { Reporters } from '@prisma/client';
 
-type ReporterInformation = {
-  name: string;
-  email: string;
-  password: string;
-};
-
 export async function generateSignedJWT(
   account: Reporters,
   c: Context<{ Bindings: CloudflareBindings }>
