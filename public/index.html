@@ -41,20 +41,20 @@
     <header
       class="border-b border-purple-100 sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm"
     >
-      <div class="container mx-auto px-6 py-4">
+      <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
         <div class="flex items-center justify-between">
           <a
-            class="flex items-center gap-3 cursor-pointer transition-transform hover:scale-105"
+            class="flex items-center gap-2 sm:gap-3 cursor-pointer transition-transform hover:scale-105"
             href="index.html"
           >
             <div
-              class="w-10 h-10 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg"
+              class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg"
             >
-              <i data-lucide="search" class="w-5 h-5 text-white"></i>
+              <i data-lucide="search" class="w-4 h-4 sm:w-5 sm:h-5 text-white"></i>
             </div>
             <div>
               <h1
-                class="text-xl font-bold bg-gradient-to-l from-cyan-600 to-purple-600 bg-clip-text text-transparent"
+                class="text-lg sm:text-xl font-bold bg-gradient-to-l from-cyan-600 to-purple-600 bg-clip-text text-transparent"
               >
                 فين
               </h1>
@@ -70,20 +70,20 @@
             <!-- Navigation items can be added here if needed -->
           </nav>
 
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2 sm:gap-3">
             <a
               href="login.html"
-              class="px-4 py-2 text-purple-600 border border-purple-200 hover:bg-purple-50 font-medium rounded-lg transition-colors"
+              class="px-3 py-2 sm:px-4 sm:py-2 text-purple-600 border border-purple-200 hover:bg-purple-50 font-medium rounded-lg transition-colors text-sm sm:text-base"
             >
-              <i data-lucide="log-in" class="w-4 h-4 ml-1 inline"></i>
-              تسجيل الدخول
+              <i data-lucide="log-in" class="w-4 h-4 sm:w-4 sm:h-4 ml-1 inline"></i>
+              <span class="hidden sm:inline">تسجيل الدخول</span>
             </a>
             <a
               href="register.html"
-              class="px-4 py-2 bg-gradient-to-l from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white font-medium rounded-lg transition-all"
+              class="px-3 py-2 sm:px-4 sm:py-2 bg-gradient-to-l from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white font-medium rounded-lg transition-all text-sm sm:text-base"
             >
-              <i data-lucide="user-plus" class="w-4 h-4 ml-1 inline"></i>
-              إنشاء حساب
+              <i data-lucide="user-plus" class="w-4 h-4 sm:w-4 sm:h-4 ml-1 inline"></i>
+              <span class="hidden sm:inline">إنشاء حساب</span>
             </a>
           </div>
         </div>
@@ -96,33 +96,32 @@
       <div id="home-page" class="page active">
         <!-- Hero Section -->
         <section
-          class="pt-20 pb-16 px-6 bg-gradient-to-br from-purple-50 via-cyan-50 to-blue-50 relative overflow-hidden"
+          class="pt-16 sm:pt-20 pb-12 sm:pb-16 px-4 sm:px-6 bg-gradient-to-br from-purple-50 via-cyan-50 to-blue-50 relative overflow-hidden"
         >
           <!-- Background decoration -->
           <div
-            class="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-purple-200/30 to-cyan-200/30 rounded-full blur-3xl"
+            class="absolute top-20 right-10 w-48 h-48 sm:w-72 sm:h-72 bg-gradient-to-br from-purple-200/30 to-cyan-200/30 rounded-full blur-3xl"
           ></div>
           <div
-            class="absolute bottom-10 left-10 w-96 h-96 bg-gradient-to-tr from-blue-200/30 to-pink-200/30 rounded-full blur-3xl"
+            class="absolute bottom-10 left-10 w-64 h-64 sm:w-96 sm:h-96 bg-gradient-to-tr from-blue-200/30 to-pink-200/30 rounded-full blur-3xl"
           ></div>
 
           <div class="container mx-auto max-w-4xl relative">
-            <div class="text-center mb-8">
+            <div class="text-center mb-6 sm:mb-8">
               <div
-                class="mb-6 bg-gradient-to-l from-cyan-100 to-purple-100 text-purple-700 border border-purple-200 px-6 py-3 text-sm font-semibold shadow-sm rounded-full inline-flex items-center"
+                class="mb-4 sm:mb-6 bg-gradient-to-l from-cyan-100 to-purple-100 text-purple-700 border border-purple-200 px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-semibold shadow-sm rounded-full inline-flex items-center"
               >
-                <i data-lucide="star" class="w-4 h-4 ml-2 text-yellow-500"></i>
+                <i data-lucide="star" class="w-3 h-3 sm:w-4 sm:h-4 ml-2 text-yellow-500"></i>
                 فتح فرص لم الشمل مع فين
               </div>
             </div>
 
-            <div class="text-center mb-12">
+            <div class="text-center mb-8 sm:mb-12">
               <h1
-                class="text-5xl md:text-7xl font-black text-gray-900 mb-6 leading-tight"
+                class="text-3xl sm:text-5xl md:text-7xl font-black text-gray-900 mb-4 sm:mb-6 leading-tight"
               >
                 نساعد في
-                <br />
-                <br />
+                <br class="hidden sm:block" />
                 <span
                   class="bg-gradient-to-l from-cyan-500 via-purple-600 to-pink-600 bg-clip-text text-transparent"
                 >
@@ -131,59 +130,59 @@
               </h1>
 
               <p
-                class="text-xl text-gray-700 mb-8 max-w-2xl mx-auto leading-relaxed font-medium"
+                class="text-lg sm:text-xl text-gray-700 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed font-medium px-4 sm:px-0"
               >
                 منصة "فين" تساعد في لمّ شمل العائلات من خلال الإبلاغ عن
                 المفقودين والعثور عليهم باستخدام تقنية التعرف على الوجوه.
               </p>
 
               <p
-                class="text-lg text-gray-600 mb-12 max-w-3xl mx-auto font-normal"
+                class="text-base sm:text-lg text-gray-600 mb-8 sm:mb-12 max-w-3xl mx-auto font-normal px-4 sm:px-0"
               >
                 أبلغ عن شخص مفقود أو شخص تائه، وسنساعدك في إيجاد التطابق بين
                 الحالات
               </p>
 
-              <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+              <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-6 sm:mb-8 px-4 sm:px-0">
                 <a
                   href="login.html"
-                  class="bg-gradient-to-l from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-10 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all rounded-lg"
+                  class="bg-gradient-to-l from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-6 sm:px-10 py-3 sm:py-4 text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all rounded-lg"
                 >
-                  <i data-lucide="zap" class="w-5 h-5 ml-2 inline"></i>
+                  <i data-lucide="zap" class="w-4 h-4 sm:w-5 sm:h-5 ml-2 inline"></i>
                   جرب فين الآن
                 </a>
                 <button
-                  class="border-2 border-purple-300 text-purple-700 hover:bg-purple-50 px-10 py-4 text-lg font-semibold rounded-lg transition-colors"
+                  class="border-2 border-purple-300 text-purple-700 hover:bg-purple-50 px-6 sm:px-10 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg transition-colors"
                 >
-                  <i data-lucide="target" class="w-5 h-5 ml-2 inline"></i>
+                  <i data-lucide="target" class="w-4 h-4 sm:w-5 sm:h-5 ml-2 inline"></i>
                   شاهد كيف يعمل
                 </button>
               </div>
 
               <div
-                class="flex items-center justify-center gap-8 text-sm flex-wrap"
+                class="flex items-center justify-center gap-4 sm:gap-8 text-xs sm:text-sm flex-wrap px-4 sm:px-0"
               >
                 <div
-                  class="flex items-cenrter bg-gradient-to-l from-green-100 to-emerald-100 px-4 py-2 rounded-full"
+                  class="flex items-center bg-gradient-to-l from-green-100 to-emerald-100 px-3 sm:px-4 py-2 rounded-full"
                 >
                   <i
                     data-lucide="shield"
-                    class="w-4 h-4 ml-1 text-green-600"
+                    class="w-3 h-3 sm:w-4 sm:h-4 ml-1 text-green-600"
                   ></i>
                   <span class="text-green-700 font-medium">آمن ومجاني</span>
                 </div>
                 <div
-                  class="flex items-center bg-gradient-to-l from-blue-100 to-cyan-100 px-4 py-2 rounded-full"
+                  class="flex items-center bg-gradient-to-l from-blue-100 to-cyan-100 px-3 sm:px-4 py-2 rounded-full"
                 >
-                  <i data-lucide="clock" class="w-4 h-4 ml-1 text-blue-600"></i>
+                  <i data-lucide="clock" class="w-3 h-3 sm:w-4 sm:h-4 ml-1 text-blue-600"></i>
                   <span class="text-blue-700 font-medium">متاح 24/7</span>
                 </div>
                 <div
-                  class="flex items-center bg-gradient-to-l from-purple-100 to-pink-100 px-4 py-2 rounded-full"
+                  class="flex items-center bg-gradient-to-l from-purple-100 to-pink-100 px-3 sm:px-4 py-2 rounded-full"
                 >
                   <i
                     data-lucide="camera"
-                    class="w-4 h-4 ml-1 text-purple-600"
+                    class="w-3 h-3 sm:w-4 sm:h-4 ml-1 text-purple-600"
                   ></i>
                   <span class="text-purple-700 font-medium">تقنية متقدمة</span>
                 </div>
@@ -192,10 +191,10 @@
           </div>
         </section>
         <!-- How It Works -->
-        <section class="py-20 bg-white" id="how-it-works">
-          <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-              <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-6">
+        <section class="py-16 sm:py-20 bg-white" id="how-it-works">
+          <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12 sm:mb-16">
+              <h2 class="text-2xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-4 sm:mb-6">
                 خطوات بسيطة لـ
                 <span
                   class="bg-gradient-to-l from-cyan-600 to-purple-600 bg-clip-text text-transparent"
@@ -203,102 +202,102 @@
                   لمّ الشمل
                 </span>
               </h2>
-              <p class="text-xl text-gray-600 max-w-2xl mx-auto font-medium">
+              <p class="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto font-medium">
                 بخطوات بسيطة، يمكنك إسعاد عائلة
               </p>
             </div>
 
             <div class="max-w-5xl mx-auto">
-              <div class="grid md:grid-cols-4 gap-8">
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
                 <!-- Step 1 -->
                 <div class="text-center group">
-                  <div class="relative mb-6">
+                  <div class="relative mb-4 sm:mb-6">
                     <div
-                      class="w-20 h-20 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-2xl transition-shadow"
+                      class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-2xl transition-shadow"
                     >
                       <div
-                        class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-orange-600 font-black text-lg"
+                        class="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-xl flex items-center justify-center text-orange-600 font-black text-base sm:text-lg"
                       >
                         1
                       </div>
                     </div>
                     <div
-                      class="hidden md:block absolute top-10 right-full w-full h-1 bg-gradient-to-l from-orange-300 to-transparent"
+                      class="hidden md:block absolute top-8 sm:top-10 right-full w-full h-1 bg-gradient-to-l from-orange-300 to-transparent"
                     ></div>
                   </div>
-                  <h3 class="font-bold text-gray-900 mb-2 text-lg">
+                  <h3 class="font-bold text-gray-900 mb-2 text-base sm:text-lg">
                     أضف بلاغك
                   </h3>
-                  <p class="text-sm text-gray-600 font-medium">
+                  <p class="text-xs sm:text-sm text-gray-600 font-medium">
                     أضف بلاغك بسرعة وسهولة
                   </p>
                 </div>
 
                 <!-- Step 2 -->
                 <div class="text-center group">
-                  <div class="relative mb-6">
+                  <div class="relative mb-4 sm:mb-6">
                     <div
-                      class="w-20 h-20 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-2xl transition-shadow"
+                      class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-2xl transition-shadow"
                     >
                       <div
-                        class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-blue-600 font-black text-lg"
+                        class="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-xl flex items-center justify-center text-blue-600 font-black text-base sm:text-lg"
                       >
                         2
                       </div>
                     </div>
                     <div
-                      class="hidden md:block absolute top-10 right-full w-full h-1 bg-gradient-to-l from-blue-300 to-transparent"
+                      class="hidden md:block absolute top-8 sm:top-10 right-full w-full h-1 bg-gradient-to-l from-blue-300 to-transparent"
                     ></div>
                   </div>
-                  <h3 class="font-bold text-gray-900 mb-2 text-lg">
+                  <h3 class="font-bold text-gray-900 mb-2 text-base sm:text-lg">
                     وصف الشخص
                   </h3>
-                  <p class="text-sm text-gray-600 font-medium">
+                  <p class="text-xs sm:text-sm text-gray-600 font-medium">
                     قدم وصف دقيق للشخص المفقود
                   </p>
                 </div>
 
                 <!-- Step 3 -->
                 <div class="text-center group">
-                  <div class="relative mb-6">
+                  <div class="relative mb-4 sm:mb-6">
                     <div
-                      class="w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-2xl transition-shadow"
+                      class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-2xl transition-shadow"
                     >
                       <div
-                        class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-green-600 font-black text-lg"
+                        class="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-xl flex items-center justify-center text-green-600 font-black text-base sm:text-lg"
                       >
                         3
                       </div>
                     </div>
                     <div
-                      class="hidden md:block absolute top-10 right-full w-full h-1 bg-gradient-to-l from-green-300 to-transparent"
+                      class="hidden md:block absolute top-8 sm:top-10 right-full w-full h-1 bg-gradient-to-l from-green-300 to-transparent"
                     ></div>
                   </div>
-                  <h3 class="font-bold text-gray-900 mb-2 text-lg">
+                  <h3 class="font-bold text-gray-900 mb-2 text-base sm:text-lg">
                     نتائج فورية
                   </h3>
-                  <p class="text-sm text-gray-600 font-medium">
+                  <p class="text-xs sm:text-sm text-gray-600 font-medium">
                     إن وُجدت أي تطابقات، ستظهر لك مباشرة
                   </p>
                 </div>
 
                 <!-- Step 4 -->
                 <div class="text-center group">
-                  <div class="relative mb-6">
+                  <div class="relative mb-4 sm:mb-6">
                     <div
-                      class="w-20 h-20 bg-gradient-to-br from-purple-400 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-2xl transition-shadow"
+                      class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-purple-400 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-2xl transition-shadow"
                     >
                       <div
-                        class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-purple-600 font-black text-lg"
+                        class="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-xl flex items-center justify-center text-purple-600 font-black text-base sm:text-lg"
                       >
                         4
                       </div>
                     </div>
                   </div>
-                  <h3 class="font-bold text-gray-900 mb-2 text-lg">
+                  <h3 class="font-bold text-gray-900 mb-2 text-base sm:text-lg">
                     إشعارات فورية
                   </h3>
-                  <p class="text-sm text-gray-600 font-medium">
+                  <p class="text-xs sm:text-sm text-gray-600 font-medium">
                     تصلك تنبيهات مباشرة عند ظهور أي تطابق في المستقبل
                   </p>
                 </div>
@@ -309,38 +308,38 @@
 
         <!-- CTA Section -->
         <section
-          class="py-20 bg-gradient-to-l from-cyan-600 via-purple-600 to-pink-600 text-white relative overflow-hidden"
+          class="py-16 sm:py-20 bg-gradient-to-l from-cyan-600 via-purple-600 to-pink-600 text-white relative overflow-hidden"
         >
           <div class="absolute inset-0 bg-black/10"></div>
           <div
-            class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"
+            class="absolute top-0 right-0 w-64 h-64 sm:w-96 sm:h-96 bg-white/5 rounded-full blur-3xl"
           ></div>
           <div
-            class="absolute bottom-0 left-0 w-80 h-80 bg-white/5 rounded-full blur-3xl"
+            class="absolute bottom-0 left-0 w-56 h-56 sm:w-80 sm:h-80 bg-white/5 rounded-full blur-3xl"
           ></div>
 
-          <div class="container mx-auto px-6 text-center relative">
+          <div class="container mx-auto px-4 sm:px-6 text-center relative">
             <div class="max-w-3xl mx-auto">
-              <h2 class="text-4xl md:text-5xl font-black mb-6">
+              <h2 class="text-2xl sm:text-4xl md:text-5xl font-black mb-4 sm:mb-6">
                 هل تبحث عن شخص عزيز؟
               </h2>
-              <p class="text-xl mb-12 text-white/90 font-medium">
+              <p class="text-lg sm:text-xl mb-8 sm:mb-12 text-white/90 font-medium">
                 لا تتردد في الإبلاغ. كل ثانية مهمة في عملية البحث والعثور على
                 الأحباب
               </p>
-              <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                 <a
                   href="login.html"
-                  class="bg-white text-purple-600 hover:bg-gray-100 px-10 py-4 font-bold shadow-lg hover:shadow-xl transition-all rounded-lg"
+                  class="bg-white text-purple-600 hover:bg-gray-100 px-6 sm:px-10 py-3 sm:py-4 font-bold shadow-lg hover:shadow-xl transition-all rounded-lg"
                 >
-                  <i data-lucide="users" class="w-5 h-5 ml-2 inline"></i>
+                  <i data-lucide="users" class="w-4 h-4 sm:w-5 sm:h-5 ml-2 inline"></i>
                   الإبلاغ عن شخص مفقود
                 </a>
                 <a
                   href="login.html"
-                  class="border-2 border-white text-white hover:bg-white/10 px-10 py-4 font-bold rounded-lg transition-colors"
+                  class="border-2 border-white text-white hover:bg-white/10 px-6 sm:px-10 py-3 sm:py-4 font-bold rounded-lg transition-colors"
                 >
-                  <i data-lucide="search" class="w-5 h-5 ml-2 inline"></i>
+                  <i data-lucide="search" class="w-4 h-4 sm:w-5 sm:h-5 ml-2 inline"></i>
                   الإبلاغ عن شخص تائه
                 </a>
               </div>
@@ -352,21 +351,21 @@
 
     <!-- Footer -->
     <footer
-      class="bg-gradient-to-br from-gray-800 via-gray-900 to-black text-white py-16"
+      class="bg-gradient-to-br from-gray-800 via-gray-900 to-black text-white py-12 sm:py-16"
     >
-      <div class="container mx-auto px-6">
+      <div class="container mx-auto px-4 sm:px-6">
         <div class="max-w-4xl mx-auto">
-          <div class="grid md:grid-cols-3 gap-8">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
             <div>
-              <div class="flex items-center gap-3 mb-6">
+              <div class="flex items-center gap-3 mb-4 sm:mb-6">
                 <div
-                  class="w-12 h-12 bg-gradient-to-br from-cyan-400 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg"
+                  class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-cyan-400 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg"
                 >
-                  <i data-lucide="search" class="w-6 h-6 text-white"></i>
+                  <i data-lucide="search" class="w-5 h-5 sm:w-6 sm:h-6 text-white"></i>
                 </div>
                 <div>
                   <h3
-                    class="text-xl font-black bg-gradient-to-l from-cyan-400 to-purple-400 bg-clip-text text-transparent"
+                    class="text-lg sm:text-xl font-black bg-gradient-to-l from-cyan-400 to-purple-400 bg-clip-text text-transparent"
                   >
                     فين
                   </h3>
@@ -377,15 +376,15 @@
                   </p>
                 </div>
               </div>
-              <p class="text-gray-300 text-sm font-medium leading-relaxed">
+              <p class="text-gray-300 text-xs sm:text-sm font-medium leading-relaxed">
                 منصة مفتوحة المصدر لمساعدة العائلات في العثور على أفرادها
                 المفقودين باستخدام أحدث التقنيات
               </p>
             </div>
 
             <div>
-              <h4 class="font-bold mb-6 text-white text-lg">روابط سريعة</h4>
-              <ul class="space-y-3 text-sm">
+              <h4 class="font-bold mb-4 sm:mb-6 text-white text-base sm:text-lg">روابط سريعة</h4>
+              <ul class="space-y-2 sm:space-y-3 text-xs sm:text-sm">
                 <li>
                   <a
                     href="login.html"
@@ -422,21 +421,21 @@
             </div>
 
             <div>
-              <h4 class="font-bold mb-6 text-white text-lg">تواصل معنا</h4>
-              <div class="space-y-4 text-sm">
+              <h4 class="font-bold mb-4 sm:mb-6 text-white text-base sm:text-lg">تواصل معنا</h4>
+              <div class="space-y-3 sm:space-y-4 text-xs sm:text-sm">
                 <div class="flex items-center gap-3">
                   <div
-                    class="w-8 h-8 bg-green-500/20 rounded-xl flex items-center justify-center"
+                    class="w-6 h-6 sm:w-8 sm:h-8 bg-green-500/20 rounded-xl flex items-center justify-center"
                   >
-                    <i data-lucide="phone" class="w-4 h-4 text-green-400"></i>
+                    <i data-lucide="phone" class="w-3 h-3 sm:w-4 sm:h-4 text-green-400"></i>
                   </div>
                   <span class="text-gray-300 font-medium"> 0617183593 </span>
                 </div>
                 <div class="flex items-center gap-3">
                   <div
-                    class="w-8 h-8 bg-blue-500/20 rounded-xl flex items-center justify-center"
+                    class="w-6 h-6 sm:w-8 sm:h-8 bg-blue-500/20 rounded-xl flex items-center justify-center"
                   >
-                    <i data-lucide="mail" class="w-4 h-4 text-blue-400"></i>
+                    <i data-lucide="mail" class="w-3 h-3 sm:w-4 sm:h-4 text-blue-400"></i>
                   </div>
                   <span class="text-gray-300 font-medium">
                     contact@feen.com
@@ -444,11 +443,11 @@
                 </div>
                 <div class="flex items-center gap-3">
                   <div
-                    class="w-8 h-8 bg-purple-500/20 rounded-xl flex items-center justify-center"
+                    class="w-6 h-6 sm:w-8 sm:h-8 bg-purple-500/20 rounded-xl flex items-center justify-center"
                   >
                     <i
                       data-lucide="map-pin"
-                      class="w-4 h-4 text-purple-400"
+                      class="w-3 h-3 sm:w-4 sm:h-4 text-purple-400"
                     ></i>
                   </div>
                   <span class="text-gray-300 font-medium"> وجدة، المغرب </span>
@@ -458,7 +457,7 @@
           </div>
 
           <div
-            class="border-t border-gray-700 mt-12 pt-8 text-center text-sm text-gray-400"
+            class="border-t border-gray-700 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center text-xs sm:text-sm text-gray-400"
           >
             <p class="font-medium">
               &copy; 2025 فين. جميع الحقوق محفوظة. مشروع مفتوح المصدر
