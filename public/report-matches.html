@@ -484,7 +484,7 @@
                                 <span>•</span>
                                 <span>${report.gender || 'غير محدد'}</span>
                                 <span>•</span>
-                                <span>${isFound ? report.foundLocation || 'غير محدد' : report.lastSeen || 'غير محدد'}</span>
+                                <span>${isFound ? report.foundLocation || 'غير محدد' : report.lastSeenLocation || 'غير محدد'}</span>
                             </div>
                         </div>
                     </div>
@@ -568,7 +568,7 @@
                                         <span>•</span>
                                         <span>${match.gender || 'غير محدد'}</span>
                                         <span>•</span>
-                                        <span>${isFound ? match.foundLocation || 'غير محدد' : match.lastSeen || 'غير محدد'}</span>
+                                        <span>${isFound ? match.foundLocation || 'غير محدد' : match.lastSeenLocation || 'غير محدد'}</span>
                                     </div>
                                 </div>
                                 <div class="text-right">
@@ -584,7 +584,7 @@
                             </div>
                         </div>
                         <p class="text-gray-700 font-medium mb-4">
-                            ${match.description || 'لا توجد وصف إضافي'}
+                            ${match.disease || 'لا توجد وصف إضافي'}
                         </p>
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-2 text-sm text-gray-500">
