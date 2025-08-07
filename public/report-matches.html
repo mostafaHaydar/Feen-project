@@ -550,8 +550,8 @@
 
         container.innerHTML = matches
           .map((match) => {
-            const isFound = reportType === 'missing'; // Opposite of original report type
-            const matchType = isFound ? 'found' : 'missing';
+            const isFound = reportType === 'lost'; // Opposite of original report type
+            const matchType = isFound ? 'found' : 'lost';
             const facialRecognition = match.facialRecognition;
             const confidence = facialRecognition
               ? facialRecognition.confidence
