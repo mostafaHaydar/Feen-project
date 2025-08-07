@@ -133,6 +133,7 @@ export default function Matche(api: Hono<{ Bindings: CloudflareBindings }>) {
                           },
                           data: {
                             found: true,
+                            confidence: facialRecognition.confidence,
                             founds: {
                               connect: { id: element.id }, // assumes you have the foundId
                             },
