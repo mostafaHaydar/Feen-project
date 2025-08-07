@@ -25,17 +25,17 @@
   >
     <!-- Background decoration -->
     <div
-      class="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-indigo-200/30 to-purple-200/30 rounded-full blur-3xl"
+      class="absolute top-10 right-2 w-40 h-40 sm:w-72 sm:h-72 bg-gradient-to-br from-indigo-200/30 to-purple-200/30 rounded-full blur-3xl"
     ></div>
     <div
-      class="absolute bottom-10 left-10 w-96 h-96 bg-gradient-to-tr from-purple-200/30 to-cyan-200/30 rounded-full blur-3xl"
+      class="absolute bottom-4 left-2 w-48 h-48 sm:w-96 sm:h-96 bg-gradient-to-tr from-purple-200/30 to-cyan-200/30 rounded-full blur-3xl"
     ></div>
 
     <!-- Header -->
     <header
       class="border-b border-purple-100 sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm"
     >
-      <div class="container mx-auto px-6 py-4">
+      <div class="container mx-auto px-2 sm:px-6 py-4">
         <div class="flex items-center justify-between">
           <div
             class="flex items-center gap-3 cursor-pointer transition-transform hover:scale-105"
@@ -106,8 +106,8 @@
     </header>
 
     <!-- Report Details Content -->
-    <div class="min-h-screen py-20 px-6 relative">
-      <div class="container mx-auto max-w-4xl relative">
+    <div class="min-h-screen py-8 sm:py-20 px-2 sm:px-6 relative">
+      <div class="container mx-auto max-w-lg sm:max-w-4xl relative">
         <!-- Loading State -->
         <div id="loading-state" class="text-center py-20">
           <div
@@ -127,20 +127,26 @@
         <!-- Report Details -->
         <div id="report-details" class="hidden">
           <!-- Header -->
-          <div class="text-center mb-12">
+          <div class="text-center mb-6 sm:mb-12">
             <div
               id="report-icon"
-              class="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
+              class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg"
             >
-              <i data-lucide="file-text" class="w-10 h-10 text-white"></i>
+              <i
+                data-lucide="file-text"
+                class="w-8 h-8 sm:w-10 sm:h-10 text-white"
+              ></i>
             </div>
             <h1
               id="report-title"
-              class="text-3xl md:text-4xl font-black text-gray-900 mb-4"
+              class="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-2 sm:mb-4"
             >
               تفاصيل البلاغ
             </h1>
-            <p id="report-subtitle" class="text-lg text-gray-600 font-medium">
+            <p
+              id="report-subtitle"
+              class="text-base sm:text-lg text-gray-600 font-medium"
+            >
               عرض كامل تفاصيل البلاغ
             </p>
           </div>
@@ -149,17 +155,20 @@
           <div
             class="bg-white/80 backdrop-blur-md shadow-2xl border-0 rounded-2xl"
           >
-            <div class="p-8 space-y-8">
+            <div class="p-3 sm:p-8 space-y-4 sm:space-y-8">
               <!-- Basic Information -->
-              <div class="space-y-6">
-                <div class="flex items-center gap-3 mb-6">
-                  <i data-lucide="user" class="w-6 h-6 text-indigo-600"></i>
-                  <h2 class="text-xl font-bold text-gray-900">
+              <div class="space-y-4 sm:space-y-6">
+                <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+                  <i
+                    data-lucide="user"
+                    class="w-5 h-5 sm:w-6 sm:h-6 text-indigo-600"
+                  ></i>
+                  <h2 class="text-lg sm:text-xl font-bold text-gray-900">
                     المعلومات الأساسية
                   </h2>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                   <div class="space-y-2">
                     <label class="text-gray-700 font-semibold"
                       >الاسم الكامل</label
@@ -195,15 +204,20 @@
               </div>
 
               <!-- Location Information -->
-              <div class="space-y-6 pt-6 border-t border-gray-200">
-                <div class="flex items-center gap-3 mb-6">
-                  <i data-lucide="map-pin" class="w-6 h-6 text-blue-600"></i>
-                  <h2 class="text-xl font-bold text-gray-900">
+              <div
+                class="space-y-4 sm:space-y-6 pt-4 sm:pt-6 border-t border-gray-200"
+              >
+                <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+                  <i
+                    data-lucide="map-pin"
+                    class="w-5 h-5 sm:w-6 sm:h-6 text-blue-600"
+                  ></i>
+                  <h2 class="text-lg sm:text-xl font-bold text-gray-900">
                     معلومات المكان والوقت
                   </h2>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                   <div class="space-y-2">
                     <label
                       class="text-gray-700 font-semibold"
@@ -233,18 +247,20 @@
               </div>
 
               <!-- Additional Information -->
-              <div class="space-y-6 pt-6 border-t border-gray-200">
-                <div class="flex items-center gap-3 mb-6">
+              <div
+                class="space-y-4 sm:space-y-6 pt-4 sm:pt-6 border-t border-gray-200"
+              >
+                <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
                   <i
                     data-lucide="file-text"
-                    class="w-6 h-6 text-purple-600"
+                    class="w-5 h-5 sm:w-6 sm:h-6 text-purple-600"
                   ></i>
-                  <h2 class="text-xl font-bold text-gray-900">
+                  <h2 class="text-lg sm:text-xl font-bold text-gray-900">
                     معلومات إضافية
                   </h2>
                 </div>
 
-                <div class="space-y-4">
+                <div class="space-y-3 sm:space-y-4">
                   <div class="space-y-2">
                     <label class="text-gray-700 font-semibold">الوصف</label>
                     <div
@@ -270,20 +286,27 @@
               </div>
 
               <!-- Photo Section -->
-              <div class="space-y-6 pt-6 border-t border-gray-200">
-                <div class="flex items-center gap-3 mb-6">
-                  <i data-lucide="camera" class="w-6 h-6 text-cyan-600"></i>
-                  <h2 class="text-xl font-bold text-gray-900">الصورة</h2>
+              <div
+                class="space-y-4 sm:space-y-6 pt-4 sm:pt-6 border-t border-gray-200"
+              >
+                <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+                  <i
+                    data-lucide="camera"
+                    class="w-5 h-5 sm:w-6 sm:h-6 text-cyan-600"
+                  ></i>
+                  <h2 class="text-lg sm:text-xl font-bold text-gray-900">
+                    الصورة
+                  </h2>
                 </div>
 
                 <div class="space-y-2">
                   <div
                     id="report-photo"
-                    class="border border-gray-200 rounded-xl bg-white/70 backdrop-blur p-8 text-center"
+                    class="border border-gray-200 rounded-xl bg-white/70 backdrop-blur p-4 sm:p-8 text-center"
                   >
                     <i
                       data-lucide="image"
-                      class="w-12 h-12 text-gray-400 mx-auto mb-4"
+                      class="w-8 h-8 sm:w-12 sm:h-12 text-gray-400 mx-auto mb-2 sm:mb-4"
                     ></i>
                     <p class="text-gray-600 font-medium">لا توجد صورة متاحة</p>
                   </div>
@@ -291,13 +314,22 @@
               </div>
 
               <!-- Report Status -->
-              <div class="space-y-6 pt-6 border-t border-gray-200">
-                <div class="flex items-center gap-3 mb-6">
-                  <i data-lucide="info" class="w-6 h-6 text-green-600"></i>
-                  <h2 class="text-xl font-bold text-gray-900">حالة البلاغ</h2>
+              <div
+                class="space-y-4 sm:space-y-6 pt-4 sm:pt-6 border-t border-gray-200"
+              >
+                <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+                  <i
+                    data-lucide="info"
+                    class="w-5 h-5 sm:w-6 sm:h-6 text-green-600"
+                  ></i>
+                  <h2 class="text-lg sm:text-xl font-bold text-gray-900">
+                    حالة البلاغ
+                  </h2>
                 </div>
 
-                <div class="flex items-center gap-4">
+                <div
+                  class="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4"
+                >
                   <div
                     id="report-status"
                     class="px-4 py-2 font-medium rounded-full text-sm"
@@ -680,7 +712,9 @@
           // Combine disease and mentalHealth for lost reports
           let desc = '';
           if (report.disease) desc += `الحالة الصحية: ${report.disease}`;
-          if (report.mentalHealth) desc += (desc ? ' | ' : '') + `الحالة النفسية: ${report.mentalHealth}`;
+          if (report.mentalHealth)
+            desc +=
+              (desc ? ' | ' : '') + `الحالة النفسية: ${report.mentalHealth}`;
           document.getElementById('report-description').textContent =
             desc || 'لا توجد وصف إضافي';
         }

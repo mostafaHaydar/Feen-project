@@ -25,17 +25,17 @@
   >
     <!-- Background decoration -->
     <div
-      class="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-orange-200/30 to-red-200/30 rounded-full blur-3xl"
+      class="absolute top-10 right-2 w-40 h-40 sm:w-72 sm:h-72 bg-gradient-to-br from-orange-200/30 to-red-200/30 rounded-full blur-3xl"
     ></div>
     <div
-      class="absolute bottom-10 left-10 w-96 h-96 bg-gradient-to-tr from-red-200/30 to-pink-200/30 rounded-full blur-3xl"
+      class="absolute bottom-4 left-2 w-48 h-48 sm:w-96 sm:h-96 bg-gradient-to-tr from-red-200/30 to-pink-200/30 rounded-full blur-3xl"
     ></div>
 
     <!-- Header -->
     <header
       class="border-b border-purple-100 sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm"
     >
-      <div class="container mx-auto px-6 py-4">
+      <div class="container mx-auto px-2 sm:px-6 py-4">
         <div class="flex items-center justify-between">
           <div
             class="flex items-center gap-3 cursor-pointer transition-transform hover:scale-105"
@@ -106,18 +106,23 @@
     </header>
 
     <!-- Report Missing Form -->
-    <div class="min-h-screen py-20 px-6 relative">
-      <div class="container mx-auto max-w-2xl relative">
-        <div class="text-center mb-8">
+    <div class="min-h-screen py-8 sm:py-20 px-2 sm:px-6 relative">
+      <div class="container mx-auto max-w-lg sm:max-w-2xl relative">
+        <div class="text-center mb-6 sm:mb-8">
           <div
-            class="w-20 h-20 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
+            class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg"
           >
-            <i data-lucide="alert-circle" class="w-10 h-10 text-white"></i>
+            <i
+              data-lucide="alert-circle"
+              class="w-8 h-8 sm:w-10 sm:h-10 text-white"
+            ></i>
           </div>
-          <h1 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+          <h1
+            class="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 mb-2 sm:mb-4"
+          >
             تبليغ عن شخص مفقود
           </h1>
-          <p class="text-lg text-gray-600 font-medium">
+          <p class="text-base sm:text-lg text-gray-600 font-medium">
             ساعدنا في العثور على الشخص المفقود بتقديم المعلومات التالية
           </p>
         </div>
@@ -125,18 +130,21 @@
         <div
           class="bg-white/80 backdrop-blur-md shadow-2xl border-0 rounded-2xl"
         >
-          <div class="p-8 space-y-6">
-            <form id="report-missing-form" class="space-y-6">
+          <div class="p-3 sm:p-8 space-y-4 sm:space-y-6">
+            <form id="report-missing-form" class="space-y-4 sm:space-y-6">
               <!-- Basic Information -->
-              <div class="space-y-6">
-                <div class="flex items-center gap-3 mb-6">
-                  <i data-lucide="user" class="w-6 h-6 text-orange-600"></i>
-                  <h2 class="text-xl font-bold text-gray-900">
+              <div class="space-y-4 sm:space-y-6">
+                <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+                  <i
+                    data-lucide="user"
+                    class="w-5 h-5 sm:w-6 sm:h-6 text-orange-600"
+                  ></i>
+                  <h2 class="text-lg sm:text-xl font-bold text-gray-900">
                     المعلومات الأساسية
                   </h2>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                   <div class="space-y-2">
                     <label for="name" class="text-gray-700 font-semibold">
                       الاسم الكامل للشخص *
@@ -185,15 +193,20 @@
               </div>
 
               <!-- Location Information -->
-              <div class="space-y-6 pt-6 border-t border-gray-200">
-                <div class="flex items-center gap-3 mb-6">
-                  <i data-lucide="map-pin" class="w-6 h-6 text-blue-600"></i>
-                  <h2 class="text-xl font-bold text-gray-900">
+              <div
+                class="space-y-4 sm:space-y-6 pt-4 sm:pt-6 border-t border-gray-200"
+              >
+                <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+                  <i
+                    data-lucide="map-pin"
+                    class="w-5 h-5 sm:w-6 sm:h-6 text-blue-600"
+                  ></i>
+                  <h2 class="text-lg sm:text-xl font-bold text-gray-900">
                     معلومات المكان
                   </h2>
                 </div>
 
-                <div class="space-y-4">
+                <div class="space-y-3 sm:space-y-4">
                   <div class="space-y-2">
                     <label for="location" class="text-gray-700 font-semibold">
                       مكان السكن أو المنطقة *
@@ -244,18 +257,20 @@
               </div>
 
               <!-- Additional Information -->
-              <div class="space-y-6 pt-6 border-t border-gray-200">
-                <div class="flex items-center gap-3 mb-6">
+              <div
+                class="space-y-4 sm:space-y-6 pt-4 sm:pt-6 border-t border-gray-200"
+              >
+                <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
                   <i
                     data-lucide="file-text"
-                    class="w-6 h-6 text-purple-600"
+                    class="w-5 h-5 sm:w-6 sm:h-6 text-purple-600"
                   ></i>
-                  <h2 class="text-xl font-bold text-gray-900">
+                  <h2 class="text-lg sm:text-xl font-bold text-gray-900">
                     معلومات إضافية
                   </h2>
                 </div>
 
-                <div class="space-y-4">
+                <div class="space-y-3 sm:space-y-4">
                   <div class="space-y-2">
                     <label
                       for="contactInfo"
@@ -304,10 +319,17 @@
               </div>
 
               <!-- Photo Upload -->
-              <div class="space-y-6 pt-6 border-t border-gray-200">
-                <div class="flex items-center gap-3 mb-6">
-                  <i data-lucide="camera" class="w-6 h-6 text-green-600"></i>
-                  <h2 class="text-xl font-bold text-gray-900">تحميل صورة</h2>
+              <div
+                class="space-y-4 sm:space-y-6 pt-4 sm:pt-6 border-t border-gray-200"
+              >
+                <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+                  <i
+                    data-lucide="camera"
+                    class="w-5 h-5 sm:w-6 sm:h-6 text-green-600"
+                  ></i>
+                  <h2 class="text-lg sm:text-xl font-bold text-gray-900">
+                    تحميل صورة
+                  </h2>
                 </div>
 
                 <div class="space-y-2">
@@ -315,17 +337,19 @@
                     صورة الشخص المفقود (إن وُجدت)
                   </label>
                   <div
-                    class="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center bg-white/70 backdrop-blur hover:border-green-400 transition-colors cursor-pointer"
+                    class="border-2 border-dashed border-gray-300 rounded-xl p-4 sm:p-8 text-center bg-white/70 backdrop-blur hover:border-green-400 transition-colors cursor-pointer"
                     onclick="document.getElementById('photo').click()"
                   >
                     <i
                       data-lucide="upload"
-                      class="w-8 h-8 text-gray-400 mx-auto mb-4"
+                      class="w-6 h-6 sm:w-8 sm:h-8 text-gray-400 mx-auto mb-2 sm:mb-4"
                     ></i>
-                    <p class="text-gray-600 font-medium mb-2">
+                    <p class="text-gray-600 font-medium mb-1 sm:mb-2">
                       اضغط لتحميل الصورة أو اسحبها هنا
                     </p>
-                    <p class="text-sm text-gray-500">JPEG, PNG حتى 2MB</p>
+                    <p class="text-xs sm:text-sm text-gray-500">
+                      JPEG, PNG حتى 2MB
+                    </p>
                     <input
                       type="file"
                       id="photo"
@@ -333,7 +357,7 @@
                       class="hidden"
                       accept="image/jpeg,image/png"
                     />
-                    <div class="file-preview mt-4"></div>
+                    <div class="file-preview mt-2 sm:mt-4"></div>
                   </div>
                 </div>
               </div>
@@ -342,19 +366,22 @@
               <input type="hidden" name="found" value="false" />
 
               <!-- Submit Button -->
-              <div class="pt-6 border-t border-gray-200">
+              <div class="pt-4 sm:pt-6 border-t border-gray-200">
                 <button
                   type="submit"
                   id="report-missing-submit-btn"
-                  class="w-full h-14 bg-gradient-to-l from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                  class="w-full h-12 sm:h-14 bg-gradient-to-l from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all text-base sm:text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <span class="flex items-center justify-center gap-2">
-                    <i data-lucide="alert-circle" class="w-6 h-6"></i>
+                    <i
+                      data-lucide="alert-circle"
+                      class="w-5 h-5 sm:w-6 sm:h-6"
+                    ></i>
                     إرسال البلاغ
                   </span>
                 </button>
 
-                <div class="text-center mt-4">
+                <div class="text-center mt-3 sm:mt-4">
                   <button
                     type="button"
                     onclick="window.location.href='dashboard.html'"

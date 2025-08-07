@@ -260,13 +260,7 @@ export default function reporterAccount(
 
       // Return the reporter's profile with related data
       // This provides a complete view of the user's activity
-      return c.json(
-        {
-          message: 'Profile retrieved successfully',
-          profile: reporter,
-        },
-        200
-      );
+      return c.json(reporter, 200);
     } catch (error: any) {
       console.error('Error fetching reporter data:', error);
       return c.json(
