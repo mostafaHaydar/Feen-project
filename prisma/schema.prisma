@@ -20,9 +20,8 @@ model Reporters {
   Losts     Losts[]
   Founds    Founds[]
 }
-
 model Losts {
-  id               Int       @id @default(autoincrement())
+  id               Int        @id @default(autoincrement())
   name             String
   location         String
   lastSeenLocation String
@@ -34,10 +33,13 @@ model Losts {
   mentalHealth     String?
   photo            String?
   photoMimeType    String?
-  found            Boolean   @default(false)
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
-  Founds           Founds[]
+  found            Boolean    @default(false)
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+
+  // Many-to-Many relation
+  founds           Founds[]   @relation("LostsToFounds")
+
   reporterId       Int
   Reporters        Reporters @relation(fields: [reporterId], references: [id])
 }
@@ -56,8 +58,8 @@ model Founds {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
-  lostId Int?
-  Losts  Losts? @relation(fields: [lostId], references: [id])
+  // Many-to-Many relation
+  losts          Losts[]    @relation("LostsToFounds")
 
   reporterId Int
   Reporters  Reporters @relation(fields: [reporterId], references: [id])

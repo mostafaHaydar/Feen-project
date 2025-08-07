@@ -33,7 +33,6 @@ export default function Found(api: Hono<{ Bindings: CloudflareBindings }>) {
           gender: foundData.gender.trim(),
           contactInfo: foundData.contactInfo?.trim() || null,
           reporterId: reporterId,
-          lostId: null, // Initially not linked to any lost person
         };
 
         // Validate age if provided
@@ -60,11 +59,11 @@ export default function Found(api: Hono<{ Bindings: CloudflareBindings }>) {
             400
           );
         }
-
+        console.log('im here');
         const found = await prisma.founds.create({
           data: sanitizedData,
         });
-        
+
         return c.json(found, 201);
       } catch (error: any) {
         console.error('Error creating found person report:', error);

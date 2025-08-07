@@ -41,7 +41,12 @@ export default function Matche(api: Hono<{ Bindings: CloudflareBindings }>) {
       try {
         // Retrieve the lost person report
         const lost = await prisma.losts.findUnique({
-          where: { id: lostId },
+          where: {
+            id: lostId,
+          },
+          include: {
+            founds: true,
+          },
         });
         if (!lost) {
           return c.json(
@@ -49,7 +54,13 @@ export default function Matche(api: Hono<{ Bindings: CloudflareBindings }>) {
             404
           );
         }
+        let matchesByFacialRecognition = [];
 
+        if (lost.found && lost.founds.length != 0) {
+          matchesByFacialRecognition = lost.founds;
+          return c.json({ lost, matches: matchesByFacialRecognition }, 200);
+        }
+        console.log('im here');
         // Demographic filtering for potential matches
         const potentialMatches = await prisma.founds.findMany({
           where: {
@@ -80,7 +91,6 @@ export default function Matche(api: Hono<{ Bindings: CloudflareBindings }>) {
           );
         }
 
-        let matchesByFacialRecognition = [];
         // If the lost person has a photo, use facial recognition
         if (lost.photo && lost.photoMimeType) {
           const lostImageBase64 = await convertR2FileToBase64(
@@ -117,6 +127,17 @@ export default function Matche(api: Hono<{ Bindings: CloudflareBindings }>) {
                       });
                       // If confidence is very high, short-circuit
                       if (facialRecognition.confidence > 90) {
+                        await prisma.losts.update({
+                          where: {
+                            id: lostId,
+                          },
+                          data: {
+                            found: true,
+                            founds: {
+                              connect: { id: element.id }, // assumes you have the foundId
+                            },
+                          },
+                        });
                         break;
                       }
                     }
@@ -171,7 +192,12 @@ export default function Matche(api: Hono<{ Bindings: CloudflareBindings }>) {
       try {
         // Retrieve the found person report
         const found = await prisma.founds.findUnique({
-          where: { id: foundId },
+          where: {
+            id: foundId,
+          },
+          include: {
+            losts: true,
+          },
         });
         if (!found) {
           return c.json(
@@ -179,6 +205,13 @@ export default function Matche(api: Hono<{ Bindings: CloudflareBindings }>) {
             404
           );
         }
+
+        let matchesByFacialRecognition = [];
+        if (found.losts.length != 0) {
+          matchesByFacialRecognition = found.losts;
+          return c.json({ found, matches: matchesByFacialRecognition }, 200);
+        }
+        console.log('im here');
 
         // Demographic filtering for potential matches
         const potentialMatches = await prisma.losts.findMany({
@@ -210,7 +243,6 @@ export default function Matche(api: Hono<{ Bindings: CloudflareBindings }>) {
           );
         }
 
-        let matchesByFacialRecognition = [];
         // If the found person has a photo, use facial recognition
         if (found.photo && found.photoMimeType) {
           const foundImageBase64 = await convertR2FileToBase64(
@@ -247,6 +279,16 @@ export default function Matche(api: Hono<{ Bindings: CloudflareBindings }>) {
                       });
                       // If confidence is very high, short-circuit
                       if (facialRecognition.confidence > 90) {
+                        await prisma.founds.update({
+                          where: {
+                            id: foundId,
+                          },
+                          data: {
+                            losts: {
+                              connect: { id: element.id }, // assumes you have the foundId
+                            },
+                          },
+                        });
                         break;
                       }
                     }
