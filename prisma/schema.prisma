@@ -18,6 +18,8 @@ model Reporters {
   updatedAt DateTime @updatedAt
   Losts     Losts[]
   Founds    Founds[]
+
+  Report Report[]
 }
 
 model Losts {
@@ -43,6 +45,8 @@ model Losts {
 
   reporterId Int
   Reporters  Reporters @relation(fields: [reporterId], references: [id])
+
+  Match Match[]
 }
 
 model Founds {
@@ -64,4 +68,37 @@ model Founds {
 
   reporterId Int
   Reporters  Reporters @relation(fields: [reporterId], references: [id])
+
+  Match Match[]
+}
+
+model Statistic {
+  id          Int      @id @default(autoincrement())
+  type        String // e.g., 'visit', 'report_lost', 'report_found'
+  count       Int      @default(0)
+  lastUpdated DateTime @updatedAt
+  createdAt   DateTime @default(now())
+}
+
+model Match {
+  id         Int      @id @default(autoincrement())
+  lostId     Int
+  foundId    Int
+  confidence Float?
+  createdAt  DateTime @default(now())
+
+  Losts  Losts  @relation(fields: [lostId], references: [id])
+  Founds Founds @relation(fields: [foundId], references: [id])
+}
+
+model Report {
+  id         Int      @id @default(autoincrement())
+  type       String // e.g., 'lost', 'found'
+  reportId   Int // foreign key for Losts or Founds
+  createdAt  DateTime @default(now())
+  reporterId Int
+
+  Reporters Reporters @relation(fields: [reporterId], references: [id])
+
+  @@index([type, reportId])
 }
