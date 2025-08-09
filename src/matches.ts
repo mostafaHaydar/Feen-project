@@ -67,14 +67,14 @@ export default function Matche(api: Hono<{ Bindings: CloudflareBindings }>) {
             gender: lost.gender,
             age: lost.age
               ? {
-                  gte: lost.age - 3,
-                  lte: lost.age + 3,
-                }
+                gte: lost.age - 3,
+                lte: lost.age + 3,
+              }
               : undefined,
             foundDate: lost.lastSeenDate
               ? {
-                  gte: lost.lastSeenDate,
-                }
+                gte: lost.lastSeenDate,
+              }
               : undefined,
           },
           orderBy: { foundDate: 'desc' },
@@ -220,14 +220,14 @@ export default function Matche(api: Hono<{ Bindings: CloudflareBindings }>) {
             gender: found.gender,
             age: found.age
               ? {
-                  gte: found.age - 3,
-                  lte: found.age + 3,
-                }
+                gte: found.age - 3,
+                lte: found.age + 3,
+              }
               : undefined,
             lastSeenDate: found.foundDate
               ? {
-                  lte: found.foundDate,
-                }
+                lte: found.foundDate,
+              }
               : undefined,
           },
           orderBy: { lastSeenDate: 'desc' },

@@ -1,6 +1,6 @@
 {
 	"name": "feen-backend",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"private": true,
 	"scripts": {
 		"deploy": "wrangler deploy",
@@ -27,6 +27,7 @@
 		"bcrypt-ts": "^6.0.0",
 		"file-type": "^20.5.0",
 		"hono": "^4.7.11",
+		"node": "^22.18.0",
 		"prisma": "^6.9.0"
 	}
 }
